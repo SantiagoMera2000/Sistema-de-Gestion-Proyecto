@@ -12,7 +12,7 @@ if(!isset($usuario)){
 ?>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="css\index1.css">
+<link rel="stylesheet" href="css\index.css">
 <link rel="stylesheet" href="css\main.css">
 
 <body>
@@ -22,20 +22,66 @@ if(!isset($usuario)){
                 <h1>Texto Bienvenida</h1>
                 <a>Texto Bienvenida 2</a>
             </div>
-            <div class="div-config row">
-                <div class="columna col-lg-6">
-                    <table>
-                        <tr>
-                            <td class="tabla-opciones"><img src="img\Logo_Software.png" alt="" width="75px">Opcion 1</td>
-                            <td class="tabla-opciones"><a href='productos.php'><span class="material-symbols-outlined">inventory_2</span>Productos</a></td>
-                            <td class="tabla-opciones"><img src="img\Logo_Software.png" alt="" width="75px">Opcion 3</td>
-                        </tr>
-                        <tr>
-                            <td class="tabla-opciones"><img src="img\Logo_Software.png" alt="" width="75px">Opcion 4</td>
-                            <td class="tabla-opciones"><img src="img\Logo_Software.png" alt="" width="75px">Opcion 5</td>
-                            <td class="tabla-opciones"><img src="img\Logo_Software.png" alt="" width="75px">Opcion 6</td>
-                        </tr>
-                    </table>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='#'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <h5 class="card-title">Opcion 1</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='productos.php'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">inventory_2</span>
+                                <h5 class="card-title">Productos</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='#'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <h5 class="card-title">Opcion 3</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='#'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <h5 class="card-title">Opcion 4</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='#'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <h5 class="card-title">Opcion 5</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card div-config agregados">
+                        <a href='#'>
+                            <div class="card-body">
+                                <span class="material-symbols-outlined">open_in_new</span>
+                                <h5 class="card-title">Opcion 6</h5>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </main>
