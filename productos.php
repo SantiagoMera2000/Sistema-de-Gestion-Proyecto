@@ -15,7 +15,6 @@ if(!isset($usuario)){
   <div class="row">
     <div class="col-md-4">
       <!-- Mensajes -->
-
       <?php if (isset($_SESSION['message'])) { ?>
       <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
         <?= $_SESSION['message']?>
@@ -24,7 +23,6 @@ if(!isset($usuario)){
         </button>
       </div>
       <?php session_unset(); } ?>
-
       <!-- Formulario de agregar tarea -->
       <div class="card card-body">
         <form action="save_task.php" method="POST">
