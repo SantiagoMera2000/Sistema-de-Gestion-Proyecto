@@ -27,8 +27,8 @@ if(!isset($usuario)){
                     <div class="card div-config agregados">
                         <a href='#'>
                             <div class="card-body">
-                                <span class="material-symbols-outlined">open_in_new</span>
-                                <h5 class="card-title">Opcion 1</h5>
+                            <span class="material-symbols-outlined">menu_book</span>
+                                <h5 class="card-title">Recetas</h5>
                             </div>
                         </a>
                     </div>
@@ -37,7 +37,7 @@ if(!isset($usuario)){
                     <div class="card div-config agregados">
                         <a href='productos.php'>
                             <div class="card-body">
-                                <span class="material-symbols-outlined">inventory_2</span>
+                            <span class="material-symbols-outlined">inventory</span>
                                 <h5 class="card-title">Productos</h5>
                             </div>
                         </a>
@@ -47,8 +47,8 @@ if(!isset($usuario)){
                     <div class="card div-config agregados">
                         <a href='#'>
                             <div class="card-body">
-                                <span class="material-symbols-outlined">open_in_new</span>
-                                <h5 class="card-title">Opcion 3</h5>
+                            <span class="material-symbols-outlined">inventory_2</span>
+                                <h5 class="card-title">Inventario</h5>
                             </div>
                         </a>
                     </div>
@@ -57,8 +57,8 @@ if(!isset($usuario)){
                     <div class="card div-config agregados">
                         <a href='#'>
                             <div class="card-body">
-                                <span class="material-symbols-outlined">open_in_new</span>
-                                <h5 class="card-title">Opcion 4</h5>
+                            <span class="material-symbols-outlined">fact_check</span>
+                                <h5 class="card-title">Facturacion</h5>
                             </div>
                         </a>
                     </div>
@@ -67,22 +67,13 @@ if(!isset($usuario)){
                     <div class="card div-config agregados">
                         <a href='#'>
                             <div class="card-body">
-                                <span class="material-symbols-outlined">open_in_new</span>
-                                <h5 class="card-title">Opcion 5</h5>
+                            <span class="material-symbols-outlined">contact_mail</span>
+                                <h5 class="card-title">Clientes</h5>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card div-config agregados">
-                        <a href='#'>
-                            <div class="card-body">
-                                <span class="material-symbols-outlined">open_in_new</span>
-                                <h5 class="card-title">Opcion 6</h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+               
             </div>
         </main>
     </div>

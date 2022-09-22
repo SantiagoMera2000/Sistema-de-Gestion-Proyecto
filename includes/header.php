@@ -32,8 +32,9 @@
 <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <img src="img/Logo_Sistema.jpg" alt="" width="65px">
+                <a href="http://localhost/Sistema-de-gestion-proyecto/"><img src="img/Logo.Sistema.png" alt="" width="65px"></a>
             </div>
+            
             <div class="col-4 text-right barra">
                 <ul class="navbar-nav mr-auto">
                     <li>
@@ -44,10 +45,12 @@
                             </a>
                         </div>
                     </li>
-                </ul>
-            </div>
+
         </div>
+        <body>
     </div>
+
+    
 <!--
     <div class="container-fluid">
         <div class="row">
@@ -60,3 +63,12 @@
                 </nav>
             </div>
 -->
+
+<!-- <div id="navegador">
+  <ul>
+    <li><a href="#">Elemento 1</a></li>
+    <li><a href="#">Elemento 2</a></li>
+    <li><a href="#">Elemento 3</a></li>
+    <li><a href="#">Elemento 4</a></li>
+  </ul>
+</div> -->
