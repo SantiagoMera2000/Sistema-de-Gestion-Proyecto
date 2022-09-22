@@ -32,7 +32,7 @@
 <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <img src="img/Logo_Sistema.png" alt="" width="65px">
+                <img class="logo" src="img/Logo_Sistema.png" alt="" width="40px">
             </div>
             <div class="col-4 text-right barra">
                 <ul class="navbar-nav mr-auto">

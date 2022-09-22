@@ -12,10 +12,11 @@
     height: 100%;
     display: block;
     text-decoration: none;
+    color: black;
 }
 .agregados:hover {
     cursor:pointer;
-    background-color: gainsboro;
+    background-color: #feae26;
 }
 .agregados:hover a {
     text-decoration: none;

@@ -6,7 +6,7 @@ body {
 }
 
 .barra {
-    background: #00ADEF;
+    background: #035AC3;
     padding-top: 15px;
     padding-bottom: 15px;
     margin: 0;
@@ -14,11 +14,15 @@ body {
 
 .dropdown-menu {
     margin: 17px;
-    background: #262a34;
+    background: black;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
 }
-
+.logo:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
+    border-radius: 0.25rem;
+}
 .menuperfil {
     color: white;
 }
@@ -29,7 +33,7 @@ body {
 }
 
 .cerrar:hover {
-    background-color: rgba(206, 65, 22, 0.877);
+    background-color: #feae26;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
 }
 
