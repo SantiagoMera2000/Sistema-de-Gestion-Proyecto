@@ -30,27 +30,24 @@
 -->
 <!-- Barra de navegacion superior -->
 <div class="container-fluid">
-        <div class="row justify-content-center align-content-center">
-            <div class="col-8 barra">
-                <a href="http://localhost/Sistema-de-gestion-proyecto/"><img src="img/Logo.Sistema.png" alt="" width="65px"></a>
-            </div>
-            
-            <div class="col-4 text-right barra">
-                <ul class="navbar-nav mr-auto">
-                    <li>
-                        <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
-                            <a class="dropdown-item menuperfil cerrar" href="logic\salir.php"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesión
-                            </a>
-                        </div>
-                    </li>
-
-        </div>
-        <body>
+  <div class="row justify-content-center align-content-center">
+    <div class="col-8 barra">
+      <a href="index.php"><img src="img/Logo_Sistema.png" alt="" width="40px"></a>
     </div>
-
+    <div class="col-4 text-right barra">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
+          <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
+            <a class="dropdown-item menuperfil cerrar" href="logic\salir.php"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesión</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
     
-<!--
+<!-- Barra lateral de navegacion
     <div class="container-fluid">
         <div class="row">
             <div class="barra-lateral col-12 col-sm-auto">
