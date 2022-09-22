@@ -11,7 +11,7 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="assets\fontawesome\css\all.css">
     <!-- STYLE -->
-    <link rel="stylesheet" href="css\main.css">
+    <link rel="stylesheet" href="css\main1.css">
   </head>
   <body>
 
@@ -28,11 +28,11 @@
     </div>
   </nav>
 -->
-
+<!-- Barra de navegacion superior -->
 <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
-                <img src="img/Logo_Sistema.jpg" alt="" width="65px">
+                <img src="img/Logo_Sistema.png" alt="" width="65px">
             </div>
             <div class="col-4 text-right barra">
                 <ul class="navbar-nav mr-auto">
