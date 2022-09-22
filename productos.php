@@ -30,7 +30,7 @@ if(!isset($usuario)){
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <div class="card">
-          <img src="img\<?php echo $row['img_id']?>" class="card-img-top" alt="<?php echo $row['nom_pro']; ?>" width="70px">
+          <img src="img\<?php echo $row['img_id']?>" class="card-img-top" alt="<?php echo $row['nom_pro']; ?>" width="20px">
           <div class="card-body">
             <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
             <p class="card-text"><?php echo $row['descri_pro']; ?></p>
