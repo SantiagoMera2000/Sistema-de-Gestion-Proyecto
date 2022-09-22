@@ -11,7 +11,7 @@
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="assets\fontawesome\css\all.css">
     <!-- STYLE -->
-    <link rel="stylesheet" href="css\main.css">
+    <link rel="stylesheet" href="css\main1.css">
   </head>
   <body>
 
@@ -28,7 +28,7 @@
     </div>
   </nav>
 -->
-
+<!-- Barra de navegacion superior -->
 <div class="container-fluid">
         <div class="row justify-content-center align-content-center">
             <div class="col-8 barra">
@@ -39,7 +39,6 @@
                 <ul class="navbar-nav mr-auto">
                     <li>
                         <a href="#" class="px-3 text-light perfil dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle user"></i></a>
-
                         <div class="dropdown-menu" aria-labelledby="navbar-dropdown">
                             <a class="dropdown-item menuperfil cerrar" href="logic\salir.php"><i class="fas fa-sign-out-alt m-1"></i>Cerrar Sesión
                             </a>
