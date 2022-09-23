@@ -1,3 +1,5 @@
+<!-- El login de momento no cargará el archivo Header.php ya que este contiene la barra de navegacion
+principal y genera conflicto -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +11,7 @@
     <link href="css/estilo_login1.css" rel="stylesheet">
 </head>
 <body>
+    <!-- Formulario de inicio de sesion -->
     <form action="logic/iniciar_sesion.php" method="POST">
         <div class="logo">
             <img src="img/Logo_Sistema.png" width="120">
@@ -19,11 +22,13 @@
         <br><br>
         <input type="password" name="clave" placeholder="Ingrese su contraseña">
         <br><br>
-        <?php if (isset($_SESSION['message'])) { ?>
+        <!-- DESACTIVADO POR PRUEBAS
+        <?php #if (isset($_SESSION['message'])) { ?>
         <div class="alert alert-danger" role="alert">
-            <?php $_SESSION['message']?>
+            <?php #$_SESSION['message']?>
         </div>
-        <?php session_unset(); } ?>
+        <?php #session_unset(); } ?>
+        -->
         <button type="submit">Iniciar Sesión</button>
     </form>
 <?php include('includes/footer.php'); ?>

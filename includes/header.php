@@ -1,3 +1,4 @@
+<!-- Cuerpo de pagina universal -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -33,7 +34,8 @@
     </div>
   </div>
 </div>
-    
+
+<!-- OBSOLETOS SOLO PARA TESTEO O FUTURA INCLUSION -->
 <!-- Barra lateral de navegacion
     <div class="container-fluid">
         <div class="row">
