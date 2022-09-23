@@ -67,7 +67,7 @@ if(!isset($usuario)){
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
-              <img src="img\<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_pro']; ?>">
+              <img src="img/producto/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_pro']; ?>">
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">

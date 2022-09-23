@@ -15,19 +15,19 @@ if (isset($_POST['cargar'])) {
 
   $ruta_indexphp = dirname(realpath(__FILE__));
   $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-  $ruta_nuevo_destino = $ruta_indexphp . '/img/' . $_FILES['imagen']['name'];
+  $ruta_nuevo_destino = $ruta_indexphp . '/img/producto/' . $_FILES['imagen']['name'];
   move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
-  #$query = "INSERT into producto values ('','$nombre','$descr','$tipo','0','$precio_elav','$precio_venta','$cantidad','$nombrimagen')";
-  #$result = mysqli_query($conexion, $query);
-  #if(!$result) {
-   # die("Error en la Consulta.");
-  #}
+  $query = "INSERT into producto values ('','$nombre','$descr','$tipo','0','$precio_elav','$precio_venta','$cantidad','$nombrimagen')";
+  $result = mysqli_query($conexion, $query);
+  if(!$result) {
+    die("Error en la Consulta.");
+  }
 
   #$_SESSION['message'] = 'Tarea creada correctamente';
   #$_SESSION['message_type'] = 'success';
-  #header('location: productos.php');
-  echo "$nombre, $descr, $tipo, estado, $precio_elav, $precio_venta, $cantidad, $nombrimagen";
+  header('location: productos.php');
+  #echo "$nombre, $descr, $tipo, estado, $precio_elav, $precio_venta, $cantidad, $nombrimagen";
 }
 
 ?>
