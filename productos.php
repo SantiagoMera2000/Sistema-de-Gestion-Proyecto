@@ -10,21 +10,31 @@ if(!isset($usuario)){
     header("location: login.php");
 }
 ?>
+<link rel="stylesheet" href="css\main1.css">
 <link rel="stylesheet" href="css\productos.css">
 <!-- Modal -->
 <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar un Producto</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <form>
+          <label for="nombre">Nombre de Producto:</label>
+          <input type="text" id="nombre" name="nombre"><br>
+          <label for="descr">Descripción</label>
+          <input type="text" id="descr" name="descr"><br>
+          <label for="tipo">Tipo:</label>
+          <input type="text" id="tipo" name="tipo"><br>
+          <input type="checkbox" id="estado" name="estado" value="true">
+          <label for="estado">Estado</label>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Agregar</button>
       </div>
     </div>
   </div>
@@ -45,9 +55,9 @@ if(!isset($usuario)){
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <div class="card">
-            <img src="img\<?php echo $row['img_id']?>" class="card-img-top" alt="<?php echo $row['nom_pro']; ?>" width="20px">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
+              <img src="img\<?php echo $row['img_id']?>" class="card-img-top" alt="<?php echo $row['nom_pro']; ?>">
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">

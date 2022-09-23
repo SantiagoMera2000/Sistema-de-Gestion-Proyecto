@@ -12,6 +12,10 @@ body {
     margin: 0;
 }
 
+.navbar-nav {
+    text-align: right;
+}
+
 .dropdown-menu {
     margin: 17px;
     background: black;
