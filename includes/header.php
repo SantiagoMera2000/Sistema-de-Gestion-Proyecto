@@ -4,30 +4,17 @@
     <meta charset="UTF-8">
     <title>Sistema de Gestión Web</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <!-- BOOTSTRAP 4 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- BOOTSTRAP 5 -->
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- MATERIAL YOU -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- FONT AWESOME -->
-    <link rel="stylesheet" href="assets\fontawesome\css\all.css">
-    <!-- STYLE -->
-    <link rel="stylesheet" href="css\main1.css">
+    <link rel="stylesheet" href="assets\fontawesome\css\all.css" rel="stylesheet">
+    <!-- ESTILO PRINCIPAL -->
+    <link rel="stylesheet" href="css\main1.css" rel="stylesheet">
   </head>
   <body>
 
-<!-- DESACTIVADO
-  <nav>
-    <div class="container-top">
-      <div class="btn-sidebar">
-          <span class="material-symbols-outlined">menu</span>
-      </div>
-      <ul class="links">
-        <li class="link"><a href="#">Opcion 2</a></li>
-        <li class="link"><a href='logic/salir.php'><span class="material-symbols-outlined">logout</span></a></li>
-      </ul>
-    </div>
-  </nav>
--->
 <!-- Barra de navegacion superior -->
 <div class="container-fluid">
   <div class="row justify-content-center align-content-center">
@@ -68,3 +55,17 @@
     <li><a href="#">Elemento 4</a></li>
   </ul>
 </div> -->
+
+<!-- DESACTIVADO
+  <nav>
+    <div class="container-top">
+      <div class="btn-sidebar">
+          <span class="material-symbols-outlined">menu</span>
+      </div>
+      <ul class="links">
+        <li class="link"><a href="#">Opcion 2</a></li>
+        <li class="link"><a href='logic/salir.php'><span class="material-symbols-outlined">logout</span></a></li>
+      </ul>
+    </div>
+  </nav>
+-->

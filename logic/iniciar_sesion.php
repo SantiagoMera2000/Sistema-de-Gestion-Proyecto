@@ -2,10 +2,10 @@
 require 'conexion.php';
 session_start();
 
-$usuario = $_POST['usuario'];
+$email = $_POST['email'];
 $clave = $_POST['clave'];
 
-$q = "SELECT COUNT(*) as contar from persona where email = '$usuario' and clave = '$clave'";
+$q = "SELECT COUNT(*) as contar from persona where email = '$email' and clave = '$clave'";
 $consulta = mysqli_query($conexion,$q);
 $array = mysqli_fetch_array($consulta);
 
@@ -14,6 +14,8 @@ if($array['contar']>0){
     header("location: ../index.php");
 }else{
     echo "Datos incorrectos.";
+    #$_SESSION['message'] = 'Datos incorrectos.';
+    #header('location: ../login.php');
 }
 
 ?>

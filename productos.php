@@ -21,21 +21,31 @@ if(!isset($usuario)){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form enctype="multipart/form-data" action="cargar.php" method="POST">
           <label for="nombre">Nombre de Producto:</label>
           <input type="text" id="nombre" name="nombre"><br>
+          <label for="imagen">Imagen del Producto:</label>
+          <input name="imagen" type="file" id="imagen"/><br>
           <label for="descr">Descripción</label>
           <input type="text" id="descr" name="descr"><br>
           <label for="tipo">Tipo:</label>
           <input type="text" id="tipo" name="tipo"><br>
-          <input type="checkbox" id="estado" name="estado" value="true">
-          <label for="estado">Estado</label>
-        </form>
+          <div class="form-check form-switch">
+            <label class="form-check-label" for="estado">Visible</label>
+            <input class="form-check-input" type="checkbox" role="switch" id="estado">
+          </div>
+          <label for="precio_elav">Precio de Elaboración:</label>
+          <input type="number" id="precio_elav" name="precio_elav"><br>
+          <label for="precio_venta">Precio de Venta:</label>
+          <input type="number" id="precio_venta" name="precio_venta"><br>
+          <label for="cantidad">Cantidad:</label>
+          <input type="text" id="cantidad" name="cantidad"><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary">Agregar</button>
+        <button type="submit" class="btn btn-primary" name="cargar">Agregar</button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -57,7 +67,7 @@ if(!isset($usuario)){
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
-              <img src="img\<?php echo $row['img_id']?>" class="card-img-top" alt="<?php echo $row['nom_pro']; ?>">
+              <img src="img\<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_pro']; ?>">
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">
