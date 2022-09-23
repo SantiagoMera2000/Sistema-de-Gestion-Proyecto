@@ -52,8 +52,7 @@ if(!isset($usuario)){
 <!-- Contenedor principal donde empaqueta todo -->
 <main class="main col">
   <div class="row">
-    <div class="col-md-4">
-      <div class="card-group">
+          <div class="card-group">
         <div class="card text-center ajustes">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <span class="material-symbols-outlined agrandar-icono">add</span>
@@ -84,11 +83,9 @@ if(!isset($usuario)){
               </a>
           </div>
         </div>
-      </div>
     <?php 
   } 
 ?>
-      </div>
     </div>
   </div>
 </main>
