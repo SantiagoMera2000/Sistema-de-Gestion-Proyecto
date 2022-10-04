@@ -3,7 +3,7 @@
 $host = "localhost";
 $usuario = "root";
 $clave = "";
-$bd = "sgg_db";
+$bd = "soge_db";
 
 $conexion = mysqli_connect($host,$usuario,$clave,$bd);
 

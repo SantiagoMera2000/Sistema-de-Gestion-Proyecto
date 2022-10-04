@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="assets\fontawesome\css\all.css" rel="stylesheet">
+    <!-- NORMALIZE -->
+    <link rel="stylesheet" href="css\normalize.css" rel="stylesheet">
     <!-- ESTILO PRINCIPAL -->
     <link rel="stylesheet" href="css\main1.css" rel="stylesheet">
   </head>
