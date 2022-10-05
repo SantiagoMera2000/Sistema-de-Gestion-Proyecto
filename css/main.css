@@ -5,28 +5,13 @@ body {
     background: #f1f1f1;
 }
 
-.barra {
-    background: #035AC3;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    margin: 0;
-}
-
-.navbar-nav {
-    text-align: right;
-}
-
 .dropdown-menu {
     margin: 17px;
     background: black;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
 }
-.logo:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
-    border-radius: 0.25rem;
-}
+
 .menuperfil {
     color: white;
 }
@@ -42,50 +27,14 @@ body {
 }
 
 .user {
-    font-size: 45px;
+    font-size: 55px!important;
+    color: white;
 }
 
-
-/*BARRA LATERAL*/
-
-.barra-lateral {
-    background: #252121;
-    color: #fff;
-    min-width: 250px;
-    min-height: 100vh;
-    padding: 0;
-}
-
-.barra-lateral a {
-    color: #fff;
-}
-
-
-/*ESTILOS MENU*/
-
-.barra-lateral .menu a {
-    display: block;
-    padding: 20px;
-    font-family: Roboto, sans-serif;
-    font-weight: 500;
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-}
-
-.barra-lateral .menu a:hover {
-    background-color: #003C5D;
-    text-decoration: none;
-}
-
-.active {
-    background: #003C5D;
-}
-
-.barra-lateral .menu {
-    border-top: 5px #fff solid;
-}
-
-.barra-lateral .menu a i {
-    margin-right: 20px;
+.navbar {
+    --bs-navbar-padding-x: 1;
+    list-style-type: none;
+    background-color: #035AC3!important;
 }
 
 

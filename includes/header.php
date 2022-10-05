@@ -14,11 +14,26 @@
     <!-- NORMALIZE -->
     <link rel="stylesheet" href="css\normalize.css" rel="stylesheet">
     <!-- ESTILO PRINCIPAL -->
-    <link rel="stylesheet" href="css\main1.css" rel="stylesheet">
+    <link rel="stylesheet" href="css\main.css" rel="stylesheet">
   </head>
   <body>
 
-<!-- Barra de navegacion superior -->
+<nav class="navbar bg-light">
+  <div class="container-md">
+    <a class="navbar-brand" href="index.php">
+      <img src="img\Logo_Sistema.png" alt="Sistema Optimo de Gestión para Empresas" width="40">
+    </a>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="material-symbols-outlined user">account_circle</span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item menuperfil cerrar" href="logic\salir.php">Cerrar Sesión</a></li>
+      </ul>
+    </li>
+  </div>
+</nav>
+<!-- Barra de navegacion superior
 <div class="container-fluid">
   <div class="row justify-content-center align-content-center">
     <div class="col-8 barra">
@@ -36,7 +51,7 @@
     </div>
   </div>
 </div>
-
+-->
 <!-- OBSOLETOS SOLO PARA TESTEO O FUTURA INCLUSION -->
 <!-- Barra lateral de navegacion
     <div class="container-fluid">

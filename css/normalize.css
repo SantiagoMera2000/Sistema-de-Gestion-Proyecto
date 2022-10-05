@@ -147,6 +147,9 @@
   
   img {
     border-style: none;
+    max-width: 200px;
+    height: auto;
+    align-content: center;
   }
   
   /* Forms

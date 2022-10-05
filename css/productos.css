@@ -1,8 +1,39 @@
 .ajustes {
-    text-align: center;
-    align-content: center;
-    justify-content: center;
+    align-items: center;
 }
 .agrandar-icono {
     font-size: 105px;
+    padding-top: 1px;
+}
+.card-text {
+    max-width:540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-title {
+    max-width: 540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.btn {
+    --bs-btn-border-width: 0px;
+}
+.img-preview {
+    max-width: 170px;
+    height: 100px;
+    margin-bottom: 5px;
+}
+.row {
+    --bs-gutter-x: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.agregar {
+    align-self: center;
+}
+.col {
+    /* margin-left: 1px; */
+    /* margin-right: 1px; */
 }
