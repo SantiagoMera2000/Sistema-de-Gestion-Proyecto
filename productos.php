@@ -81,6 +81,7 @@ if(!isset($usuario)){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <a href="eliminar.php?id=<?php echo $_POST['eliminar']?>" class="btn btn-danger">Aceptar</a>
         <button type="button" class="btn btn-danger">Aceptar</button>
       </div>
     </div>
@@ -119,14 +120,15 @@ if(!isset($usuario)){
               <li class="list-group-item">Precio de Venta: <?php echo $row['precio_venta']; ?></li>
             </ul>
             <div class="card-footer">
+              <?php $eliminar = $row['id_prod']; ?>
               <a href="edit.php?id=<?php echo $row['id_prod']?>" class="btn btn-secondary">
                 <span class="material-symbols-outlined">edit</span>
               </a>
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
-                <span class="material-symbols-outlined">delete</span>
-              </button>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
+                  <span class="material-symbols-outlined">delete</span>
+                </button>
               <!--
-              <a href="delete_task.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
+              <a href="eliminar.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
                 <span class="material-symbols-outlined">delete</span>
               </a>
               -->
@@ -139,4 +141,13 @@ if(!isset($usuario)){
   </div>
 </main>
 
+<script>
+  $(document).on("click", ".open-AddBookDialog", function () {
+     var myBookId = $(this).data('id');
+     $(".modal-body #bookId").val( myBookId );
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+});
+</script>
 <?php include('includes/footer.php'); ?>

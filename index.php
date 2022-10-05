@@ -73,6 +73,16 @@ if(!isset($usuario)){
                     </a>
                 </div>
             </div>
+            <div class="col">
+                <div class="card div-config agregados">
+                    <a href='#'>
+                        <div class="card-body">
+                        <span class="material-symbols-outlined">monitoring</span>
+                            <h5 class="card-title">Estadisticas</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
     

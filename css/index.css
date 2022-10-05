@@ -35,5 +35,8 @@ word-wrap: normal;
 direction: ltr;
 -webkit-font-feature-settings: 'liga';
 -webkit-font-smoothing: antialiased;
-padding-top: 20px;
+}
+.row {
+    justify-content: center;
+    --bs-gutter-x: 0!important;
 }
