@@ -33,7 +33,78 @@
 .agregar {
     align-self: center;
 }
-.col {
-    /* margin-left: 1px; */
-    /* margin-right: 1px; */
+.formulario {
+    display: grid;
+    grid-template-columns: 160px 200px 215px;
+    grid-gap: 20px;
+}
+.imagen {
+    grid-column: 3/4;
+    grid-row: 4/5;
+}
+.vistaprevia {
+    grid-row: 1/4;
+    grid-column: 3/4;
+    background-color: blue;
+    width: 100;
+    height: auto;
+}
+@supports(object-fit: cover) {
+    .vistaprevia {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+.lblnombre {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.inpnombre {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.lbldesc {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.inpdesc {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.lbltipo {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.inptipo {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.estado {
+    grid-column: 1/2;
+    grid-row: 7/8;
+}
+.lblelab {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.inpelab {
+    grid-column: 3/2;
+    grid-row: 4/5;
+}
+.lblventa {
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+.inpventa {
+    grid-column: 2/3;
+    grid-row: 5/6;
+}
+.lblcant {
+    grid-column: 1/2;
+    grid-row: 6/7;
+}
+.inpcant {
+    grid-column: 2/3;
+    grid-row: 6/7;
 }

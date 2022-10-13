@@ -11,7 +11,7 @@ if(!isset($usuario)){
 }
 ?>
 <link rel="stylesheet" href="css\productos.css">
-
+ 
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -22,42 +22,36 @@ if(!isset($usuario)){
       </div>
       <!-- Cuerpo de la Ventana -->
       <div class="modal-body">
+        <br>
         <!-- Formulario para cargar los datos en la BD -->
-        <form enctype="multipart/form-data" action="cargar.php" method="POST">
+        <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
           <!-- Imagen del Producto -->
-          <input name="imagen" type="file" id="imagen"/>
-          <div id="imagepreview">
+          <input class="imagen" name="imagen" type="file" id="imagen"/>
+          <div class="vistaprevia" id="imagepreview">
           </div>
-          <hr>
           <!-- Nombre del Producto -->
-          <label for="nombre">Nombre de Producto </label>
-          <input type="text" id="nombre" name="nombre">
-          <br>
+          <label class="lblnombre" for="nombre">Nombre </label>
+          <input class="inpnombre" type="text" id="nombre" name="nombre">
           <!-- Descripción del producto -->
-          <label for="descr">Descripción </label>
-          <input type="text" id="descr" name="descr">
-          <br>
+          <label class="lbldesc" for="descr">Descripción </label>
+          <input class="impdesc" type="text" id="descr" name="descr">
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
-          <label for="tipo">Tipo </label>
-          <input type="text" id="tipo" name="tipo">
-          <br>
+          <label class="lbltipo" for="tipo">Tipo </label>
+          <input class="inptipo" type="text" id="tipo" name="tipo">
           <!-- Estado del Producto (Visible) -->
-          <div class="form-check form-switch">
+          <div class="form-check form-switch estado">
             <label class="form-check-label" for="estado">Visible</label>
             <input class="form-check-input" type="checkbox" role="switch" id="estado">
           </div>
           <!-- Precio de Elaboracion -->
-          <label for="precio_elab">Precio de Elaboración </label>
-          <input type="number" id="precio_elab" name="precio_elab">
-          <br>
+          <label class="lblelab" for="precio_elab">Precio de Elaboración </label>
+          <input class="inpelab" type="number" id="precio_elab" name="precio_elab">
           <!-- Precio de Venta -->
-          <label for="precio_venta">Precio de Venta </label>
-          <input type="number" id="precio_venta" name="precio_venta">
-          <br>
+          <label class="lblventa" for="precio_venta">Precio de Venta </label>
+          <input class="inpventa" type="number" id="precio_venta" name="precio_venta">
           <!-- Cantidad de Productos -->
-          <label for="cantidad">Cantidad </label>
-          <input type="text" id="cantidad" name="cantidad">
-          <br>
+          <label class="lblcant" for="cantidad">Cantidad </label>
+          <input class="inpcant" type="text" id="cantidad" name="cantidad">
           </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
