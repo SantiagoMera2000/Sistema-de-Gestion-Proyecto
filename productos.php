@@ -7,11 +7,11 @@ session_start();
 $usuario = $_SESSION['username'];
 
 if(!isset($usuario)){
-    header("location: login.php");
+  header("location: login.php");
 }
 ?>
 <link rel="stylesheet" href="css\productos.css">
- 
+
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -137,11 +137,11 @@ if(!isset($usuario)){
 
 <script>
   $(document).on("click", ".open-AddBookDialog", function () {
-     var myBookId = $(this).data('id');
-     $(".modal-body #bookId").val( myBookId );
-     // As pointed out in comments, 
-     // it is unnecessary to have to manually call the modal.
-     // $('#addBookDialog').modal('show');
+  var myBookId = $(this).data('id');
+  $(".modal-body #bookId").val( myBookId );
+    // As pointed out in comments, 
+    // it is unnecessary to have to manually call the modal.
+    // $('#addBookDialog').modal('show');
 });
 </script>
 <?php include('includes/footer.php'); ?>

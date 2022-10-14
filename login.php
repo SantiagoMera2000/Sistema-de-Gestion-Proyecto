@@ -8,7 +8,7 @@ principal y genera conflicto -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesion</title>
     <link href="assets/bootstrap.min.css" rel="stylesheet">
-    <link href="css/estilo_login1.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
 </head>
 <body>
     <!-- Formulario de inicio de sesion -->
