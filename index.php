@@ -18,8 +18,8 @@ if(!isset($usuario)){
 <body>
     <main class="main col">
         <div class="div-config row" style="display: grid">
-            <h1>Texto Bienvenida</h1>
-            <a>Texto Bienvenida 2</a>
+            <h1>Bienvenido <?php echo $usuario ?> !</h1>
+            <h4> Has click en algunas de las tarjetas para comenzar</h4>
         </div>
         <!-- Tarjetas de acceso rapido a cada parte del sistema -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -45,10 +45,10 @@ if(!isset($usuario)){
             </div>
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='#'>
+                    <a href='insumos.php'>
                         <div class="card-body">
-                        <span class="material-symbols-outlined">inventory_2</span>
-                            <h5 class="card-title">Inventario</h5>
+                        <span class="material-symbols-outlined">egg</span>
+                            <h5 class="card-title">Insumos</h5>
                         </div>
                     </a>
                 </div>
