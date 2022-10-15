@@ -13,26 +13,37 @@ if(!isset($usuario)){
 }
 ?>
 <!-- Estilos requeridos especialmente en esta pagina -->
-<link rel="stylesheet" href="css\index.css">
+<link rel="stylesheet" href="css\facturacion.css">
 
 <body>
 
     <main class="main">
         <div class="row align-items-start">
             <div class="col">
-            <input type="text" id="Search" onkeyup="myFunction()" placeholder="Buscar un lugar..." title="Buscador de productos">
-            
-            <table class="table table-bordered table-hover"> 
+            <form>
+                <input type="text" id="searchTerm" onkeyup="doSearch()" placeholder="Buscar un lugar..." title="Buscador de productos">
+            </form>
+            <br>
+            <table class="table table-bordered table-hover" id="datos"> 
                 <tbody>
-                    <tr>
                     <?php
                     $query = "SELECT * FROM producto";
                     $result_tasks = mysqli_query($conexion, $query);    
 
                     while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                    <tr>
+                        <td claa="noSearch"><?php echo $row['id_prod']; ?></td>
                         <td><?php echo $row['nom_pro']; ?></td>
-                        <td><?php echo $row['cantidad']; ?></td>
-                        <td><?php echo $row['precio_venta']; ?></td>
+                        <td class="noSearch"><?php echo $row['cantidad']; ?></td>
+                        <td class="noSearch"><?php echo $row['precio_venta']; ?></td>
+                        <td>
+                            <a href="edit.php?id=<?php echo $row['id_prod']?>" class="btn btn-primary">
+                                <span class="material-symbols-outlined">add</span>
+                            </a>
+                            <a href="delete_task.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+                        </td>
                     </tr>
                     <?php } ?>
                 </tbody>
@@ -50,29 +61,11 @@ if(!isset($usuario)){
                     </tr>
                 </thead>
                 <tbody>
-
-                <?php
-                $query = "SELECT * FROM task";
-                $result_tasks = mysqli_query($conexion, $query);    
-
-                while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-                <tr>
-                    <td><?php echo $row['title']; ?></td>
-                    <td><?php echo $row['description']; ?></td>
-                    <td><?php echo $row['created_at']; ?></td>
-                    <td>
-                    <a href="edit.php?id=<?php echo $row['id']?>" class="btn btn-secondary">
-                        <i class="fas fa-marker"></i>
-                    </a>
-                    <a href="delete_task.php?id=<?php echo $row['id']?>" class="btn btn-danger">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
-                    </td>
-                </tr>
-                <?php } ?>
+                        
                 </tbody>
             </table>
                 </div>
         </div>
     </main>
+<script src="js\filtrador.js"></script>
 <?php include('includes/footer.php'); ?>
