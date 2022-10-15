@@ -33,8 +33,8 @@ if(!isset($usuario)){
           <label class="lblnombre" for="nombre">Nombre </label>
           <input class="inpnombre" type="text" id="nombre" name="nombre">
           <!-- Precio de Insumo (Comida,Bebida,etc) -->
-          <label class="lbltipo" for="tipo">Tipo </label>
-          <input class="inptipo" type="text" id="tipo" name="tipo">
+          <label class="lblprecio" for="tipo">Tipo </label>
+          <input class="inpprecio" type="text" id="tipo" name="tipo">
           <!-- Estado del Producto (Visible) -->
           <div class="form-check form-switch estado">
             <label class="form-check-label" for="estado">Visible</label>
