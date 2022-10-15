@@ -100,19 +100,19 @@ if(!isset($usuario)){
               <!--<p class="card-text"><<?php echo $row['descri_pro'];?>/p>-->
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Cantidad de Insumo:<?php echo $row['cant_dispo']; ?></li>
+              <li class="list-group-item">Cantidad de Insumo:<?php echo $row['cant_disp']; ?></li>
               <li class="list-group-item">Precio del Insumo: <?php echo $row['precio_insu']; ?></li>
             </ul>
             <div class="card-footer">
-              <?php $eliminar = $row['id_prod']; ?>
-              <a href="edit.php?id=<?php echo $row['id_prod']?>" class="btn btn-secondary">
+              <?php $eliminar = $row['id_insu']; ?>
+              <a href="edit.php?id=<?php echo $row['id_insu']?>" class="btn btn-secondary">
                 <span class="material-symbols-outlined">edit</span>
               </a>
                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
                   <span class="material-symbols-outlined">delete</span>
                 </button>
               <!--
-              <a href="eliminar.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
+              <a href="eliminar.php?id=<?php echo $row['id_insu']?>" class="btn btn-danger">
                 <span class="material-symbols-outlined">delete</span>
               </a>
               -->
