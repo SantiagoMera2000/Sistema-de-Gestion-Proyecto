@@ -26,34 +26,35 @@ if(!isset($usuario)){
         <!-- Formulario para cargar los datos en la BD -->
         <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
           <!-- Imagen del Insumo -->
-          <input class="imagen" name="imagen" type="file" id="imagen"/>
+          <input class="imagen" name="imagen_insu" type="file" id="imagen_insu"/>
           <div class="vistaprevia" id="imagepreview">
           </div>
           <!-- Nombre del Insumo -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombre" name="nombre">
+          <input class="inpnombre" type="text" id="nom_insu" name="nom_insu">
           <!-- Precio de Insumo (Comida,Bebida,etc) -->
-          <label class="lblprecio" for="tipo">Tipo </label>
-          <input class="inpprecio" type="text" id="tipo" name="tipo">
+          <label class="lblprecio" for="precio">Precio </label>
+          <input class="inpprecio" type="text" id="precio_insu" name="precio_insu">
           <!-- Estado del Producto (Visible) -->
           <div class="form-check form-switch estado">
             <label class="form-check-label" for="estado">Visible</label>
             <input class="form-check-input" type="checkbox" role="switch" id="estado">
           </div>
           <!-- Cantidad de Insumo -->
-          <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidad" name="cantidad">
-          <select class="ltunidades"name="color">
-          <option>Gramos</option>
-          <option value="red">Kilogramos</option>
-          <option value="blue">Litros</option>
-          <option value="green">Mililitros</option>
+          <label class="lblcant" for="cant_disp">Cantidad </label>
+          <input class="inpcant" type="text" id="cant_disp" name="cant_disp">
+          <select class="ltunidades" name="unidad_insu" id="unidad_insu">
+            <option value="1">Gramos</option>
+            <option value="2">Kilogramos</option>
+            <option value="3">Litros</option>
+            <option value="4">Mililitros</option>
+            <option value="5">Cantidad</option>
           </select>
           </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="cargar">Agregar</button>
+            <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="insumo" >Agregar</button>
           </div>
         </form>
       </div>
@@ -101,13 +102,25 @@ if(!isset($usuario)){
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_insu']; ?></h5>
               <hr>
-              <img class="img-preview" src="img/insu<?php echo $row['img_insu']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_insu']; ?>">
-              <hr>
+              <img class="img-preview" src="img/insumo/<?php echo $row['img_insu']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_insu']; ?>">
               <!--<p class="card-text"><<?php echo $row['descri_pro'];?>/p>-->
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Cantidad de Insumo:<?php echo $row['cant_disp']; ?></li>
-              <li class="list-group-item">Precio del Insumo: <?php echo $row['precio_insu']; ?></li>
+              <?php 
+              if ($row['unidad_insu'] == "1" ) {
+                $unidad = "g";
+              }elseif ($row['unidad_insu'] == "2" ) {
+                $unidad = "kg";
+              }elseif ($row['unidad_insu'] == "3" ) {
+                $unidad = "l";
+              }elseif ($row['unidad_insu'] == "4" ) {
+                $unidad = "ml";
+              }elseif ($row['unidad_insu'] == "5" ) {
+                $unidad = "u";
+              }
+              ?>
+              <li class="list-group-item">Cantidad: <?php echo $row['cant_disp']; echo $unidad; ?></li>
+              <li class="list-group-item">Precio: <?php echo $row['precio_insu']; ?></li>
             </ul>
             <div class="card-footer">
               <?php $eliminar = $row['id_insu']; ?>

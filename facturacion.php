@@ -32,7 +32,7 @@ if(!isset($usuario)){
 
                     while($row = mysqli_fetch_assoc($result_tasks)) { ?>
                     <tr>
-                        <td claa="noSearch"><?php echo $row['id_prod']; ?></td>
+                        <td class="noSearch"><?php echo $row['id_prod']; ?></td>
                         <td><?php echo $row['nom_pro']; ?></td>
                         <td class="noSearch"><?php echo $row['cantidad']; ?></td>
                         <td class="noSearch"><?php echo $row['precio_venta']; ?></td>

@@ -56,7 +56,7 @@ if(!isset($usuario)){
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" name="cargar">Agregar</button>
+            <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="producto" >Agregar</button>
           </div>
         </form>
       </div>
