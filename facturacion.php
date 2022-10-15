@@ -16,21 +16,31 @@ if(!isset($usuario)){
 <link rel="stylesheet" href="css\index.css">
 
 <body>
-    <main class="main col">
-        <!-- ADD TASK FORM -->
-        <div class="card card-body">
-            <form action="save_task.php" method="POST">
-                <div class="form-group">
-                    <input type="text" name="title" class="form-control" placeholder="Task Title" autofocus>
-                </div>
-            <div class="form-group">
-                <textarea name="description" rows="2" class="form-control" placeholder="Task Description"></textarea>
+
+    <main class="main">
+        <div class="row align-items-start">
+            <div class="col">
+            <input type="text" id="Search" onkeyup="myFunction()" placeholder="Buscar un lugar..." title="Buscador de productos">
+            
+            <table class="table table-bordered table-hover"> 
+                <tbody>
+                    <tr>
+                    <?php
+                    $query = "SELECT * FROM producto";
+                    $result_tasks = mysqli_query($conexion, $query);    
+
+                    while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+                        <td><?php echo $row['nom_pro']; ?></td>
+                        <td><?php echo $row['cantidad']; ?></td>
+                        <td><?php echo $row['precio_venta']; ?></td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
             </div>
-            <input type="submit" name="save_task" class="btn btn-success btn-block" value="Save Task">
-            </form>
-        </div>
-        <div class="col-md-8">
-            <table class="table table-bordered">
+            <!-- Columna derecha -->
+            <div class="col">
+            <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -62,6 +72,7 @@ if(!isset($usuario)){
                 <?php } ?>
                 </tbody>
             </table>
+                </div>
         </div>
     </main>
 <?php include('includes/footer.php'); ?>

@@ -55,7 +55,7 @@ if(!isset($usuario)){
             </div>
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='#'>
+                    <a href='facturacion.php'>
                         <div class="card-body">
                         <span class="material-symbols-outlined">fact_check</span>
                             <h5 class="card-title">Facturacion</h5>
