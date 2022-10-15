@@ -18,12 +18,21 @@ if(!isset($usuario)){
 <body>
     <main class="main">
         <div class="row align-items-start">
-            <div class="col">
+            <div class="col col-iz">
                 <form>
-                    <input type="text" id="searchTerm" onkeyup="doSearch()" placeholder="Buscar un producto" title="Buscador de productos">
+                    <input class="form-control me-2" type="search" id="searchTerm" onkeyup="doSearch()" placeholder="Buscar un producto" title="Buscador de productos">
                 </form>
                 <br>
-                <table class="table table-bordered table-hover" id="datos"> 
+                <table class="table table-bordered table-hover" id="datos">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <?php
                         $query = "SELECT * FROM producto";
@@ -36,12 +45,9 @@ if(!isset($usuario)){
                             <td class="noSearch"><?php echo $row['cantidad']; ?></td>
                             <td class="noSearch"><?php echo $row['precio_venta']; ?></td>
                             <td>
-                                <a href="#" class="btn btn-primary">
+                                <button class="btn btn-tabla btn-primary envio">
                                     <span class="material-symbols-outlined">add</span>
-                                </a>
-                                <a href="#" class="btn btn-danger">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                         <?php } ?>
@@ -49,23 +55,25 @@ if(!isset($usuario)){
                 </table>
             </div>
             <!-- Columna derecha -->
-            <div class="col">
-                <table class="table table-bordered table-hover">
+            <div class="col col-der">
+                <table class="table table-bordered table-hover" id="facturar">
                     <thead>
                         <tr>
                             <th>Codigo</th>
                             <th>Nombre</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
+                            <th>Accion</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        
-                    </tbody>
                 </table>
+                <div>
+                    <p>datos</p>
+                </div>
             </div>
         </div>
     </main>
 
-<script src="js\filtrador.js"></script>
 <?php include('includes/footer.php'); ?>
+<script src="js\filtrador.js"></script>
+<script src="js\pasar_datos_tablas.js"></script>

@@ -5,5 +5,6 @@
 <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="js\funciones.js"></script>
 <script src="js\redireccion.js"></script>
+<script src="js\pag_activa.js"></script>
 </body>
 </html>

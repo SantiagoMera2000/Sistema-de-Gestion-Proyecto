@@ -1,3 +1,19 @@
-.btn {
+.btn-tabla {
     font-size: 5px !important;
+}
+.col-iz {
+    background-color: rgb(231, 231, 218);
+    border-radius: 5px;
+    box-shadow: -6px 5px 10px 1px rgba(0,0,0,0.2);
+}
+.col-der {
+    background-color: rgb(228, 228, 213);
+    border-radius: 5px;
+    box-shadow: 6px 5px 10px 1px rgba(0,0,0,0.2);
+}
+.btn-danger {
+    background-color: var(--bs-btn-bg)!important;
+}
+.btn-danger:hover {
+    background-color: var(--bs-btn-active-bg)!important;
 }

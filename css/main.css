@@ -34,7 +34,6 @@ body {
 .navbar {
     --bs-navbar-padding-x: 1;
     list-style-type: none;
-    background-color: #035AC3!important;
 }
 
 
@@ -117,3 +116,4 @@ body {
         overflow: visible;
     }
 }
+
