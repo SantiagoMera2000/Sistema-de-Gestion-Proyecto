@@ -118,7 +118,7 @@ if(!isset($usuario)){
                   <span class="material-symbols-outlined">delete</span>
                 </button>
               <!--
-              <a href="eliminar.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
+              <a href="eliminar.php?id=<?php echo $row['id_insu']?>" class="btn btn-danger">
                 <span class="material-symbols-outlined">delete</span>
               </a>
               -->
