@@ -65,10 +65,10 @@ if(!isset($usuario)){
             </div>
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='#'>
+                    <a href='ventas.php'>
                         <div class="card-body">
                         <span class="material-symbols-outlined">contact_mail</span>
-                            <h5 class="card-title">Clientes</h5>
+                            <h5 class="card-title">Pedidos</h5>
                         </div>
                     </a>
                 </div>
