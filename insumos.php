@@ -10,7 +10,7 @@ if(!isset($usuario)){
   header("location: login.php");
 }
 ?>
-<link rel="stylesheet" href="css\productos.css">
+<link rel="stylesheet" href="css\insumo.css">
 
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
@@ -43,6 +43,12 @@ if(!isset($usuario)){
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cantidad">Cantidad </label>
           <input class="inpcant" type="text" id="cantidad" name="cantidad">
+          <select class="ltunidades"name="color">
+          <option>Gramos</option>
+          <option value="red">Kilogramos</option>
+          <option value="blue">Litros</option>
+          <option value="green">Mililitros</option>
+          </select>
           </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">

@@ -1,0 +1,114 @@
+.ajustes {
+    align-items: center;
+}
+.agrandar-icono {
+    font-size: 105px;
+    padding-top: 1px;
+}
+.card-text {
+    max-width:540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-title {
+    max-width: 540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.btn {
+    --bs-btn-border-width: 0px;
+}
+.img-preview {
+    max-width: 170px;
+    height: 100px;
+    margin-bottom: 5px;
+}
+.row {
+    --bs-gutter-x: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.agregar {
+    align-self: center;
+}
+.formulario {
+    display: grid;
+    grid-template-columns: 160px 200px 215px;
+    grid-gap: 20px;
+}
+.imagen {
+    grid-column: 4/5;
+    grid-row: 4/5;
+}
+.vistaprevia {
+    grid-row: 1/4;
+    grid-column: 4/5;
+    background-color: blue;
+    width: 100;
+    height: auto;
+}
+@supports(object-fit: cover) {
+    .vistaprevia {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+.lblnombre {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.inpnombre {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.lbldesc {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.inpdesc {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.lbltipo {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.inptipo {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.estado {
+    grid-column: 1/2;
+    grid-row: 4;
+}
+.lblelab {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.inpelab {
+    grid-column: 3/2;
+    grid-row: 4/5;
+}
+.lblventa {
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+.inpventa {
+    grid-column: 1/2;
+    grid-row: 4;
+}
+.lblcant {
+    grid-column: 1/2;
+    grid-row: 3/5;
+}
+.inpcant {
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.ltunidades {
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
