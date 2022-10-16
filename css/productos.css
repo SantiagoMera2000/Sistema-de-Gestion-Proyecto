@@ -17,6 +17,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.card-body {
+    text-align: center;
+}
 .btn {
     --bs-btn-border-width: 0px;
 }
@@ -37,6 +40,7 @@
     display: grid;
     grid-template-columns: 160px 200px 215px;
     grid-gap: 20px;
+    justify-content: center;
 }
 .imagen {
     grid-column: 3/4;
@@ -45,8 +49,8 @@
 .vistaprevia {
     grid-row: 1/4;
     grid-column: 3/4;
-    background-color: blue;
-    width: 100;
+    background-color: gray;
+    width: 100%;
     height: auto;
 }
 @supports(object-fit: cover) {
@@ -80,10 +84,6 @@
     grid-column: 2/3;
     grid-row: 3/4;
 }
-.estado {
-    grid-column: 1/2;
-    grid-row: 7/8;
-}
 .lblelab {
     grid-column: 1/2;
     grid-row: 4/5;
@@ -107,4 +107,13 @@
 .inpcant {
     grid-column: 2/3;
     grid-row: 6/7;
+}
+.lblestado {
+    grid-column: 1/2;
+    grid-row: 7/8;
+}
+.estado {
+    grid-column: 1/2;
+    grid-row: 7/8;
+    margin: 0px 0px 0px 80px;
 }

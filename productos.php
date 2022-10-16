@@ -38,11 +38,6 @@ if(!isset($usuario)){
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
           <input class="inptipo" type="text" id="tipo" name="tipo">
-          <!-- Estado del Producto (Visible) -->
-          <div class="form-check form-switch estado">
-            <label class="form-check-label" for="estado">Visible</label>
-            <input class="form-check-input" type="checkbox" role="switch" id="estado">
-          </div>
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de Elaboración </label>
           <input class="inpelab" type="number" id="precio_elab" name="precio_elab">
@@ -51,8 +46,13 @@ if(!isset($usuario)){
           <input class="inpventa" type="number" id="precio_venta" name="precio_venta">
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidad" name="cantidad">
+          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1">
+          <!-- Estado del Producto (Visible) -->
+          <label class="form-check-label lblestado" for="estado">Visibilidad</label>
+          <div class="form-check form-switch estado">
+            <input class="form-check-input" type="checkbox" role="switch" id="estado">
           </div>
+        </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -87,10 +87,12 @@ if(!isset($usuario)){
   <div class="row row-cols-1 row-cols-md-6 g-4">
     <div class="col agregar">
       <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
-      <div class="card ajustes">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">
-          <span class="material-symbols-outlined agrandar-icono">add</span>
-        </button>
+      <div class="ajustes">
+        <div class="card-body">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">
+            <span class="material-symbols-outlined agrandar-icono">add</span>
+          </button>
+        </div>
       </div>
     </div>
           <?php
