@@ -3,13 +3,10 @@
 include("logic/conexion.php");
 session_start();
 
-if(isset($_GET['id'])) {
-  $id = $_GET['id'];
-  $query = "DELETE FROM producto WHERE id = $id";
-  $result = mysqli_query($conn, $query);
-  if(!$result) {
-    die("No se pudo eliminar.");
-  }
+if (isset($_POST['eliminar_prod'])) {
+  $id = $_POST['eliminar_prod'];
+  $query = "UPDATE producto SET estado = '0' WHERE id_prod = $id ";
+  $result = mysqli_query($conexion, $query);
 
   header('Location: productos.php');
 }

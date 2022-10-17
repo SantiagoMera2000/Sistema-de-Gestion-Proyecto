@@ -62,6 +62,7 @@ if(!isset($usuario)){
       </div>
     </div>
   </div>
+
 <!-- Ventana Modal de Confirmacion -->
 <div class="modal fade" id="VentanaEmergenteConfirmacion" tabindex="-1" aria-labelledby="VentanaEmergenteConfirmacion" aria-hidden="true" style="display: none;">
   <div class="modal-dialog">
@@ -75,8 +76,9 @@ if(!isset($usuario)){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <a href="eliminar.php?id=<?php echo $_POST['eliminar']?>" class="btn btn-danger">Aceptar</a>
-        <button type="button" class="btn btn-danger">Aceptar</button>
+        <form enctype="multipart/form-data" action="eliminar.php" method="POST">
+          <button type="submit" class="btn btn-danger" name="eliminar_prod" id="eliminar_prod" value="">Aceptar</button>
+        </form>
       </div>
     </div>
   </div>
@@ -96,7 +98,7 @@ if(!isset($usuario)){
       </div>
     </div>
           <?php
-          $query = "SELECT * FROM producto";
+          $query = "SELECT * FROM producto WHERE estado = 1";
           $result_tasks = mysqli_query($conexion, $query);    
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -111,18 +113,17 @@ if(!isset($usuario)){
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">Disponibles:<?php echo $row['cantidad']; ?></li>
               <li class="list-group-item">Precio de Elaboración: <?php echo $row['precio_elav']; ?></li>
               <li class="list-group-item">Precio de Venta: <?php echo $row['precio_venta']; ?></li>
+              <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
             <div class="card-footer">
-              <?php $eliminar = $row['id_prod']; ?>
               <a href="edit.php?id=<?php echo $row['id_prod']?>" class="btn btn-secondary">
                 <span class="material-symbols-outlined">edit</span>
               </a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
+              <a class="btn btn-danger eliminar" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
                   <span class="material-symbols-outlined">delete</span>
-                </button>
+              </a>
               <!--
               <a href="eliminar.php?id=<?php echo $row['id_prod']?>" class="btn btn-danger">
                 <span class="material-symbols-outlined">delete</span>
@@ -137,13 +138,11 @@ if(!isset($usuario)){
   </div>
 </main>
 
+<?php include('includes/footer.php'); ?>
 <script>
-  $(document).on("click", ".open-AddBookDialog", function () {
-  var myBookId = $(this).data('id');
-  $(".modal-body #bookId").val( myBookId );
-    // As pointed out in comments, 
-    // it is unnecessary to have to manually call the modal.
-    // $('#addBookDialog').modal('show');
+  $(document).on("click", ".eliminar", function () {
+  var IdProducto = $(this).data('id');
+  console.log(IdProducto);
+  $(".modal-footer #eliminar_prod").val( IdProducto );
 });
 </script>
-<?php include('includes/footer.php'); ?>
