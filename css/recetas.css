@@ -1,0 +1,88 @@
+.ajustes {
+    align-items: center;
+}
+.agrandar-icono {
+    font-size: 105px;
+    padding-top: 1px;
+}
+.card-text {
+    max-width:540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-title {
+    max-width: 540px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card-body {
+    text-align: center;
+}
+.btn {
+    --bs-btn-border-width: 0px;
+}
+.img-preview {
+    max-width: 170px;
+    height: 100px;
+    margin-bottom: 5px;
+}
+.row {
+    --bs-gutter-x: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.agregar {
+    align-self: center;
+}
+.formulario {
+    display: grid;
+    grid-template-columns: 160px 200px 215px;
+    grid-gap: 20px;
+    justify-content: center;
+}
+.imagen {
+    grid-column: 3/4;
+    grid-row: 4/5;
+}
+.vistaprevia {
+    grid-row: 1/4;
+    grid-column: 3/4;
+    background-color: gray;
+    width: 100%;
+    height: auto;
+}
+@supports(object-fit: cover) {
+    .vistaprevia {
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+    }
+}
+.lblnombre {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.inpnombre {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.lbldesc {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.inpdesc {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    height: 40px;
+}
+.lbling {
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.seling {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    height: 34px;
+}

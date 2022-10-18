@@ -55,6 +55,28 @@ if (isset($_POST['cargar'])) {
 
     #Regresa a la Pagina de los Productos
     header('location: insumos.php');
+
+  }  elseif ( $_POST['cargar'] == "recetas") {
+    $nombre = $_POST['nombre'];
+    $descripcion= $_POST['descr'];
+    $nombrimagen = $_FILES['imagen']['name'];
+
+    #Variables para obtener informacion relacionada al archivo de subida
+    $ruta_indexphp = dirname(realpath(__FILE__));
+    $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
+    $ruta_nuevo_destino = $ruta_indexphp . '/img/receta/' . $_FILES['imagen']['name'];
+    #Subida de archivos al servidor en el Apache
+    move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+  
+    #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
+    $query = "INSERT into receta values ('0','$nombre','$descripcion','$nombrimagen', 1)";
+    $result = mysqli_query($conexion, $query);
+    if(!$result) {
+      die("Error en la Consulta.");
+    }
+
+    #Regresa a la Pagina de los Productos
+    header('location: recetas.php');
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';

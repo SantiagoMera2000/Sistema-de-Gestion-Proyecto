@@ -10,14 +10,14 @@ if(!isset($usuario)){
   header("location: login.php");
 }
 ?>
-<link rel="stylesheet" href="css\productos.css">
+<link rel="stylesheet" href="css\recetas.css">
 
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="VentanaEmergente">Agregar un Producto</h5>
+        <h5 class="modal-title" id="VentanaEmergente">Agregar receta nueva</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Cuerpo de la Ventana -->
@@ -26,7 +26,7 @@ if(!isset($usuario)){
         <!-- Formulario para cargar los datos en la BD -->
         <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
           <!-- Imagen del Producto -->
-          <input class="imagen" name="imagen" type="file" id="imagen"/>
+          <input class="imagen form-control" name="imagen" type="file" id="imagen"/>
           <div class="vistaprevia" id="imagepreview">
           </div>
           <!-- Nombre del Producto -->
@@ -34,11 +34,11 @@ if(!isset($usuario)){
           <input class="inpnombre" type="text" id="nombre" name="nombre">
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
-          <textarea class="inpdesc" rows="10" cols="50" id="descr" name="descr"></textarea>
+          <textarea class="inpdesc" rows="2" cols="50" id="descr" name="descr"></textarea>
           <!-- Agregar ingredientes -->
           <label class="lbling" for="descr">Ingredientes </label>  
           <select class="form-select seling" aria-label="Default select example">
-                <option selected>Open this select menu</option>
+                <option selected> Seleccionar</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
@@ -47,7 +47,7 @@ if(!isset($usuario)){
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="producto" >Agregar</button>
+            <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="recetas" >Agregar</button>
           </div>
         </form>
       </div>
@@ -68,7 +68,7 @@ if(!isset($usuario)){
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <form enctype="multipart/form-data" action="eliminar.php" method="POST">
-          <button type="submit" class="btn btn-danger" name="eliminar_prod" id="eliminar_prod" value="">Aceptar</button>
+          <button type="submit" class="btn btn-danger" name="eliminar_rec" id="eliminar_rec" value="">Aceptar</button>
         </form>
       </div>
     </div>
@@ -89,7 +89,7 @@ if(!isset($usuario)){
       </div>
     </div>
           <?php
-          $query = "SELECT * FROM receta";
+          $query = "SELECT * FROM receta where estado = 1";
           $result_tasks = mysqli_query($conexion, $query);    
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
@@ -107,7 +107,7 @@ if(!isset($usuario)){
               <a href="edit.php?id=<?php echo $row['id_rec']?>" class="btn btn-secondary">
                 <span class="material-symbols-outlined">edit</span>
               </a>
-              <a class="btn btn-danger eliminar" data-id="<?php echo $row['id_rec']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
+              <a class="btn btn-danger eliminar_rec" data-id="<?php echo $row['id_rec']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
                   <span class="material-symbols-outlined">delete</span>
               </a>
           </div>
@@ -120,9 +120,4 @@ if(!isset($usuario)){
 </main>
 
 <?php include('includes/footer.php'); ?>
-<script>
-  $(document).on("click", ".eliminar", function () {
-  var IdProducto = $(this).data('id');
-  $(".modal-footer #eliminar_prod").val( IdProducto );
-});
-</script>
+<script src="js\pasar_datos_modal.js"></script>

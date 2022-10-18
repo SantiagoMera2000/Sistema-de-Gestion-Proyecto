@@ -172,7 +172,7 @@ if(!isset($usuario)){
             <a class="btn btn-secondary" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteVisualizar" role="button">
                   <span class="material-symbols-outlined">info</span>
               </a>
-              <a class="btn btn-danger eliminar" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion" role="button">
+              <a class="btn btn-danger eliminar_pro" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion" role="button">
                   <span class="material-symbols-outlined">delete</span>
               </a>
           </div>
