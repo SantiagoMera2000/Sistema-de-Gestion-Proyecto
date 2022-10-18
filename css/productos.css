@@ -76,11 +76,11 @@
     grid-column: 2/3;
     grid-row: 2/3;
 }
-.lbltipo {
+.lbling {
     grid-column: 1/2;
     grid-row: 3/4;
 }
-.inptipo {
+.seling {
     grid-column: 2/3;
     grid-row: 3/4;
 }

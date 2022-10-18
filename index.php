@@ -25,7 +25,7 @@ if(!isset($usuario)){
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='#'>
+                    <a href='recetas.php'>
                         <div class="card-body">
                         <span class="material-symbols-outlined">menu_book</span>
                             <h5 class="card-title">Recetas</h5>
