@@ -23,7 +23,7 @@ if(!isset($usuario)){
                     <input class="form-control me-2" type="search" id="searchTerm" onkeyup="doSearch()" placeholder="Buscar un producto" title="Buscador de productos">
                 </form>
                 <br>
-                <table class="table table-bordered table-hover" id="datos">
+                <table class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Codigo</th>
@@ -33,7 +33,7 @@ if(!isset($usuario)){
                             <th>Accion</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="datos">
                         <?php
                         $query = "SELECT * FROM producto";
                         $result_tasks = mysqli_query($conexion, $query);    
