@@ -17,6 +17,9 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.card-body {
+    text-align: center;
+}
 .btn {
     --bs-btn-border-width: 0px;
 }

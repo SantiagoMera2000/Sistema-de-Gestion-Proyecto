@@ -3,7 +3,7 @@ function filepreview(input) {
     if(input.files && input.files[0]){
         var reader = new FileReader();
         reader.onload = function(e){
-            $('#imagepreview').html("<img src='"+e.target.result+"' style='object-fit: cover;'/>");
+            $('#imagepreview').html("<img src='"+e.target.result+"' class='img-fluid rounded'/>");
         }
 
         reader.readAsDataURL(input.files[0]);
