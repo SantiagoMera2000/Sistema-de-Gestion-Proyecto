@@ -17,6 +17,7 @@ $(document).on("click", ".editar", function () {
     var elab = $(this).data('id').precio_elav;
     var venta = $(this).data('id').precio_venta;
     var cant = $(this).data('id').cantidad;
+    var img = $(this).data('id').img_id;
     $(".formulario #productoeditar").val( id );
     $(".formulario #nombre").val( nom );
     $(".formulario #descr").val( des );
@@ -24,4 +25,5 @@ $(document).on("click", ".editar", function () {
     $(".formulario #precio_elab").val( elab );
     $(".formulario #precio_venta").val( venta );
     $(".formulario #cantidad").val( cant );
+    $(".formulario #").val( img );
 });

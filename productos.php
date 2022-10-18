@@ -39,10 +39,10 @@ if(!isset($usuario)){
           <label class="lbltipo" for="tipo">Tipo </label>
           <input class="inptipo" type="text" id="tipo" name="tipo">
           <!-- Precio de Elaboracion -->
-          <label class="lblelab" for="precio_elab">Precio de elaboración($)</label>
+          <label class="lblelab" for="precio_elab">Precio de elaboración </label>
           <input class="inpelab" type="number" id="precio_elab" name="precio_elab">
           <!-- Precio de Venta -->
-          <label class="lblventa" for="precio_venta">Precio de venta ($) </label>
+          <label class="lblventa" for="precio_venta">Precio de venta </label>
           <input class="inpventa" type="number" id="precio_venta" name="precio_venta">
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
@@ -79,7 +79,7 @@ if(!isset($usuario)){
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagen" type="file" id="imagen"/>
           <div class="vistaprevia rounded" id="imagepreview">
-            <img src='"img/producto/<?php echo $row['img_id']?>"' class='img-fluid rounded'/>
+            <img src='img/producto/' class='img-fluid rounded'/>
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
@@ -149,19 +149,17 @@ if(!isset($usuario)){
         </div>
       </div>
     </div>
-          <?php
-          $query = "SELECT * FROM producto WHERE estado = 1";
-          $result_tasks = mysqli_query($conexion, $query);    
-
-          while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-          <!-- Tarjetas donde se cargan los datos de la BD -->
+    <?php
+      $query = "SELECT * FROM producto WHERE estado = 1";
+      $result_tasks = mysqli_query($conexion, $query);    
+      while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+      <!-- Tarjetas donde se cargan los datos de la BD -->
         <div class="col">
           <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
               <hr>
               <img class="img-preview rounded" src="img/producto/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_pro']; ?>">
-              <hr>
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">
@@ -170,12 +168,20 @@ if(!isset($usuario)){
               <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
             <div class="card-footer">
-            <a class="btn btn-secondary editar" data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' data-bs-toggle="modal" data-bs-target="#VentanaEmergenteVisualizar" role="button">
-                  Ver más
-              </a>
-              <a class="btn btn-danger eliminar" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion" role="button">
-                Eliminar
-            </a>
+              <!-- Boton de vista y edicion -->
+              <a class="btn btn-secondary editar" 
+                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' 
+                data-bs-toggle="modal" 
+                data-bs-target="#VentanaEmergenteVisualizar" 
+                role="button"
+              >Ver más</a>
+              <!-- Boton de eliminacion -->
+              <a class="btn btn-danger eliminar" 
+                data-id="<?php echo $row['id_prod']?>" 
+                data-bs-toggle="modal" 
+                data-bs-target="#VentanaEmergenteConfirmacion" 
+                role="button"
+              >Eliminar</a>
           </div>
           </div>
         </div>
