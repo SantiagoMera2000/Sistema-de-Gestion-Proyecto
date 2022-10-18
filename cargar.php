@@ -23,7 +23,7 @@ if (isset($_POST['cargar'])) {
   move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
   #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','0','$precio_elab','$precio_venta','$cantidad','$nombrimagen')";
+  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','0','$precio_elab','$precio_venta','$cantidad','$nombrimagen',1)";
   $result = mysqli_query($conexion, $query);
   if(!$result) {
     die("Error en la Consulta.");

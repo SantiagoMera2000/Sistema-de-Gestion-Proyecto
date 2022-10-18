@@ -170,7 +170,7 @@ if(!isset($usuario)){
               <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
             <div class="card-footer">
-            <a class="btn btn-secondary editar" data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['cantidad']?>"}' data-bs-toggle="modal" data-bs-target="#VentanaEmergenteVisualizar" role="button">
+            <a class="btn btn-secondary editar" data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' data-bs-toggle="modal" data-bs-target="#VentanaEmergenteVisualizar" role="button">
                   Ver más
               </a>
               <a class="btn btn-danger eliminar" data-id="<?php echo $row['id_prod']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion" role="button">
