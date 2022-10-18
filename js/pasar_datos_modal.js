@@ -1,11 +1,9 @@
 $(document).on("click", ".eliminar_pro", function () {
     var IdProducto = $(this).data('id');
-    console.log(IdProducto);
     $(".modal-footer #eliminar_prod").val( IdProducto );
 });
 $(document).on("click", ".eliminar_rec", function () {
     var IdProducto = $(this).data('id');
-    console.log(IdProducto);
     $(".modal-footer #eliminar_rec").val( IdProducto );
 });
 
@@ -18,12 +16,12 @@ $(document).on("click", ".editar", function () {
     var venta = $(this).data('id').precio_venta;
     var cant = $(this).data('id').cantidad;
     var img = $(this).data('id').img_id;
-    $(".formulario #productoeditar").val( id );
-    $(".formulario #nombre").val( nom );
-    $(".formulario #descr").val( des );
-    $(".formulario #tipo").val( tipo );
-    $(".formulario #precio_elab").val( elab );
-    $(".formulario #precio_venta").val( venta );
-    $(".formulario #cantidad").val( cant );
-    $(".formulario #").val( img );
+    $("#formE #id_prod").val( id );
+    $("#formE #nombreE").val( nom );
+    $("#formE #descrE").val( des );
+    $("#formE #tipoE").val( tipo );
+    $("#formE #precio_elabE").val( elab );
+    $("#formE #precio_ventaE").val( venta );
+    $("#formE #cantidadE").val( cant );
+    //$("#formE #").val( img );
 });

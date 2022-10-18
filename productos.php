@@ -46,7 +46,7 @@ if(!isset($usuario)){
           <input class="inpventa" type="number" id="precio_venta" name="precio_venta">
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1">
+          <input class="inpcant" type="text" id="cantidade" name="cantidad" min="1">
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
@@ -55,7 +55,7 @@ if(!isset($usuario)){
         </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="cancelar" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-secondary" onClick="this.form.reset()" id="cancelar" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="producto" >Agregar</button>
           </div>
         </form>
@@ -63,7 +63,7 @@ if(!isset($usuario)){
     </div>
   </div>
 
-<!-- Ventana emergente Visualizar producto -->
+<!-- Ventana para ver y editar producto -->
 <div class="modal fade" id="VentanaEmergenteVisualizar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="VentanaEmergenteVisualizar" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
@@ -75,40 +75,42 @@ if(!isset($usuario)){
       <div class="modal-body">
         <br>
         <!-- Formulario para cargar los datos en la BD -->
-        <form id="form" class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
+        <form id="formE" class="formulario" enctype="multipart/form-data" action="editar.php" method="POST">
           <!-- Imagen del Producto -->
-          <input class="imagen rounded form-control" name="imagen" type="file" id="imagen"/>
+          <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
           <div class="vistaprevia rounded" id="imagepreview">
             <img src='img/producto/' class='img-fluid rounded'/>
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombre" name="nombre" value="">
+          <input class="inpnombre" type="text" id="nombreE" name="nombreE" value="">
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
-          <input class="impdesc" type="text" id="descr" name="descr" value="">
+          <input class="impdesc" type="text" id="descrE" name="descrE" value="">
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
-          <input class="inptipo" type="text" id="tipo" name="tipo" value="">
+          <input class="inptipo" type="text" id="tipoE" name="tipoE" value="">
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de Elaboración </label>
-          <input class="inpelab" type="number" id="precio_elab" name="precio_elab" min=1 value="">
+          <input class="inpelab" type="number" id="precio_elabE" name="precio_elabE" min=1 value="">
           <!-- Precio de Venta -->
           <label class="lblventa" for="precio_venta">Precio de Venta </label>
-          <input class="inpventa" type="number" id="precio_venta" name="precio_venta" min=1 value="">
+          <input class="inpventa" type="number" id="precio_ventaE" name="precio_ventaE" min=1 value="">
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1" value="">
+          <input class="inpcant" type="text" id="cantidadE" name="cantidadE" min="1" value="">
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estado" name="estado">
+            <input class="form-check-input" type="checkbox" role="switch" id="estadoE" name="estadoE">
           </div>
+          <input type="text" id="id_prod" name="id_prod" value="" hidden>
         </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="cancelar1" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="productoeditar" >Completar edición</button>
+            <button type="button" class="btn btn-outline-danger" id="modoeditar" data-bs-toggle="button">Activar Edición</button>
+            <button type="button" class="btn btn-secondary" onClick="this.form.reset()" id="cancelar1" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="editar" name="editar" value="producto" >Completar edición</button>
           </div>
         </form>
       </div>
@@ -192,5 +194,5 @@ if(!isset($usuario)){
 </main>
 
 <?php include('includes/footer.php'); ?>
+<script src="js\desabilitar_inputs.js"></script>
 <script src="js\pasar_datos_modal.js"></script>
-<script src="js\limpiar_inputs.js"></script>
