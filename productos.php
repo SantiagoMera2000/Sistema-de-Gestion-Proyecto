@@ -177,7 +177,13 @@ if(!isset($usuario)){
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
               <hr>
-              <img class="img-preview rounded" src="img/producto/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_pro']; ?>">
+              <?php
+              if ($row['img_id'] == "") {
+                echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
+              } else {
+                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src=\"img/producto/{$row['img_id']}\" alt=\"{$row['nom_pro']}\">";
+              }
+              ?>
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
             </div>
             <ul class="list-group list-group-flush">

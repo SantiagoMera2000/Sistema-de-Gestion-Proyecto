@@ -6,6 +6,10 @@ $(document).on("click", ".eliminar_rec", function () {
     var IdProducto = $(this).data('id');
     $(".modal-footer #eliminar_rec").val( IdProducto );
 });
+$(document).on("click", ".eliminar", function () {
+    var IdProducto = $(this).data('id');
+    $(".modal-footer #eliminar_insu").val( IdProducto );
+});
 
 $(document).on("click", ".editar", function () {
     var id = $(this).data('id').id_prod;

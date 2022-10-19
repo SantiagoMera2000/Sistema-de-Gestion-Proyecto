@@ -13,10 +13,16 @@ if (isset($_POST['eliminar_prod'])) {
 }
 if (isset($_POST['eliminar_rec'])) {
     $id = $_POST['eliminar_rec'];
-    echo "hola" ;
     $query = "UPDATE receta SET inactivo = true WHERE id_rec = $id ";
     $result = mysqli_query($conexion, $query);
   
     header('Location: recetas.php');
+}
+if (isset($_POST['eliminar_insu'])) {
+  $id = $_POST['eliminar_insu'];
+  $query = "UPDATE insumo SET inactivo = true WHERE id_insu = $id ";
+  $result = mysqli_query($conexion, $query);
+
+  header('Location: insumos.php');
 }
 ?>

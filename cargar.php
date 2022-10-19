@@ -41,10 +41,17 @@ if (isset($_POST['cargar'])) {
 
   } elseif ( $_POST['cargar'] == "insumo") {
     $nombre = $_POST['nom_insu'];
-    $cantidad= $_POST['cant_disp'];
-    $unidad= $_POST['unidad_insu'];
+    $cantidad = $_POST['cant_disp'];
+    $unidad = $_POST['unidad_insu'];
     $precio = $_POST['precio_insu'];
     $nombrimagen = $_FILES['imagen_insu']['name'];
+
+    #Verificamos el estado del switch de visibilidad
+    if($_POST['estado'] == "on") {
+      $estado = false;
+    } else {
+      $estado = true;
+    }
 
     #Variables para obtener informacion relacionada al archivo de subida
     $ruta_indexphp = dirname(realpath(__FILE__));
@@ -54,7 +61,7 @@ if (isset($_POST['cargar'])) {
     move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into insumo values ('0','$nombre','$cantidad','$unidad','$precio','$nombrimagen')";
+    $query = "INSERT into insumo values ('0','$nombre','$cantidad','$unidad','$precio','$nombrimagen','$estado')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");

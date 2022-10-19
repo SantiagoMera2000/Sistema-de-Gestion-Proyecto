@@ -20,6 +20,10 @@
 .card-body {
     text-align: center;
 }
+.barra-filtros {
+    text-align: start!important;
+    display: flex;
+}
 .btn {
     --bs-btn-border-width: 0px;
 }
@@ -37,8 +41,9 @@
     align-self: center;
 }
 .formulario {
+    justify-content: center;
     display: grid;
-    grid-template-columns: 160px 200px 215px;
+    grid-template-columns: 70px 175px 100px 225px;
     grid-gap: 20px;
 }
 .imagen {
@@ -48,7 +53,7 @@
 .vistaprevia {
     grid-row: 1/4;
     grid-column: 4/5;
-    background-color: blue;
+    background-color: gray;
     width: 100;
     height: auto;
 }
@@ -67,14 +72,6 @@
     grid-column: 2/3;
     grid-row: 1/2;
 }
-.lbldesc {
-    grid-column: 1/2;
-    grid-row: 2/3;
-}
-.inpdesc {
-    grid-column: 2/3;
-    grid-row: 2/3;
-}
 .lblprecio {
     grid-column: 1/2;
     grid-row: 2/3;
@@ -83,29 +80,18 @@
     grid-column: 2/3;
     grid-row: 2/3;
 }
+.lblestado {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
 .estado {
     grid-column: 1/2;
-    grid-row: 4;
-}
-.lblelab {
-    grid-column: 1/2;
     grid-row: 4/5;
-}
-.inpelab {
-    grid-column: 3/2;
-    grid-row: 4/5;
-}
-.lblventa {
-    grid-column: 1/2;
-    grid-row: 5/6;
-}
-.inpventa {
-    grid-column: 1/2;
-    grid-row: 4;
+    margin: 0px 0px 0px 53px;
 }
 .lblcant {
     grid-column: 1/2;
-    grid-row: 3/5;
+    grid-row: 3/4;
 }
 .inpcant {
     grid-column: 2/3;
@@ -114,4 +100,7 @@
 .ltunidades {
     grid-column: 3/4;
     grid-row: 3/4;
+}
+.oculto {
+    display: none;
 }

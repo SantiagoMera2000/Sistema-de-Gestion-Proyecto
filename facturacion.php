@@ -35,7 +35,7 @@ if(!isset($usuario)){
                     </thead>
                     <tbody id="datos">
                         <?php
-                        $query = "SELECT * FROM producto";
+                        $query = "SELECT * FROM producto WHERE inactivo = false";
                         $result_tasks = mysqli_query($conexion, $query);    
 
                         while($row = mysqli_fetch_assoc($result_tasks)) { ?>
