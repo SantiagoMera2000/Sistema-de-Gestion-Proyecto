@@ -50,7 +50,7 @@ if(!isset($usuario)){
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estado">
+            <input class="form-check-input" type="checkbox" role="switch" id="estado" name="estado">
           </div>
         </div>
           <!-- Pie de la ventana emergente -->
@@ -140,6 +140,17 @@ if(!isset($usuario)){
 
 <!-- Contenedor principal -->
 <main class="main">
+  <div class="card">
+    <div class="card-body barra-filtros">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="mostrarocultos">
+        <label class="form-check-label" for="mostrarocultos">
+        Mostrar Agotados/Ocultos
+        </label>
+      </div>
+    </div>
+  </div>
+  <br>
   <div class="row row-cols-1 row-cols-md-6 g-4">
     <div class="col agregar">
       <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
@@ -152,11 +163,17 @@ if(!isset($usuario)){
       </div>
     </div>
     <?php
-      $query = "SELECT * FROM producto WHERE estado = 1";
+      $query = "SELECT * FROM producto";
       $result_tasks = mysqli_query($conexion, $query);    
       while($row = mysqli_fetch_assoc($result_tasks)) { ?>
       <!-- Tarjetas donde se cargan los datos de la BD -->
-        <div class="col">
+          <?php
+          if ($row['inactivo'] == false) {
+            echo "<div class=\"col\">";
+          } else {
+            echo "<div class=\"col inactivo oculto\">";
+          }
+          ?>
           <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
@@ -167,23 +184,27 @@ if(!isset($usuario)){
             <ul class="list-group list-group-flush">
               <li class="list-group-item">Precio de Elaboración: <?php echo $row['precio_elav']; ?></li>
               <li class="list-group-item">Precio de Venta: <?php echo $row['precio_venta']; ?></li>
-              <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
+              <li class="list-group-item">Cantidad: <?php echo $row['cantidad']; ?></li>
             </ul>
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
               <a class="btn btn-secondary editar" 
-                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' 
+                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"
               >Ver más</a>
               <!-- Boton de eliminacion -->
-              <a class="btn btn-danger eliminar" 
-                data-id="<?php echo $row['id_prod']?>" 
-                data-bs-toggle="modal" 
-                data-bs-target="#VentanaEmergenteConfirmacion" 
-                role="button"
-              >Eliminar</a>
+              <?php
+              if ($row['inactivo'] == false) {
+              echo "<a class=\"btn btn-danger eliminar\" 
+                data-id=\"{$row['id_prod']}\"
+                data-bs-toggle=\"modal\" 
+                data-bs-target=\"#VentanaEmergenteConfirmacion\" 
+                role=\"button\"
+              >Eliminar</a>";
+              }
+              ?>
           </div>
           </div>
         </div>
@@ -196,3 +217,4 @@ if(!isset($usuario)){
 <?php include('includes/footer.php'); ?>
 <script src="js\desabilitar_inputs.js"></script>
 <script src="js\pasar_datos_modal.js"></script>
+<script src="js\filtrador_productos.js"></script>

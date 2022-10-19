@@ -3,17 +3,24 @@
 include("logic/conexion.php");
 session_start();
 
+echo $_POST['estado'];
 if (isset($_POST['cargar'])) {
   if ($_POST['cargar'] == "producto" ) {
   #Variables donde se almacenan cada dato para su subida a la BD
   $nombre = $_POST['nombre'];
   $descr= $_POST['descr'];
   $tipo = $_POST['tipo'];
-  #$estado = $_POST['estado'];
   $precio_elab = $_POST['precio_elab'];
   $precio_venta = $_POST['precio_venta'];
   $cantidad = $_POST['cantidad'];
   $nombrimagen = $_FILES['imagen']['name'];
+
+  #Verificamos el estado del switch de visibilidad
+  if($_POST['estado'] == "on") {
+    $estado = false;
+  } else {
+    $estado = true;
+  }
 
   #Variables para obtener informacion relacionada al archivo de subida
   $ruta_indexphp = dirname(realpath(__FILE__));
@@ -23,7 +30,7 @@ if (isset($_POST['cargar'])) {
   move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
   #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','0','$precio_elab','$precio_venta','$cantidad','$nombrimagen',1)";
+  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','$estado','$precio_elab','$precio_venta','$cantidad','$nombrimagen')";
   $result = mysqli_query($conexion, $query);
   if(!$result) {
     die("Error en la Consulta.");

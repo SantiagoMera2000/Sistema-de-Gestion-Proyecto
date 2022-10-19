@@ -20,6 +20,10 @@
 .card-body {
     text-align: center;
 }
+.barra-filtros {
+    text-align: start!important;
+    display: flex;
+}
 .btn {
     --bs-btn-border-width: 0px;
 }
@@ -116,4 +120,7 @@
     grid-column: 1/2;
     grid-row: 7/8;
     margin: 0px 0px 0px 80px;
+}
+.oculto {
+    display: none;
 }

@@ -10,11 +10,17 @@ if (isset($_POST['editar'])) {
     $nombre_new = $_POST['nombreE'];
     $descr_new = $_POST['descrE'];
     $tipo_new = $_POST['tipoE'];
-    #$estado = $_POST['estadoE'];
     $precio_elab_new = $_POST['precio_elabE'];
     $precio_venta_new = $_POST['precio_ventaE'];
     $cantidad_new = $_POST['cantidadE'];
     $nombrimagen_new = $_FILES['imagenE']['name'];
+
+    #Verificamos el estado del switch de visibilidad
+    if($_POST['estadoE'] == "on") {
+        $estado_new = false;
+    } else {
+        $estado_new = true;
+    }
 
     #Variables para obtener informacion relacionada al archivo de subida
     $ruta_indexphp = dirname(realpath(__FILE__));
@@ -27,6 +33,7 @@ if (isset($_POST['editar'])) {
         $nombre_old = $row['nom_pro'];
         $descr_old = $row['descri_pro'];
         $tipo_old = $row['tipo'];
+        $estado_old = $row['inactivo'];
         $precio_elab_old = $row['precio_elav'];
         $precio_venta_old = $row['precio_venta'];
         $cantidad_old = $row['cantidad'];
@@ -47,6 +54,11 @@ if (isset($_POST['editar'])) {
         $tipo = $tipo_new;
     } else {
         $tipo = $tipo_old;
+    }
+    if ($estado_new != $estado_old) {
+        $estado = $estado_new;
+    } else {
+        $estado = $estado_old;
     }
     if ($precio_elab_new != $precio_elab_old) {
         $precio_elab = $precio_elab_new;
@@ -77,7 +89,7 @@ if (isset($_POST['editar'])) {
 
 
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\", img_id = \"$nombrimagen\" WHERE id_prod = \"$id\"";
+    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", inactivo = \"$estado\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\", img_id = \"$nombrimagen\" WHERE id_prod = \"$id\"";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
         die("Error en la Consulta.");
