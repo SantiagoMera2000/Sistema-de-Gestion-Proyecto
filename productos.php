@@ -140,13 +140,11 @@ if(!isset($usuario)){
 
 <!-- Contenedor principal -->
 <main class="main">
-  <div class="card">
+  <div class="card" style="Margin: 0px 15px 0px 15px;">
     <div class="card-body barra-filtros">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="mostrarocultos">
-        <label class="form-check-label" for="mostrarocultos">
-        Mostrar Agotados/Ocultos
-        </label>
+        <input class="form-check-input" type="checkbox" value="" id="mostrarocultos" onclick="mostraroculto()">
+        <label class="form-check-label" for="mostrarocultos">Mostrar Agotados/Ocultos</label>
       </div>
     </div>
   </div>
@@ -154,8 +152,9 @@ if(!isset($usuario)){
   <div class="row row-cols-1 row-cols-md-6 g-4">
     <div class="col agregar">
       <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
-      <div class="ajustes">
+      <div class="card h-100 ajustes">
         <div class="card-body">
+          <h5 class="card-title">Agregar un Producto</h5>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">
             <span class="material-symbols-outlined agrandar-icono">add</span>
           </button>
@@ -163,15 +162,15 @@ if(!isset($usuario)){
       </div>
     </div>
     <?php
-      $query = "SELECT * FROM producto";
+      $query = "SELECT * FROM producto ORDER BY inactivo,nom_pro ASC";
       $result_tasks = mysqli_query($conexion, $query);    
       while($row = mysqli_fetch_assoc($result_tasks)) { ?>
       <!-- Tarjetas donde se cargan los datos de la BD -->
           <?php
           if ($row['inactivo'] == false) {
-            echo "<div class=\"col\">";
+            echo "<div class=\"col tarjeta\">";
           } else {
-            echo "<div class=\"col inactivo oculto\">";
+            echo "<div class=\"col inactivo oculto tarjeta\">";
           }
           ?>
           <div class="card h-100">
