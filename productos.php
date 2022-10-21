@@ -31,22 +31,22 @@ if(!isset($usuario)){
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombre" name="nombre">
+          <input class="inpnombre" type="text" id="nombre" name="nombre" required>
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
-          <input class="impdesc" type="text" id="descr" name="descr">
+          <input class="impdesc" type="text" id="descr" name="descr" required>
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
-          <input class="inptipo" type="text" id="tipo" name="tipo">
+          <input class="inptipo" type="text" id="tipo" name="tipo" required>
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de elaboración </label>
-          <input class="inpelab" type="number" id="precio_elab" name="precio_elab">
+          <input class="inpelab" type="number" id="precio_elab" name="precio_elab" required>
           <!-- Precio de Venta -->
           <label class="lblventa" for="precio_venta">Precio de venta </label>
-          <input class="inpventa" type="number" id="precio_venta" name="precio_venta">
+          <input class="inpventa" type="number" id="precio_venta" name="precio_venta" required>
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidade" name="cantidad" min="1">
+          <input class="inpcant" type="text" id="cantidade" name="cantidad" min="1" required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">

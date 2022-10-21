@@ -15,10 +15,18 @@ if(!isset($usuario)){
 <!-- Estilos requeridos especialmente en esta pagina -->
 <link rel="stylesheet" href="css\index.css">
 
+<!--
+    Cambiar cantidad de productos a orden de produccion
+    Crear pagina de ordenes de productos
+    Realizar calculos de produccion para cada producto que
+    se realizara en el evento dependiendo de los insumos
+    
+-->
+
 <body>
     <main class="main col">
         <div class="div-config row" style="display: grid">
-            <h1>Bienvenido <?php echo $usuario ?> !</h1>
+            <h1>Bienvenido !</h1>
             <h4> Has click en algunas de las tarjetas para comenzar</h4>
         </div>
         <!-- Tarjetas de acceso rapido a cada parte del sistema -->
@@ -55,10 +63,10 @@ if(!isset($usuario)){
             </div>
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='facturacion.php'>
+                    <a href='ordenes.php'>
                         <div class="card-body">
                         <span class="material-symbols-outlined">fact_check</span>
-                            <h5 class="card-title">Facturacion</h5>
+                            <h5 class="card-title">Orden de Producción</h5>
                         </div>
                     </a>
                 </div>
