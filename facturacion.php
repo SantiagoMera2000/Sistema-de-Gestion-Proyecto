@@ -16,62 +16,99 @@ if(!isset($usuario)){
 <link rel="stylesheet" href="css\facturacion.css">
 
 <body>
-    <main class="main">
-        <div class="row align-items-start">
-            <div class="col col-iz">
-                <form>
-                    <input class="form-control me-2" type="search" id="searchTerm" onkeyup="doSearch()" placeholder="Buscar un producto" title="Buscador de productos">
-                </form>
-                <br>
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                    <tbody id="datos">
-                        <?php
-                        $query = "SELECT * FROM producto WHERE inactivo = false";
-                        $result_tasks = mysqli_query($conexion, $query);    
+<?php
+    require("logic\conexion.php");
+    $consulta = mysqli_query(
+    $conexion,
+    "select 
+        fact.codigo as codigo,
+        date_format(fecha,'%d/%m/%Y') as fecha,
+        round(sum(deta.precio*deta.cantidad),2) as importefactura
+        from facturas as fact
+        join detallefactura as deta on deta.codigofactura=fact.codigo
+        group by deta.codigofactura
+        order by codigo desc"
+    )
+    or die(mysqli_error($conexionr4));
 
-                        while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-                        <tr>
-                            <td class="noSearch"><?php echo $row['id_prod']; ?></td>
-                            <td><?php echo $row['nom_pro']; ?></td>
-                            <td class="noSearch"><?php echo $row['cantidad']; ?></td>
-                            <td class="noSearch"><?php echo $row['precio_venta']; ?></td>
-                            <td>
-                                <button class="btn btn-tabla btn-primary envio">
-                                    <span class="material-symbols-outlined">add</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-            <!-- Columna derecha -->
-            <div class="col col-der">
-                <table class="table table-bordered table-hover" id="facturar">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
-                </table>
-                <div>
-                    <p>datos</p>
-                </div>
-            </div>
+    $filas = mysqli_fetch_all($consulta, MYSQLI_ASSOC);
+
+    ?>
+    <h1>Facturas emitidas</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Factura</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th class="text-right">Importe</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($filas as $fila) {
+          ?>
+          <tr>
+            <td><?php echo $fila['codigo'] ?></td>
+            <td><?php echo $fila['nombre'] ?></td>
+            <td><?php echo $fila['fecha'] ?></td>
+            <td class="text-right"><?php echo '$' . number_format($fila['importefactura'], 2, ',', '.'); ?></td>
+            <td class="text-right">
+              <a class="btn btn-primary btn-sm botonimprimir" role="button" href="#" data-codigo="<?php echo $fila['codigo'] ?>">Imprime?</a>
+              <a class="btn btn-primary btn-sm botonborrar" role="button" href="#" data-codigo="<?php echo $fila['codigo'] ?>">Borra?</a>
+            </td>
+          </tr>
+        <?php
+        }
+        ?>
+      </tbody>
+    </table>
+    <button type="button" id="btnNuevaFactura" class="btn btn-success">Emitir factura</button>
+  </div>
+
+  <!-- ModalConfirmarBorrar -->
+  <div class="modal fade" id="ModalConfirmarBorrar" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="max-width: 600px" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>¿Realmente quiere borrar la factura?</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
         </div>
+        <div class="modal-footer">
+          <button type="button" id="btnConfirmarBorrado" class="btn btn-success">Confirmar</button>
+          <button type="button" data-dismiss="modal" class="btn btn-success">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+      $('#btnNuevaFactura').click(function() {
+        window.location = 'emitirfactura.php';
+      });
+
+      var codigofactura;
+
+      $('.botonborrar').click(function() {
+        codigofactura = $(this).get(0).dataset.codigo;
+        $("#ModalConfirmarBorrar").modal();
+      });
+
+      $('#btnConfirmarBorrado').click(function() {
+        window.location = 'borrarfactura.php?codigofactura=' + codigofactura;
+      });
+
+      $('.botonimprimir').click(function() {
+        window.open('pdffactura.php?' + '&codigofactura=' + $(this).get(0).dataset.codigo, '_blank');
+      });
+
+    });
+  </script>
     </main>
 
 <?php include('includes/footer.php'); ?>

@@ -30,11 +30,18 @@ if(!isset($usuario)){
           <div class="vistaprevia rounded" id="imagepreview">
           </div>
           <!-- Nombre del Producto -->
-          <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombre" name="nombre" required>
-          <!-- Descripción del producto -->
-          <label class="lbldesc" for="descr">Descripción </label>
-          <input class="impdesc" type="text" id="descr" name="descr" required>
+          <label class="lblreceta" for="receta">Receta </label>
+          <select class="form-select selreceta" aria-label="Recetas disponibles" id="receta" name="receta" required>
+            <option selected> Seleccionar</option>
+            <?php 
+            $query = "SELECT id_rec,nom_r,descri_r FROM receta WHERE estado = 1 ORDER BY nom_r ASC";
+            $result_tasks = mysqli_query($conexion, $query);    
+            while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+            <option value="<?php echo $row['nom_r']?>"><?php echo $row['nom_r']?></option>
+            <?php } ?>
+          </select>
+          <label class="lbldescr" for="descri_pro">Descripción </label>
+          <input class="inpdesc" type="text" id="descri_pro" name="descri_pro" required>
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
           <input class="inptipo" type="text" id="tipo" name="tipo" required>

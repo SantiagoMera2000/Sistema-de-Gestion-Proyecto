@@ -31,18 +31,18 @@ if(!isset($usuario)){
           </div>
           <!-- Nombre del Insumo -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nom_insu" name="nom_insu">
+          <input class="inpnombre" type="text" id="nom_insu" name="nom_insu" required>
           <!-- Precio de Insumo (Comida,Bebida,etc) -->
-          <label class="lblprecio" for="precio">Precio </label>
-          <input class="inpprecio" type="number" id="precio_insu" name="precio_insu" min=1>
+          <label class="lblprecio" for="precio">Costo</label>
+          <input class="inpprecio" type="number" id="precio_insu" name="precio_insu" min=1 required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visible</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estado">
+            <input class="form-check-input" type="checkbox" role="switch" id="estado" required>
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>
-          <input class="inpcant" type="number" id="cant_disp" name="cant_disp" min=1>
+          <input class="inpcant" type="number" id="cant_disp" name="cant_disp" min=1 required>
           <select class="ltunidades" name="unidad_insu" id="unidad_insu">
             <option value="1">Gramos</option>
             <option value="2">Kilogramos</option>
@@ -60,6 +60,59 @@ if(!isset($usuario)){
       </div>
     </div>
   </div>
+
+<!-- Ventana para ver y editar producto -->
+<div class="modal fade" id="VentanaEmergenteVisualizar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="VentanaEmergenteVisualizar" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="VentanaEmergenteVisualizar">Ver un Insumo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- Cuerpo de la Ventana -->
+      <div class="modal-body">
+        <br>
+        <!-- Formulario para cargar los datos en la BD -->
+        <form id="formE" class="formulario" enctype="multipart/form-data" action="editar.php" method="POST">
+          <!-- Imagen del Producto -->
+          <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
+          <div class="vistaprevia rounded" id="imagepreview">
+            <img src='img/insumo/' class='img-fluid rounded'/>
+          </div>
+          <!-- Nombre del Producto -->
+          <label class="lblnombre" for="nombre">Nombre </label>
+          <input class="inpnombre" type="text" id="nom_insuE" name="nom_insuE" value="">
+          <!-- Precio de Venta -->
+          <label class="lblprecio" for="precio">Costo </label>
+          <input class="inpprecio" type="number" id="precio_insuE" name="precio_insuE" min=1 value="">
+          <!-- Estado del Producto (Visible) -->
+          <label class="form-check-label lblestado" for="estadoE">Visible</label>
+          <div class="form-check form-switch estado">
+            <input class="form-check-input" type="checkbox" role="switch" id="estadoE" name="estadoE" required>
+          </div>
+          <!-- Cantidad de Insumo -->
+          <label class="lblcant" for="cant_disp">Cantidad </label>
+          <input class="inpcant" type="number" id="cant_dispE" name="cant_dispE" min=1 value="" required>
+          <select class="ltunidades" name="unidad_insuE" id="unidad_insuE">
+            <option value="1">Gramos</option>
+            <option value="2">Kilogramos</option>
+            <option value="3">Litros</option>
+            <option value="4">Mililitros</option>
+            <option value="5">Cantidad</option>
+          </select>
+          <input type="text" id="id_insu" name="id_insu" value="" hidden>
+        </div>
+          <!-- Pie de la ventana emergente -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" id="modoeditar" data-bs-toggle="button">Activar Edición</button>
+            <button type="button" class="btn btn-secondary" onClick="this.form.reset()" id="cancelar1" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" id="editar" name="editar" value="insumo" >Completar edición</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 <!-- Ventana Modal de Confirmacion -->
 <div class="modal fade" id="VentanaEmergenteConfirmacion" tabindex="-1" aria-labelledby="VentanaEmergenteConfirmacion" aria-hidden="true" style="display: none;">
   <div class="modal-dialog modal-dialog-centered">
@@ -148,8 +201,8 @@ if(!isset($usuario)){
             </ul>
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
-              <a class="btn btn-secondary editar" 
-                data-id='{"id_insu":"<?php echo $row['id_insu']?>","nom_insu":"<?php echo $row['nom_insu']?>","img_insu":"<?php echo $row['img_insu']?>","unidad_insu":"<?php echo $row['unidad_insu']?>","cant_disp":"<?php echo $row['cant_disp']?>","precio_insu":"<?php echo $row['precio_insu']?>""}' 
+              <a class="btn btn-secondary editar_insu" 
+                data-id='{"id_insu":"<?php echo $row['id_insu']?>","nom_insu":"<?php echo $row['nom_insu']?>","img_insu":"<?php echo $row['img_insu']?>","unidad_insu":"<?php echo $row['unidad_insu']?>","cant_disp":"<?php echo $row['cant_disp']?>","precio_insu":"<?php echo $row['precio_insu']?>","inactivo":"<?php echo $row['inactivo']?>"}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"
@@ -178,3 +231,4 @@ if(!isset($usuario)){
 <?php include('includes/footer.php'); ?>
 <script src="js\pasar_datos_modal.js"></script>
 <script src="js\filtrador_productos.js"></script>
+<script src="js\desabilitar_inputs.js"></script>

@@ -86,3 +86,6 @@
     grid-row: 3/4;
     height: 34px;
 }
+.ui-front {
+    z-index: 10055;
+}

@@ -91,6 +91,16 @@ if(!isset($usuario)){
                     </a>
                 </div>
             </div>
+            <div class="col">
+                <div class="card div-config agregados">
+                    <a href='admin.php'>
+                        <div class="card-body">
+                        <span class="material-symbols-outlined">manage_accounts</span>
+                            <h5 class="card-title">Administrador</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
     

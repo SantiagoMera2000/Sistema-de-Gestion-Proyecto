@@ -7,7 +7,7 @@ echo $_POST['estado'];
 if (isset($_POST['cargar'])) {
   if ($_POST['cargar'] == "producto" ) {
   #Variables donde se almacenan cada dato para su subida a la BD
-  $nombre = $_POST['nombre'];
+  $nombre = $_POST['receta'];
   $descr= $_POST['descr'];
   $tipo = $_POST['tipo'];
   $precio_elab = $_POST['precio_elab'];

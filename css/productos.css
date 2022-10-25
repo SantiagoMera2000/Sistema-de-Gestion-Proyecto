@@ -64,11 +64,11 @@
         object-position: center center;
     }
 }
-.lblnombre {
+.lblreceta {
     grid-column: 1/2;
     grid-row: 1/2;
 }
-.inpnombre {
+.selreceta {
     grid-column: 2/3;
     grid-row: 1/2;
 }
@@ -79,14 +79,6 @@
 .inpdesc {
     grid-column: 2/3;
     grid-row: 2/3;
-}
-.lbling {
-    grid-column: 1/2;
-    grid-row: 3/4;
-}
-.seling {
-    grid-column: 2/3;
-    grid-row: 3/4;
 }
 .lblelab {
     grid-column: 1/2;

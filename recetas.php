@@ -14,7 +14,7 @@ if(!isset($usuario)){
 
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="VentanaEmergente">Agregar receta nueva</h5>
@@ -23,26 +23,27 @@ if(!isset($usuario)){
       <!-- Cuerpo de la Ventana -->
       <div class="modal-body">
         <br>
+        <?php include('logic/conexion_insu.php');?>
         <!-- Formulario para cargar los datos en la BD -->
-        <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
+        <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST" autocomplete="off">
           <!-- Imagen del Producto -->
           <input class="imagen form-control" name="imagen" type="file" id="imagen"/>
           <div class="vistaprevia" id="imagepreview">
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombre" name="nombre">
+          <input class="inpnombre" type="text" id="nombre" name="nombre" required>
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
           <textarea class="inpdesc" rows="2" cols="50" id="descr" name="descr"></textarea>
           <!-- Agregar ingredientes -->
-          <label class="lbling" for="descr">Ingredientes </label>  
-          <select class="form-select seling" aria-label="Default select example">
-                <option selected> Seleccionar</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-        </select>
+          <div class="ui-widget">
+            <label class="lbling" for="descr">Ingredientes </label>  
+            <input class="autocompletar" name="1"/>
+            <button type="button" class="btn btn-primary" onclick="agregaringrediente()">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+          </div>
         </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
@@ -56,7 +57,7 @@ if(!isset($usuario)){
 
 <!-- Ventana Modal de Confirmacion -->
 <div class="modal fade" id="VentanaEmergenteConfirmacion" tabindex="-1" aria-labelledby="VentanaEmergenteConfirmacion" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="VentanaEmergenteConfirmacion">Confirmar Eliminación</h1>
@@ -121,3 +122,22 @@ if(!isset($usuario)){
 
 <?php include('includes/footer.php'); ?>
 <script src="js\pasar_datos_modal.js"></script>
+<script>
+//Insumos disponibles almacenados en un array
+let insumosdisponibles = <?php echo $json_array; ?>;
+$('.autocompletar').autocomplete({
+    source: insumosdisponibles,
+    select: function(event, ui) {
+        console.log(event.target.name);
+        console.log($(this).prop('name'));
+        alert($(this).attr('name'));
+    }
+})
+</script>
+<script>
+  var contador = 1;
+  function agregaringrediente() {
+    contador = contador+1;
+    $('<label class="lbling" for="descr">Ingredientes </label><input class="autocompletar" name="2"><button type="button" class="btn btn-primary" onclick="agregaringrediente()"><span class="material-symbols-outlined">add</span></button>').appendTo('.ui-widget');
+};
+</script>
