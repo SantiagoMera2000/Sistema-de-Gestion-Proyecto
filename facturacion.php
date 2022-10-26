@@ -38,10 +38,10 @@ if(!isset($usuario)){
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Factura</th>
-          <th>Cliente</th>
+          <th>Número de Factura</th>
+          <th>Productos</th>
           <th>Fecha</th>
-          <th class="text-right">Importe</th>
+          <th>Importe</th>
           <th></th>
         </tr>
       </thead>
@@ -51,7 +51,7 @@ if(!isset($usuario)){
           ?>
           <tr>
             <td><?php echo $fila['codigo'] ?></td>
-            <td><?php echo $fila['nombre'] ?></td>
+            <td><?php echo $fila['productos'] ?></td>
             <td><?php echo $fila['fecha'] ?></td>
             <td class="text-right"><?php echo '$' . number_format($fila['importefactura'], 2, ',', '.'); ?></td>
             <td class="text-right">

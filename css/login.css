@@ -14,6 +14,7 @@ input {
     border: 2px solid #ccc;
     font-size: 1.3rem;
     padding: 10px;
+    width: 20rem;
 }
 form {
     margin: 25px auto;
@@ -31,4 +32,7 @@ button {
 }
 button:hover {
     background: lightgreen;
+}
+.alert-danger {
+    width: 20rem;
 }
