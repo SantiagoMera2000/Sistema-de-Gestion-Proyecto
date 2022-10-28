@@ -1,6 +1,6 @@
 <?php
 
-include("logic/conexion.php");
+include("../logic/conexion.php");
 session_start();
 
 if (isset($_POST['editar'])) {
@@ -25,7 +25,7 @@ if (isset($_POST['editar'])) {
     #Variables para obtener informacion relacionada al archivo de subida
     $ruta_indexphp = dirname(realpath(__FILE__));
     $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '/img/producto/' . $_FILES['imagenE']['name'];
+    $ruta_nuevo_destino = $ruta_indexphp . '../img/producto/' . $_FILES['imagenE']['name'];
 
     $datos_bd = "SELECT * FROM producto WHERE id_prod = $id";
     $result_tasks = mysqli_query($conexion, $datos_bd);    
@@ -95,7 +95,7 @@ if (isset($_POST['editar'])) {
         die("Error en la Consulta.");
     }
     #Regresa a la Pagina de los Productos
-    header('location: productos.php');
+    header('location: ../productos.php');
     }
 
 
@@ -119,7 +119,7 @@ if (isset($_POST['editar'])) {
         #Variables para obtener informacion relacionada al archivo de subida
         $ruta_indexphp = dirname(realpath(__FILE__));
         $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
-        $ruta_nuevo_destino = $ruta_indexphp . '/img/insumo/' . $_FILES['imagenE']['name'];
+        $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagenE']['name'];
     
         $datos_bd = "SELECT * FROM insumo WHERE id_insu = $id";
         $result_tasks = mysqli_query($conexion, $datos_bd);    
@@ -178,7 +178,7 @@ if (isset($_POST['editar'])) {
         }
     
         #Regresa a la Pagina de los Productos
-        header('location: insumos.php');
+        header('location: ../insumos.php');
         }
 };
 

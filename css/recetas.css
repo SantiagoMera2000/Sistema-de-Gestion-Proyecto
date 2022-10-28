@@ -39,7 +39,8 @@
 .formulario {
     display: grid;
     grid-template-columns: 160px 200px 215px;
-    grid-gap: 20px;
+    grid-template-rows: 24px 50px 26px 35px;
+    grid-gap: 10px;
     justify-content: center;
 }
 .imagen {
@@ -51,14 +52,7 @@
     grid-column: 3/4;
     background-color: gray;
     width: 100%;
-    height: auto;
-}
-@supports(object-fit: cover) {
-    .vistaprevia {
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
-    }
+    height: 100%;
 }
 .lblnombre {
     grid-column: 1/2;
@@ -80,12 +74,20 @@
 .lbling {
     grid-column: 1/2;
     grid-row: 3/4;
+    padding: 0px 5px 0px 0px;
+}
+.inping {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    height: 28px;
+    align-self: center;
 }
 .seling {
-    grid-column: 2/3;
-    grid-row: 3/4;
+    grid-column: 1/2;
+    grid-row: 4/5;
     height: 34px;
 }
-.ui-front {
-    z-index: 10055;
+.botonagregar {
+    width: 2rem;
+    height: 2rem;
 }

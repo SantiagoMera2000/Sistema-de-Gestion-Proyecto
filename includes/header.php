@@ -52,7 +52,7 @@
         <span class="material-symbols-outlined user">account_circle</span>
       </a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item menuperfil cerrar" href="logic\salir.php">Cerrar Sesión</a></li>
+        <li><a class="dropdown-item cerrar" href="logic\salir.php">Cerrar Sesión</a></li>
       </ul>
     </li>
   </div>

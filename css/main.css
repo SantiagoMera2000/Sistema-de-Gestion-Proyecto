@@ -11,13 +11,8 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
 }
 
-.menuperfil {
+.cerrar {
     color: white;
-}
-
-.menuperfil:focus {
-    background: #23ae6b;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.568);
 }
 
 .cerrar:hover {
@@ -28,6 +23,10 @@ body {
 .user {
     font-size: 55px!important;
     color: white;
+}
+
+.user:hover {
+    color: gainsboro
 }
 
 .navbar {
@@ -42,40 +41,16 @@ body {
     padding-top: 20px;
 }
 
-.main .columna {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
 
 /*mediaquerys*/
 
 @media screen and (max-width:1300px) {
-    .barra-lateral {
-        min-width: auto;
-    }
-    .barra-lateral .menu a span {
-        display: none;
-    }
-    .barra-lateral .menu a i {
-        margin: 0;
-    }
-    .barra {
-        min-width: auto;
-    }
     .dropdown-menu {
         margin: 20px -79px 0px;
     }
 }
 
 @media screen and (max-width:575px) {
-    .barra-lateral {
-        min-height: auto;
-    }
-    .barra-lateral .menu a {
-        display: inline-block;
-        border-bottom: none;
-    }
     .dropdown-menu {
         margin: 20px -78px 0px;
     }
@@ -93,10 +68,6 @@ body {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.568);
     border-radius: 10px;
     padding: 20px;
-}
-
-.menu {
-    border-top: 5px #fff solid;
 }
 
 @media screen and (max-width:575px) {

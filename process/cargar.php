@@ -1,9 +1,8 @@
 <?php
 
-include("logic/conexion.php");
+include("../logic/conexion.php");
 session_start();
 
-echo $_POST['estado'];
 if (isset($_POST['cargar'])) {
   if ($_POST['cargar'] == "producto" ) {
   #Variables donde se almacenan cada dato para su subida a la BD
@@ -25,7 +24,7 @@ if (isset($_POST['cargar'])) {
   #Variables para obtener informacion relacionada al archivo de subida
   $ruta_indexphp = dirname(realpath(__FILE__));
   $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-  $ruta_nuevo_destino = $ruta_indexphp . '/img/producto/' . $_FILES['imagen']['name'];
+  $ruta_nuevo_destino = $ruta_indexphp . '../img/producto/' . $_FILES['imagen']['name'];
   #Subida de archivos al servidor en el Apache
   move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
@@ -37,7 +36,7 @@ if (isset($_POST['cargar'])) {
   }
 
   #Regresa a la Pagina de los Productos
-  header('location: productos.php');
+  header('location: ../productos.php');
 
   } elseif ( $_POST['cargar'] == "insumo") {
     $nombre = $_POST['nom_insu'];
@@ -56,7 +55,7 @@ if (isset($_POST['cargar'])) {
     #Variables para obtener informacion relacionada al archivo de subida
     $ruta_indexphp = dirname(realpath(__FILE__));
     $ruta_fichero_origen = $_FILES['imagen_insu']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '/img/insumo/' . $_FILES['imagen_insu']['name'];
+    $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagen_insu']['name'];
     #Subida de archivos al servidor en el Apache
     move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
@@ -68,7 +67,7 @@ if (isset($_POST['cargar'])) {
     }
 
     #Regresa a la Pagina de los Productos
-    header('location: insumos.php');
+    header('location: ../insumos.php');
 
   }  elseif ( $_POST['cargar'] == "recetas") {
     $nombre = $_POST['nombre'];
@@ -78,7 +77,7 @@ if (isset($_POST['cargar'])) {
     #Variables para obtener informacion relacionada al archivo de subida
     $ruta_indexphp = dirname(realpath(__FILE__));
     $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '/img/receta/' . $_FILES['imagen']['name'];
+    $ruta_nuevo_destino = $ruta_indexphp . '../img/receta/' . $_FILES['imagen']['name'];
     #Subida de archivos al servidor en el Apache
     move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
@@ -90,7 +89,7 @@ if (isset($_POST['cargar'])) {
     }
 
     #Regresa a la Pagina de los Productos
-    header('location: recetas.php');
+    header('location: ../recetas.php');
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';

@@ -24,7 +24,7 @@ if(!isset($usuario)){
       <div class="modal-body">
         <br>
         <!-- Formulario para cargar los datos en la BD -->
-        <form id="form" class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST">
+        <form id="form" class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST">
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagen" type="file" id="imagen"/>
           <div class="vistaprevia rounded" id="imagepreview">
@@ -82,7 +82,7 @@ if(!isset($usuario)){
       <div class="modal-body">
         <br>
         <!-- Formulario para cargar los datos en la BD -->
-        <form id="formE" class="formulario" enctype="multipart/form-data" action="editar.php" method="POST">
+        <form id="formE" class="formulario" enctype="multipart/form-data" action="process/editar.php" method="POST">
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
           <div class="vistaprevia rounded" id="imagepreview">
@@ -137,7 +137,7 @@ if(!isset($usuario)){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <form enctype="multipart/form-data" action="eliminar.php" method="POST">
+        <form enctype="multipart/form-data" action="process/eliminar.php" method="POST">
           <button type="submit" class="btn btn-danger" name="eliminar_prod" id="eliminar_prod" value="">Aceptar</button>
         </form>
       </div>

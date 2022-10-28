@@ -25,11 +25,10 @@ if(!isset($usuario)){
         <br>
         <?php include('logic/conexion_insu.php');?>
         <!-- Formulario para cargar los datos en la BD -->
-        <form class="formulario" enctype="multipart/form-data" action="cargar.php" method="POST" autocomplete="off">
+        <form class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST" autocomplete="off">
           <!-- Imagen del Producto -->
           <input class="imagen form-control" name="imagen" type="file" id="imagen"/>
-          <div class="vistaprevia" id="imagepreview">
-          </div>
+          <div class="vistaprevia img-fluid rounded" id="imagepreview"></div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
           <input class="inpnombre" type="text" id="nombre" name="nombre" required>
@@ -37,13 +36,25 @@ if(!isset($usuario)){
           <label class="lbldesc" for="descr">Descripción </label>
           <textarea class="inpdesc" rows="2" cols="50" id="descr" name="descr"></textarea>
           <!-- Agregar ingredientes -->
-          <div class="ui-widget">
-            <label class="lbling" for="descr">Ingredientes </label>  
-            <input class="autocompletar" name="1"/>
-            <button type="button" class="btn btn-primary" onclick="agregaringrediente()">
+          <div class="conjunto">
+            <label class="lbling" for="insumos">Ingredientes</label>
+            <button type="button" class="btn btn-primary botonagregar" onclick="agregaringrediente()">
               <span class="material-symbols-outlined">add</span>
             </button>
+            <button type="button" class="btn btn-primary botonagregar" onclick="quitaringrediente()">
+              <span class="material-symbols-outlined">remove</span>
+            </button>
           </div>
+          <input class="inping" type="number" id="canting1" name="canting1" min="0" placeholder="Ingrese la cantidad" required>
+          <select class="form-select seling" aria-label="Ingredientes" id="ing1" name="ing1">
+            <option selected>Ninguno seleccionado</option>
+            <?php
+            $query = "SELECT id_insu,nom_insu FROM insumo ORDER BY inactivo,nom_insu ASC";
+            $result_tasks = mysqli_query($conexion, $query);
+            while($row = mysqli_fetch_assoc($result_tasks)) { ?>
+              <option value="<?php echo $row['id_insu'] ?>"><?php echo $row['nom_insu'] ?></option>
+            <?php } ?>
+          </select>
         </div>
           <!-- Pie de la ventana emergente -->
           <div class="modal-footer">
@@ -68,7 +79,7 @@ if(!isset($usuario)){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <form enctype="multipart/form-data" action="eliminar.php" method="POST">
+        <form enctype="multipart/form-data" action="process/eliminar.php" method="POST">
           <button type="submit" class="btn btn-danger" name="eliminar_rec" id="eliminar_rec" value="">Aceptar</button>
         </form>
       </div>
@@ -100,7 +111,7 @@ if(!isset($usuario)){
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_r']; ?></h5>
               <hr>
-              <img class="img-preview" src="img/receta/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_r']; ?>">
+              <img class="img-preview img-fluid rounded" src="img/receta/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_r']; ?>">
               <hr>
               <p class="card-text"><?php echo $row['descri_r']; ?></p>
             </div>
@@ -135,9 +146,31 @@ $('.autocompletar').autocomplete({
 })
 </script>
 <script>
-  var contador = 1;
+  var canting = 1;
+  var filant = 4;
+  var filasi = 5;
   function agregaringrediente() {
-    contador = contador+1;
-    $('<label class="lbling" for="descr">Ingredientes </label><input class="autocompletar" name="2"><button type="button" class="btn btn-primary" onclick="agregaringrediente()"><span class="material-symbols-outlined">add</span></button>').appendTo('.ui-widget');
+    canting = canting+1;
+    filant = filant+1;
+    filasi = filasi+1;
+    $('#ing1').clone(true).prop({
+      id: function (i, oldId) {return 'ing'+canting;},
+      name: function (i, oldId) {return 'ing'+canting;},
+      style: 'grid-column: 1/2; grid-row:'+filant+'/'+filasi+';'
+    }).appendTo('.formulario');
+    $('#canting1').clone(true).prop({
+      id: function (i, oldId) {return 'canting'+canting;},
+      name: function (i, oldId) {return 'canting'+canting;},
+      style: 'grid-column: 2/3; grid-row:'+filant+'/'+filasi+';'
+    }).appendTo('.formulario');
+};
+function quitaringrediente() {
+  if (canting >= "2") {
+    $('#ing'+canting).remove();
+    $('#canting'+canting).remove();
+    canting = canting-1;
+    filant = filant-1;
+    filasi = filasi-1;
+  }
 };
 </script>
