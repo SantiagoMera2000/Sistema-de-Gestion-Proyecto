@@ -26,15 +26,27 @@ if(!isset($usuario)){
         <?php include('logic/conexion_insu.php');?>
         <!-- Formulario para cargar los datos en la BD -->
         <form class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST" autocomplete="off">
-          <!-- Imagen del Producto -->
-          <input class="imagen form-control" name="imagen" type="file" id="imagen"/>
-          <div class="vistaprevia img-fluid rounded" id="imagepreview"></div>
-          <!-- Nombre del Producto -->
+          <!-- Nombre del de la receta (es el nombre que usara en el producto final) -->
           <label class="lblnombre" for="nombre">Nombre </label>
           <input class="inpnombre" type="text" id="nombre" name="nombre" required>
-          <!-- Descripción del producto -->
+          <!-- observacion de la receta para ayudar a gastronomia -->
           <label class="lbldesc" for="descr">Observaciones </label>
           <textarea class="inpdesc" rows="2" cols="50" id="descr" name="descr"></textarea>
+          <!-- Imagen de la receta -->
+          <label class="lblimagen" for="imagen">Imagen </label>
+          <input class="imagen form-control" name="imagen" type="file" id="imagen"/>
+          <div class="vistaprevia img-fluid rounded" id="imagepreview"></div>
+          <!-- Pasos de elaboracion -->
+          <div class="elaboracion">
+            <label class="lblela" for="ela">Pasos de elaboracion</label>
+            <button type="button" class="btn btn-primary botonagregar" onclick="agregarpaso()">
+              <span class="material-symbols-outlined">add</span>
+            </button>
+            <button type="button" class="btn btn-primary botonagregar" onclick="quitarpaso()">
+              <span class="material-symbols-outlined">remove</span>
+            </button>
+          </div>
+          <input class="inpela" type="text" id="paso1" name="paso1" required>
           <!-- Agregar ingredientes -->
           <div class="conjunto">
             <label class="lbling" for="insumos">Ingredientes</label>
@@ -53,6 +65,7 @@ if(!isset($usuario)){
             <option value="5">c.c.</option>
             <option value="6">pizca</option>
             <option value="7">cda</option>
+            <option value="8">C/N</option>
           </select>
           <input class="inping" type="number" id="canting1" name="canting1" min="0" placeholder="Ingrese la cantidad" required>
           <select class="form-select seling" aria-label="Ingredientes" id="ing1" name="ing1">
@@ -126,17 +139,35 @@ if(!isset($usuario)){
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_r']; ?></h5>
               <hr>
-              <img class="img-preview img-fluid rounded" src="img/receta/<?php echo $row['img_id']?>" class="card-img-top img-fluid" alt="<?php echo $row['nom_r']; ?>">
+              <?php
+              if ($row['img_id'] == "") {
+                echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
+              } else {
+                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src=\"img/receta/{$row['img_id']}\" alt=\"{$row['nom_r']}\">";
+              }
+              ?>
               <hr>
               <p class="card-text"><?php echo $row['descri_r']; ?></p>
             </div>
             <div class="card-footer">
-              <a href="edit.php?id=<?php echo $row['id_rec']?>" class="btn btn-secondary">
-                <span class="material-symbols-outlined">edit</span>
-              </a>
-              <a class="btn btn-danger eliminar_rec" data-id="<?php echo $row['id_rec']?>" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion">
-                  <span class="material-symbols-outlined">delete</span>
-              </a>
+              <!-- Boton de edicion -->
+              <a class="btn btn-secondary editar" 
+                data-id='{"id_rec":"<?php echo $row['id_rec']?>","nom_r":"<?php echo $row['nom_r']?>","descri_r":"<?php echo $row['descri_r']?>","img_id":"<?php echo $row['img_id']?>"}' 
+                data-bs-toggle="modal" 
+                data-bs-target="#VentanaEmergenteVisualizar" 
+                role="button"
+              >Ver más</a>
+              <!-- Boton de eliminacion -->
+              <?php
+              if ($row['inactivo'] == false) {
+              echo "<a class=\"btn btn-danger eliminar\" 
+                data-id=\"{$row['id_rec']}\"
+                data-bs-toggle=\"modal\" 
+                data-bs-target=\"#VentanaEmergenteConfirmacion\" 
+                role=\"button\"
+              >Eliminar</a>";
+              }
+              ?>
           </div>
           </div>
         </div>
@@ -161,6 +192,10 @@ $('.autocompletar').autocomplete({
 })
 </script>
 <script>
+  var pasonum = 1;
+  var filapasoant = 2;
+  var filapasosig = 3;
+
   var canting = 1;
   var filant = 2;
   var filasi = 3;
@@ -192,6 +227,26 @@ function quitaringrediente() {
     canting = canting-1;
     filant = filant-1;
     filasi = filasi-1;
+  }
+};
+
+
+function agregarpaso() {
+  pasonum = pasonum+1;
+  filapasoant = filapasoant+1;
+  filapasosig = filapasosig+1;
+  $('#paso1').clone(true).prop({
+    id: function (i, oldId) {return 'paso'+pasonum;},
+    name: function (i, oldId) {return 'paso'+pasonum;},
+    style: 'grid-column: 3/4; grid-row:'+filapasoant+'/'+filapasosig+';'
+    }).appendTo('.formulario');
+};
+function quitarpaso(){
+  if (pasonum >= "2") {
+    $('#paso'+pasonum).remove();
+    pasonum = pasonum-1;
+    filapasoant = filapasoant-1;
+    filapasosig = filapasosig-1;
   }
 };
 

@@ -87,14 +87,15 @@ if (isset($_POST['cargar'])) {
     if(!$result) {
       die("Error en la Consulta.");
     }
-
+    
+    #Obtenemos el ID de la receta recien creada
     $query = mysqli_query($conexion, "SELECT id_rec FROM receta WHERE nom_r='$nombre'");
     $result = mysqli_fetch_assoc($query);
     $idrec = $result['id_rec'];
     
+    #Agregamos los ingredientes de la receta uno a uno
     $contador = 1;
     $ing = "ing".$contador;
-    echo $_POST["$ing"];
     while (isset($_POST["$ing"])) {
       $uni = "uni".$contador;
       $cant = "canting".$contador;
@@ -108,7 +109,7 @@ if (isset($_POST['cargar'])) {
     }
 
     #Regresa a la Pagina de los Productos
-    #header('location: ../recetas.php');
+    header('location: ../recetas.php');
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';

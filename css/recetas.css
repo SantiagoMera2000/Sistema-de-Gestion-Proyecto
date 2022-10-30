@@ -38,10 +38,14 @@
 }
 .formulario {
     display: grid;
-    grid-template-columns: 160px 200px 160px 200px 85px;
+    grid-template-columns: 160px 200px 250px 160px 200px 85px;
     grid-template-rows: 24px 50px 26px 35px;
     grid-gap: 10px;
     justify-content: center;
+}
+.lblimagen {
+    grid-column: 1/2;
+    grid-row: 3/7;
 }
 .imagen {
     grid-column: 2/3;
@@ -72,24 +76,24 @@
     height: 40px;
 }
 .lbling {
-    grid-column: 4/5;
+    grid-column: 5/6;
     grid-row: 2/3;
     padding: 0px 5px 0px 0px;
 }
 .seling {
-    grid-column: 3/4;
+    grid-column: 4/5;
     grid-row: 2/3;
     height: 34px;
     align-self: center;
 }
 .inping {
-    grid-column: 4/5;
+    grid-column: 5/6;
     grid-row: 2/3;
     height: 28px;
     align-self: center;
 }
 .selingun {
-    grid-column: 5/6;
+    grid-column: 6/7;
     grid-row: 2/3;
     height: 34px;
     align-self: center;
@@ -97,4 +101,23 @@
 .botonagregar {
     width: 2rem;
     height: 2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.lblela {
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.inpela {
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+.form-select {
+    line-height: 1!important;
+    padding: 0.375rem 2rem 0.375rem 0.45rem!important;
+}
+.formulario label {
+    align-self: center;
 }
