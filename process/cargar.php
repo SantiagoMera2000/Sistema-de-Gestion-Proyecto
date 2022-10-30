@@ -82,14 +82,33 @@ if (isset($_POST['cargar'])) {
     move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into receta values ('0','$nombre','$descripcion','$nombrimagen', 1)";
+    $query = "INSERT into receta values ('0','$nombre','$descripcion','$nombrimagen', 'false')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");
     }
 
+    $query = mysqli_query($conexion, "SELECT id_rec FROM receta WHERE nom_r='$nombre'");
+    $result = mysqli_fetch_assoc($query);
+    $idrec = $result['id_rec'];
+    
+    $contador = 1;
+    $ing = "ing".$contador;
+    echo $_POST["$ing"];
+    while (isset($_POST["$ing"])) {
+      $uni = "uni".$contador;
+      $cant = "canting".$contador;
+      $unidad = $_POST["$uni"];
+      $cantidad = $_POST["$cant"];
+      $idins = $_POST["$ing"];
+      $query = "INSERT INTO contiene VALUES ('$idrec','$idins','$unidad','$cantidad')";
+      mysqli_query($conexion, $query);
+      $contador = $contador+1;
+      $ing = "ing".$contador;
+    }
+
     #Regresa a la Pagina de los Productos
-    header('location: ../recetas.php');
+    #header('location: ../recetas.php');
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';

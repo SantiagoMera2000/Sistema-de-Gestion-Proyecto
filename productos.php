@@ -34,7 +34,7 @@ if(!isset($usuario)){
           <select class="form-select selreceta" aria-label="Recetas disponibles" id="receta" name="receta" required>
             <option selected> Seleccionar</option>
             <?php 
-            $query = "SELECT id_rec,nom_r,descri_r FROM receta WHERE estado = 1 ORDER BY nom_r ASC";
+            $query = "SELECT id_rec,nom_r,descri_r FROM receta WHERE inactivo = 0 ORDER BY nom_r ASC";
             $result_tasks = mysqli_query($conexion, $query);    
             while($row = mysqli_fetch_assoc($result_tasks)) { ?>
             <option value="<?php echo $row['nom_r']?>"><?php echo $row['nom_r']?></option>

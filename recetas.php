@@ -14,7 +14,7 @@ if(!isset($usuario)){
 
 <!-- Ventana emergente (Modal) -->
 <div class="modal" id="VentanaEmergente" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="VentanaEmergente">Agregar receta nueva</h5>
@@ -33,7 +33,7 @@ if(!isset($usuario)){
           <label class="lblnombre" for="nombre">Nombre </label>
           <input class="inpnombre" type="text" id="nombre" name="nombre" required>
           <!-- Descripción del producto -->
-          <label class="lbldesc" for="descr">Descripción </label>
+          <label class="lbldesc" for="descr">Observaciones </label>
           <textarea class="inpdesc" rows="2" cols="50" id="descr" name="descr"></textarea>
           <!-- Agregar ingredientes -->
           <div class="conjunto">
@@ -45,6 +45,15 @@ if(!isset($usuario)){
               <span class="material-symbols-outlined">remove</span>
             </button>
           </div>
+          <select class="form-select selingun" aria-label="Unidad de Medida" id="uni1" name="uni1">
+            <option value="1" selected>l</option>
+            <option value="2">ml</option>
+            <option value="3">kg</option>
+            <option value="4">gr</option>
+            <option value="5">c.c.</option>
+            <option value="6">pizca</option>
+            <option value="7">cda</option>
+          </select>
           <input class="inping" type="number" id="canting1" name="canting1" min="0" placeholder="Ingrese la cantidad" required>
           <select class="form-select seling" aria-label="Ingredientes" id="ing1" name="ing1">
             <option selected>Ninguno seleccionado</option>
@@ -101,12 +110,18 @@ if(!isset($usuario)){
       </div>
     </div>
           <?php
-          $query = "SELECT * FROM receta where estado = 1";
+          $query = "SELECT * FROM receta ORDER BY inactivo,nom_r ASC";
           $result_tasks = mysqli_query($conexion, $query);    
 
           while($row = mysqli_fetch_assoc($result_tasks)) { ?>
           <!-- Tarjetas donde se cargan los datos de la BD -->
-        <div class="col">
+          <?php
+          if ($row['inactivo'] == false) {
+            echo "<div class=\"col tarjeta\">";
+          } else {
+            echo "<div class=\"col inactivo oculto tarjeta\">";
+          }
+          ?>
           <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title"><?php echo $row['nom_r']; ?></h5>
@@ -147,8 +162,8 @@ $('.autocompletar').autocomplete({
 </script>
 <script>
   var canting = 1;
-  var filant = 4;
-  var filasi = 5;
+  var filant = 2;
+  var filasi = 3;
   function agregaringrediente() {
     canting = canting+1;
     filant = filant+1;
@@ -156,21 +171,38 @@ $('.autocompletar').autocomplete({
     $('#ing1').clone(true).prop({
       id: function (i, oldId) {return 'ing'+canting;},
       name: function (i, oldId) {return 'ing'+canting;},
-      style: 'grid-column: 1/2; grid-row:'+filant+'/'+filasi+';'
+      style: 'grid-column: 3/4; grid-row:'+filant+'/'+filasi+';'
     }).appendTo('.formulario');
     $('#canting1').clone(true).prop({
       id: function (i, oldId) {return 'canting'+canting;},
       name: function (i, oldId) {return 'canting'+canting;},
-      style: 'grid-column: 2/3; grid-row:'+filant+'/'+filasi+';'
+      style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';'
+    }).appendTo('.formulario');
+    $('#uni1').clone(true).prop({
+      id: function (i, oldId) {return 'uni'+canting;},
+      name: function (i, oldId) {return 'uni'+canting;},
+      style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';'
     }).appendTo('.formulario');
 };
 function quitaringrediente() {
   if (canting >= "2") {
     $('#ing'+canting).remove();
     $('#canting'+canting).remove();
+    $('#uni'+canting).remove();
     canting = canting-1;
     filant = filant-1;
     filasi = filasi-1;
   }
 };
+
+$('.seling').on('change', function(event ) {
+  //restore previously selected value
+  var prevValue = $(this).data('previous');
+  $('.seling').not(this).find('option[value="'+prevValue+'"]').show();
+  //hide option selected                
+  var value = $(this).val();
+  //update previously selected data
+  $(this).data('previous',value);
+  $('.seling').not(this).find('option[value="'+value+'"]').hide();
+  });
 </script>

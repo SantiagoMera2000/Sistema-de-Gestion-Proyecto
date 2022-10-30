@@ -38,18 +38,18 @@
 }
 .formulario {
     display: grid;
-    grid-template-columns: 160px 200px 215px;
+    grid-template-columns: 160px 200px 160px 200px 85px;
     grid-template-rows: 24px 50px 26px 35px;
     grid-gap: 10px;
     justify-content: center;
 }
 .imagen {
-    grid-column: 3/4;
-    grid-row: 4/5;
+    grid-column: 2/3;
+    grid-row: 7/8;
 }
 .vistaprevia {
-    grid-row: 1/4;
-    grid-column: 3/4;
+    grid-column: 2/3;
+    grid-row: 3/7;
     background-color: gray;
     width: 100%;
     height: 100%;
@@ -72,20 +72,27 @@
     height: 40px;
 }
 .lbling {
-    grid-column: 1/2;
-    grid-row: 3/4;
+    grid-column: 4/5;
+    grid-row: 2/3;
     padding: 0px 5px 0px 0px;
 }
+.seling {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    height: 34px;
+    align-self: center;
+}
 .inping {
-    grid-column: 2/3;
-    grid-row: 4/5;
+    grid-column: 4/5;
+    grid-row: 2/3;
     height: 28px;
     align-self: center;
 }
-.seling {
-    grid-column: 1/2;
-    grid-row: 4/5;
+.selingun {
+    grid-column: 5/6;
+    grid-row: 2/3;
     height: 34px;
+    align-self: center;
 }
 .botonagregar {
     width: 2rem;
