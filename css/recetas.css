@@ -38,7 +38,7 @@
 }
 .formulario {
     display: grid;
-    grid-template-columns: 160px 200px 250px 160px 200px 85px;
+    grid-template-columns: 100px 200px 270px 160px 200px 85px;
     grid-template-rows: 24px 50px 26px 35px;
     grid-gap: 10px;
     justify-content: center;
@@ -112,7 +112,8 @@
 }
 .inpela {
     grid-column: 3/4;
-    grid-row: 2/3;
+    grid-row: 2/5;
+    height: 13rem;
 }
 .form-select {
     line-height: 1!important;

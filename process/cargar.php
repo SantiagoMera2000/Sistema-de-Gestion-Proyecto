@@ -72,6 +72,7 @@ if (isset($_POST['cargar'])) {
   }  elseif ( $_POST['cargar'] == "recetas") {
     $nombre = $_POST['nombre'];
     $descripcion= $_POST['descr'];
+    $pasos = $_POST['pasos'];
     $nombrimagen = $_FILES['imagen']['name'];
 
     #Variables para obtener informacion relacionada al archivo de subida
@@ -82,7 +83,7 @@ if (isset($_POST['cargar'])) {
     move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into receta values ('0','$nombre','$descripcion','$nombrimagen', 'false')";
+    $query = "INSERT into receta values ('0','$nombre','$descripcion','$pasos','$nombrimagen', 'false')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");

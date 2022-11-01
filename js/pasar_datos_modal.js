@@ -55,3 +55,15 @@ $(document).on("click", ".editar_insu", function() {
     $("#formE #precio_insuE").val( costo );
     $("#formE #cant_dispE").val( cant );
 })
+$(document).on("click", ".editar_recetas", function() {
+    var id = $(this).data('id').id_rec;
+    var nom = $(this).data('id').nom_r;
+    var desc = $(this).data('id').descri_r;
+    var pas = $(this).data('id').pasos_r;
+    //var img = $(this).data('id').img_id;
+    $("#formE #id_r").val( id );
+    $("#formE #nombreE").val( nom );
+    $("#formE #descrE").val( desc );
+    $("#formE #pasosE").val( pas );
+    window.location.href = window.location.href + "?idr=" + id;
+})
