@@ -1,3 +1,126 @@
 .material-symbols-outlined {
     font-size: 30px;
 }
+.barra-filtros {
+    text-align: start!important;
+    display: flex;
+}
+
+.btn_add{
+    margin-right: 10px;
+}
+
+.formulario {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 70px 175px 150px 100px;
+    grid-gap: 20px;
+}
+.lblnombre {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.inpnombre {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.lblapellido {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.inpapellido{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+.lblemail{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.email{
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.lblclave{
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.clave{
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+.lblestado {
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+.estado {
+    grid-column: 1/2;
+    grid-row: 5/6;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermisos{
+    grid-column: 3/4;
+    grid-row: 1/2;
+}
+.lblpermiso_insu{
+    grid-column: 4/5;
+    grid-row: 1/2;
+}
+.permiso_insu{
+    grid-column: 4/5;
+    grid-row: 1/2;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermiso_rec{
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+.permiso_rec{
+    grid-column: 3/4;
+    grid-row: 2/3;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermiso_prod{
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+.permiso_prod{
+    grid-column: 3/4;
+    grid-row: 3/4;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermiso_orden{
+    grid-column: 3/4;
+    grid-row: 4/5;
+}
+.permiso_orden{
+    grid-column: 3/4;
+    grid-row: 4/5;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermiso_facturacion{
+    grid-column: 3/4;
+    grid-row: 5/6;
+}
+.permiso_facturacion{
+    grid-column: 3/4;
+    grid-row: 5/6;
+    margin: 0px 0px 0px 53px;
+}
+.lblpermiso_admin{
+    grid-column: 3/4;
+    grid-row: 6/7;
+   
+}
+.permiso_admin{
+    grid-column: 3/4;
+    grid-row: 6/7;
+    margin: 0px 0px 0px 53px;
+}
+
+
+
+
+
+
+
+

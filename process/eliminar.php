@@ -25,4 +25,12 @@ if (isset($_POST['eliminar_insu'])) {
 
   header('Location: ../insumos.php');
 }
+if (isset($_POST['eliminar_usu'])) {
+  $id = $_POST['eliminar_usu'];
+  $query = "UPDATE persona SET inactivo = true WHERE id = $id ";
+  $result = mysqli_query($conexion, $query);
+
+  header('Location: ../admin.php');
+}
+
 ?>

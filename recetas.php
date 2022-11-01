@@ -139,7 +139,7 @@ if(!isset($usuario)){
             </div>
             <div class="card-footer">
               <!-- Boton de edicion -->
-              <a class="btn btn-secondary editar_receta" data-id="<?php echo $row['id_rec']?>" role="button">Ver más</a>
+              <a class="btn btn-secondary editar_receta" data-id="<?php echo $row['id_rec']?>" role="button" id="ver">Ver más</a>
               <!-- Boton de eliminacion -->
               <?php
               if ($row['inactivo'] == false) {
@@ -212,15 +212,21 @@ $('.seling').on('change', function(event ) {
   $('.seling').not(this).find('option[value="'+value+'"]').hide();
   });
 
+  $(document).on("click", ".borrarmodal", function() {
+    $('#VentanaEmergenteVisualizar').remove();
+  })
   $(document).on("click", ".editar_receta", function() {
     var id = $(this).data('id');
-    // get needed html
-    $.get("a.php?idr="+id, function (result) {
+    if ( $('#VentanaEmergenteVisualizar').length > 0 ) {
+      $('#VentanaEmergenteVisualizar').remove();
+    } else {
+      // get needed html
+      $.get("a.php?idr="+id, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
         $('#VentanaEmergenteVisualizar').modal('show');
-
-    });
+      });
+    }
 });
 </script>

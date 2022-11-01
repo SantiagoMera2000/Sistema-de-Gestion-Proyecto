@@ -111,11 +111,29 @@ if (isset($_POST['cargar'])) {
 
     #Regresa a la Pagina de los Productos
     header('location: ../recetas.php');
+  }  elseif ( $_POST['cargar'] == "usuario") {
+    $nombre = $_POST['nom_usu'];
+    $apellido= $_POST['ape_usu'];
+    $email = $_POST['email'];
+    $clave = $_POST['clave'];
+    if($_POST['estado'] == "on") {
+      $estado = false;
+    } else {
+      $estado = true;
+    }
+    $query = "INSERT into persona values ('0','$nombre','$apellido','$email','$clave', '$estado')";
+    $result = mysqli_query($conexion, $query);
+    header('location: ../admin.php');
+    if($_POST['estado'] == "on") {
+      $estado = false;
+    } else {
+      $estado = true;
+    }
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';
   #$_SESSION['message_type'] = 'success';
   #echo "$nombre, $descr, $tipo, estado, $precio_elab, $precio_venta, $cantidad, $nombrimagen";
-}
+} 
 
 ?>

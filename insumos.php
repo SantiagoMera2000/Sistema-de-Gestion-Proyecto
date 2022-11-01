@@ -38,7 +38,7 @@ if(!isset($usuario)){
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visible</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estado" required>
+            <input class="form-check-input" type="checkbox" role="switch" id="estado" >
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>
@@ -48,7 +48,7 @@ if(!isset($usuario)){
             <option value="2">Kilogramos</option>
             <option value="3">Litros</option>
             <option value="4">Mililitros</option>
-            <option value="5">Cantidad</option>
+            <option value="5">Unidad</option>
           </select>
           </div>
           <!-- Pie de la ventana emergente -->
@@ -88,7 +88,7 @@ if(!isset($usuario)){
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estadoE">Visible</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estadoE" name="estadoE" required>
+            <input class="form-check-input" type="checkbox" role="switch" id="estadoE" name="estadoE">
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>
@@ -98,7 +98,7 @@ if(!isset($usuario)){
             <option value="2">Kilogramos</option>
             <option value="3">Litros</option>
             <option value="4">Mililitros</option>
-            <option value="5">Cantidad</option>
+            <option value="5">Unidad</option>
           </select>
           <input type="text" id="id_insu" name="id_insu" value="" hidden>
         </div>

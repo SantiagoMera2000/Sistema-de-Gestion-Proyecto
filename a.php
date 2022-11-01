@@ -1,12 +1,12 @@
 <?php include('logic/conexion.php'); ?>
 
 <!-- Ventana emergente (Modal) -->
-<div class="modal fade" id="VentanaEmergenteVisualizar" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
+<div class="modal fade" id="VentanaEmergenteVisualizar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="VentanaEmergente">Ver una receta</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close borrarmodal" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Cuerpo de la Ventana -->
             <div class="modal-body">
@@ -25,7 +25,7 @@
                     <textarea class="inpdesc form-control" rows="2" cols="50" id="descrE" name="descrE"><?php echo $row['descri_r']?></textarea>
                     <!-- Imagen de la receta -->
                     <label class="lblimagen" for="imagen">Imagen </label>
-                    <input class="imagen form-control" name="imagenE" type="file" id="imageEn"/>
+                    <input class="imagen form-control" name="imagenE" type="file" id="imagenE"/>
                     <div class="vistaprevia img-fluid rounded" id="imagepreview"></div>
                     <!-- Pasos de elaboracion -->
                     <label class="lblela" for="ela">Pasos de elaboracion</label>
@@ -117,10 +117,75 @@
             <!-- Pie de la ventana emergente -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" id="modoeditar" data-bs-toggle="button">Activar Edición</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="this.form.reset()">Cancelar</button>
-                <button type="submit" class="btn btn-primary" id="cargar" name="cargar" value="recetas" >Agregar</button>
+                <button type="button" class="btn btn-secondary borrarmodal" data-bs-dismiss="modal" onClick="this.form.reset()">Cancelar</button>
+                <button type="submit" class="btn btn-primary" id="editar" name="editar" value="recetas" >Agregar</button>
             </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    var n = document.getElementById("nombreE");
+    var d = document.getElementById("descrE");
+    var i = document.getElementById("imagenE");
+    var p = document.getElementById("pasosE");
+    var enviar = document.getElementById("editar");
+    var clickBtn = document.getElementById("modoeditar");
+    
+    n.disabled = true;
+    d.disabled = true;
+    i.disabled = true;
+    p.disabled = true;
+    enviar.disabled = true;
+
+    for (let index = 1; index < 100; index++) {
+        document.getElementsByClassName('seling')[index].id = function() { var a = this }
+        if(a.length > 0) {
+            if (document.getElementById(document.getElementsByClassName('seling')[index].id).disabled) {
+                document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = false;
+                document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = false;
+                document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = false;
+            }else{
+                document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = true;
+                document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = true;
+                document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = true;
+            }
+        }else{
+            break;
+        }
+    }
+
+    clickBtn.addEventListener('click', function(event) {
+        n.disabled = !n.disabled;
+        d.disabled = !d.disabled;
+        i.disabled = !i.disabled;
+        p.disabled = !p.disabled;
+        enviar.disabled = !enviar.disabled;
+    })
+    document.getElementById('ver').addEventListener('click', function(event) {
+        n.disabled = !n.disabled;
+        d.disabled = !d.disabled;
+        i.disabled = !i.disabled;
+        p.disabled = !p.disabled;
+        enviar.disabled = !enviar.disabled;
+
+        for (let index = 1; index < 100; index++) {
+            document.getElementsByClassName('seling')[index].id = function() { var a = this }
+            if(a.length > 0) {
+                if (document.getElementById(document.getElementsByClassName('seling')[index].id).disabled) {
+                    document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = false;
+                    document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = false;
+                    document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = false;
+                }else{
+                    document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = true;
+                    document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = true;
+                    document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = true;
+                }
+            }else{
+                break;
+            }
+        }
+    })
+    
+</script>

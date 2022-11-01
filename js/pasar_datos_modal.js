@@ -10,10 +10,14 @@ $(document).on("click", ".eliminar", function () {
     var IdProducto = $(this).data('id');
     $(".modal-footer #eliminar_insu").val( IdProducto );
 });
+$(document).on("click", ".eliminar_usu", function () {
+    var Id = $(this).data('id');
+    $(".modal-footer #eliminar_usu").val( Id );
+});
 
 $(document).on("click", ".editar", function () {
         var id = $(this).data('id').id_prod;
-        var nom = $(this).data('id').nom_pro;
+        var nom = $(this).data('id').nom_pro; 
         var des = $(this).data('id').descri_pro;
         var tipo = $(this).data('id').tipo;
         var ina = $(this).data('id').inactivo;
