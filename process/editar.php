@@ -96,10 +96,7 @@ if (isset($_POST['editar'])) {
     }
     #Regresa a la Pagina de los Productos
     header('location: ../productos.php');
-    }
-
-
-    if ($_POST['editar'] == "insumo" ) {
+    } elseif ($_POST['editar'] == "insumo" ) {
         #Variables donde se almacenan cada dato para su subida a la BD
         $id = $_POST['id_insu'];
         $nombre_new = $_POST['nom_insuE'];
@@ -175,6 +172,86 @@ if (isset($_POST['editar'])) {
         $result = mysqli_query($conexion, $query);
         if(!$result) {
             die("Error en la Consulta.");
+        }
+    
+        #Regresa a la Pagina de los Productos
+        header('location: ../insumos.php');
+
+        } elseif ($_POST['editar'] == "recetas") {
+            #Variables donde se almacenan cada dato para su subida a la BD
+        $id = $_POST['id_receta'];
+        $nombre_new = $_POST['nombreE'];
+        $descr_new = $_POST['descrE'];
+        $pasos_new = $_POST['pasos'];
+        $nombrimagen_new = $_FILES['imagenE']['name'];
+    
+        #Variables para obtener informacion relacionada al archivo de subida
+        $ruta_indexphp = dirname(realpath(__FILE__));
+        $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
+        $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagenE']['name'];
+
+        $contador = 1;
+        $array = array();
+        while(isset($_POST['Eing'+$contador])) {
+            $array[] = $_POST['Eing'+$contador];
+            $contador++;
+        }
+
+        $datos_bd = "SELECT * FROM receta WHERE id_rec = $id";
+        $result_tasks = mysqli_query($conexion, $datos_bd);    
+        while($row = mysqli_fetch_assoc($result_tasks)) {
+            $nombre_old = $row['nom_r'];
+            $descr_old = $row['descri_r'];
+            $pasos_old = $row['pasos_r'];
+            $estado_old = $row['inactivo'];
+            $nombrimagen_old = $row['img_insu'];
+        }
+    
+        if ($nombre_new != $nombre_old) {
+            $nombre = $nombre_new;
+        }else {
+            $nombre = $nombre_old;
+        }
+        if ($descr_new != $descr_old) {
+            $descr = $descr_new;
+        }else {
+            $descr = $descr_old;
+        }
+        if ($pasos_new != $pasos_old) {
+            $pasos = $pasos_new;
+        }else {
+            $pasos = $pasos_old;
+        }
+        //if ($estado_new != $estado_old) {
+        //    $estado = $estado_new;
+        //} else {
+        //    $estado = $estado_old;
+        //}
+        
+        if ($nombrimagen_new != $nombrimagen_old) {
+            if ($nombrimagen_new != ""){
+            $nombrimagen = "$nombrimagen_new";
+            #Subida de archivos al servidor en el Apache
+            move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+            } else {
+                $nombrimagen = "$nombrimagen_old";
+            }
+        } else {
+            $nombrimagen = "$nombrimagen_old";
+        }
+    
+    
+        #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
+        $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_insu = \"$nombrimagen\", inactivo = \"0\" WHERE id_rec = \"$id\"";
+        $result = mysqli_query($conexion, $query);
+        if(!$result) {
+            die("Error en la Consulta.");
+        }
+
+        $query = "SELECT * FROM contiene WHERE id_rec = $id";
+        $result = mysqli_query($conexion, $query);
+        while($row = mysqli_fetch_assoc($result)) {
+            
         }
     
         #Regresa a la Pagina de los Productos

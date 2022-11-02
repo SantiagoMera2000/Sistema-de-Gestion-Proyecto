@@ -1,6 +1,5 @@
 <?php include('logic/conexion.php'); ?>
 
-<!-- Ventana emergente (Modal) -->
 <div class="modal fade" id="VentanaEmergenteVisualizar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
@@ -11,7 +10,7 @@
             <!-- Cuerpo de la Ventana -->
             <div class="modal-body">
                 <!-- Formulario para cargar los datos en la BD -->
-                <form class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST" autocomplete="off">
+                <form class="formulario" id="for" enctype="multipart/form-data" action="process/cargar.php" method="POST" autocomplete="off">
                     <?php
                     $id = $_GET['idr'];
                     $query = "SELECT * FROM receta WHERE id_rec=$id";
@@ -34,10 +33,10 @@
                     <!-- Agregar ingredientes -->
                     <div class="conjunto">
                         <label class="lbling" for="insumos">Ingredientes</label>
-                        <button type="button" class="btn btn-primary botonagregar" onclick="agregaringrediente()">
+                        <button type="button" class="btn btn-primary botonagregar" onclick="agregaringrediente()" id="agregaring">
                             <span class="material-symbols-outlined">add</span>
                         </button>
-                        <button type="button" class="btn btn-primary botonagregar" onclick="quitaringrediente()">
+                        <button type="button" class="btn btn-primary botonagregar" onclick="quitaringrediente()" id="quitaring">
                             <span class="material-symbols-outlined">remove</span>
                         </button>
                     </div>
@@ -111,7 +110,8 @@
             $contador = $contador+1;
             $filant = $filant+1;
             $filasi = $filasi+1;
-            } 
+            }
+            echo "<input type=\"hidden\" value=\"$id\" name=\"id_receta\" id=\"id_receta\">"
             ?>
             </div>
             <!-- Pie de la ventana emergente -->
@@ -130,6 +130,8 @@
     var d = document.getElementById("descrE");
     var i = document.getElementById("imagenE");
     var p = document.getElementById("pasosE");
+    var a = document.getElementById("agregaring");
+    var q = document.getElementById("quitaring");
     var enviar = document.getElementById("editar");
     var clickBtn = document.getElementById("modoeditar");
     
@@ -137,23 +139,40 @@
     d.disabled = true;
     i.disabled = true;
     p.disabled = true;
+    a.disabled = true;
+    q.disabled = true;
     enviar.disabled = true;
+    
+    ids();
 
-    for (let index = 1; index < 100; index++) {
-        document.getElementsByClassName('seling')[index].id = function() { var a = this }
-        if(a.length > 0) {
-            if (document.getElementById(document.getElementsByClassName('seling')[index].id).disabled) {
-                document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = false;
-                document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = false;
-                document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = false;
-            }else{
-                document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = true;
-                document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = true;
-                document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = true;
+    function ids() {
+        var uls = $("#for").find("select.seling");
+        $.each(uls, function(i, item) {
+            var id = item.id;
+            if (document.getElementById(id).disabled == true) {
+                document.getElementById(id).disabled = false;
+            } else {
+                document.getElementById(id).disabled = true;
             }
-        }else{
-            break;
-        }
+        })
+        var uls = $("#for").find("select.selingun");
+        $.each(uls, function(i, item) {
+            var id = item.id;
+            if (document.getElementById(id).disabled == true) {
+                document.getElementById(id).disabled = false;
+            } else {
+                document.getElementById(id).disabled = true;
+            }
+        })
+        var uls = $("#for").find("input.inping");
+        $.each(uls, function(i, item) {
+            var id = item.id;
+            if (document.getElementById(id).disabled == true) {
+                document.getElementById(id).disabled = false;
+            } else {
+                document.getElementById(id).disabled = true;
+            }
+        })
     }
 
     clickBtn.addEventListener('click', function(event) {
@@ -161,31 +180,10 @@
         d.disabled = !d.disabled;
         i.disabled = !i.disabled;
         p.disabled = !p.disabled;
-        enviar.disabled = !enviar.disabled;
-    })
-    document.getElementById('ver').addEventListener('click', function(event) {
-        n.disabled = !n.disabled;
-        d.disabled = !d.disabled;
-        i.disabled = !i.disabled;
-        p.disabled = !p.disabled;
+        a.disabled = !a.disabled;
+        q.disabled = !q.disabled;
         enviar.disabled = !enviar.disabled;
 
-        for (let index = 1; index < 100; index++) {
-            document.getElementsByClassName('seling')[index].id = function() { var a = this }
-            if(a.length > 0) {
-                if (document.getElementById(document.getElementsByClassName('seling')[index].id).disabled) {
-                    document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = false;
-                    document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = false;
-                    document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = false;
-                }else{
-                    document.getElementById(document.getElementsByClassName('seling')[index].id).disabled = true;
-                    document.getElementById(document.getElementsByClassName('selingun')[index].id).disabled = true;
-                    document.getElementById(document.getElementsByClassName('inping')[index].id).disabled = true;
-                }
-            }else{
-                break;
-            }
-        }
+        ids();
     })
-    
 </script>
