@@ -111,24 +111,55 @@ if (isset($_POST['cargar'])) {
 
     #Regresa a la Pagina de los Productos
     header('location: ../recetas.php');
+    #carga datos de usuarios
   }  elseif ( $_POST['cargar'] == "usuario") {
     $nombre = $_POST['nom_usu'];
     $apellido= $_POST['ape_usu'];
     $email = $_POST['email'];
     $clave = $_POST['clave'];
     if($_POST['estado'] == "on") {
-      $estado = false;
-    } else {
       $estado = true;
+    } else {
+      $estado = false;
     }
     $query = "INSERT into persona values ('0','$nombre','$apellido','$email','$clave', '$estado')";
     $result = mysqli_query($conexion, $query);
     header('location: ../admin.php');
-    if($_POST['estado'] == "on") {
-      $estado = false;
+
+    if($_POST['permiso_insu'] == "on") {
+      $Permiso_insu = true;
     } else {
-      $estado = true;
+      $Permiso_insu = false;
     }
+    if($_POST['permiso_rec'] == "on") {
+      $permiso_rec = true;
+    } else {
+      $permiso_rec = false;
+    }
+    if($_POST['permiso_prod'] == "on") {
+      $permiso_prod = true;
+    } else {
+      $permiso_prod = false;
+    }
+    if($_POST['permiso_orden'] == "on") {
+      $permiso_orden = true;
+    } else {
+      $permiso_orden = false;
+    }
+    if($_POST['permiso_facturacion'] == "on") {
+      $permiso_facturacion = true;
+    } else {
+      $permiso_facturacion = false;
+    }
+    if($_POST['permiso_admin'] == "on") {
+      $permiso_admin = true;
+    } else {
+      $permiso_admin = false;
+    }
+    $query = "INSERT into permisos values ('0','$Permiso_insu','$permiso_rec ','$permiso_prod','$permiso_orden', '$permiso_facturacion','$permiso_admin')";
+    $result = mysqli_query($conexion, $query);
+
+   
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';

@@ -48,7 +48,7 @@ if(!isset($usuario)){
             <input class="form-check-input" type="checkbox" role="switch" id="estado">
           </div>
           <!-- Permisos a usuarios -->
-          <label class="form-check-label lblpermisos">Aplicar Permisos</label>
+          <label class="form-check-label lblpermisos">Aplicar Permisos:</label>
           <label class="form-check-label lblpermiso_insu" for="permiso_insu">Insumos</label>
           <div class="form-check form-switch permiso_insu">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_insu">
@@ -57,19 +57,19 @@ if(!isset($usuario)){
           <div class="form-check form-switch permiso_rec">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_rec">
           </div>
-          <label class="form-check-label lblpermiso_prod" for="permiso_prod">Aplicar</label>
+          <label class="form-check-label lblpermiso_prod" for="permiso_prod">Productos</label>
           <div class="form-check form-switch permiso_prod">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_prod">
           </div>
-          <label class="form-check-label lblpermiso_orden" for="permiso_orden">Aplicar</label>
+          <label class="form-check-label lblpermiso_orden" for="permiso_orden">Producción</label>
           <div class="form-check form-switch permiso_orden">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_orden">
           </div>
-          <label class="form-check-label lblpermiso_facturacion" for="permiso_facturacion">Aplicar</label>
+          <label class="form-check-label lblpermiso_facturacion" for="permiso_facturacion">Facturación</label>
           <div class="form-check form-switch permiso_facturacion">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_facturacion">
           </div>
-          <label class="form-check-label lblpermiso_admin" for="permiso_admin">Aplicar</label>
+          <label class="form-check-label lblpermiso_admin" for="permiso_admin">Administrador</label>
           <div class="form-check form-switch permiso_admin">
             <input class="form-check-input" type="checkbox" role="switch" id="permiso_admin">
           </div>
