@@ -147,10 +147,10 @@ if(!isset($usuario)){
   <br>
   <div class="row row-cols-1 row-cols-md-6 g-4">
   <div class="col agregar">
-      <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
+      <!-- Tarjeta para agregar los insumos (Llama a la ventana emergente) -->
       <div class="card h-100 ajustes">
         <div class="card-body">
-          <h5 class="card-title">Agregar un Producto</h5>
+          <h5 class="card-title">Agregar un insumo</h5>
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">
             <span class="material-symbols-outlined agrandar-icono">add</span>
           </button>

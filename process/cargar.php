@@ -111,6 +111,7 @@ if (isset($_POST['cargar'])) {
 
     #Regresa a la Pagina de los Productos
     header('location: ../recetas.php');
+    
     #carga datos de usuarios
   }  elseif ( $_POST['cargar'] == "usuario") {
     $nombre = $_POST['nom_usu'];
