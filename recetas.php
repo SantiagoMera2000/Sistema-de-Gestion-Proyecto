@@ -104,9 +104,10 @@ if(!isset($usuario)){
   <div class="row row-cols-1 row-cols-md-6 g-4">
     <div class="col agregar">
       <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
-      <div class="ajustes">
+      <div class="card h-100 ajustes">
         <div class="card-body">
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">
+          <h5 class="card-title">Agregar una receta</h5>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente" onclick="limpiar()">
             <span class="material-symbols-outlined agrandar-icono">add</span>
           </button>
         </div>
@@ -154,7 +155,6 @@ if(!isset($usuario)){
           </div>
           </div>
         </div>
-
       <?php } ?>
     </div>
   </div>
@@ -163,38 +163,61 @@ if(!isset($usuario)){
 <?php include('includes/footer.php'); ?>
 <script src="js\pasar_datos_modal.js"></script>
 <script>
-  var pasonum = 1;
-  var filapasoant = 2;
-  var filapasosig = 3;
+  canting = 1;
+  filant = 2;
+  filasi = 3;
 
-  var canting = 1;
-  var filant = 2;
-  var filasi = 3;
   function agregaringrediente() {
     canting = canting+1;
     filant = filant+1;
     filasi = filasi+1;
-    $('#ing1').clone(true).prop({
-      id: function (i, oldId) {return 'ing'+canting;},
-      name: function (i, oldId) {return 'ing'+canting;},
-      style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';'
-    }).appendTo('.formulario');
-    $('#canting1').clone(true).prop({
-      id: function (i, oldId) {return 'canting'+canting;},
-      name: function (i, oldId) {return 'canting'+canting;},
-      style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';'
-    }).appendTo('.formulario');
-    $('#uni1').clone(true).prop({
-      id: function (i, oldId) {return 'uni'+canting;},
-      name: function (i, oldId) {return 'uni'+canting;},
-      style: 'grid-column: 6/7; grid-row:'+filant+'/'+filasi+';'
-    }).appendTo('.formulario');
+    if ( $('#VentanaEmergenteVisualizar').length > 0 ) {
+      $('#Eing1').clone(true).prop({
+        id: function (i, oldId) {return 'Eing'+canting;},
+        name: function (i, oldId) {return 'Eing'+canting;},
+        style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';',
+      }).appendTo('#for');
+      $("#Eing"+canting +" option[value='0']").prop("selected", "selected");
+      $('#Ecanting1').clone(true).prop({
+        id: function (i, oldId) {return 'Ecanting'+canting;},
+        name: function (i, oldId) {return 'Ecanting'+canting;},
+        style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';',
+        value: ''
+      }).appendTo('#for');
+      $('#Euni1').clone(true).prop({
+        id: function (i, oldId) {return 'Euni'+canting;},
+        name: function (i, oldId) {return 'Euni'+canting;},
+        style: 'grid-column: 6/7; grid-row:'+filant+'/'+filasi+';'
+      }).appendTo('#for');
+      $("#Euni"+canting +" option[value='1']").prop("selected", "selected");
+    } else {
+      $('#ing1').clone(true).prop({
+        id: function (i, oldId) {return 'ing'+canting;},
+        name: function (i, oldId) {return 'ing'+canting;},
+        style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';',
+      }).appendTo('.formulario');
+      $('#canting1').clone(true).prop({
+        id: function (i, oldId) {return 'canting'+canting;},
+        name: function (i, oldId) {return 'canting'+canting;},
+        style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';',
+        value: ''
+      }).appendTo('.formulario');
+      $('#uni1').clone(true).prop({
+        id: function (i, oldId) {return 'uni'+canting;},
+        name: function (i, oldId) {return 'uni'+canting;},
+        style: 'grid-column: 6/7; grid-row:'+filant+'/'+filasi+';'
+      }).appendTo('.formulario');
+  }
 };
+
 function quitaringrediente() {
   if (canting >= "2") {
     $('#ing'+canting).remove();
     $('#canting'+canting).remove();
     $('#uni'+canting).remove();
+    $('#Eing'+canting).remove();
+    $('#Ecanting'+canting).remove();
+    $('#Euni'+canting).remove();
     canting = canting-1;
     filant = filant-1;
     filasi = filasi-1;
@@ -214,14 +237,16 @@ $('.seling').on('change', function(event ) {
 
   $(document).on("click", ".borrarmodal", function() {
     $('#VentanaEmergenteVisualizar').remove();
+    limpiar();
   })
+
   $(document).on("click", ".editar_receta", function() {
     var id = $(this).data('id');
     if ( $('#VentanaEmergenteVisualizar').length > 0 ) {
       $('#VentanaEmergenteVisualizar').remove();
     } else {
       // get needed html
-      $.get("a.php?idr="+id, function (result) {
+      $.get("ajax/ver_receta_modal.php?idr="+id, function (result) {
         // append response to body
         $('body').append(result);
         // open modal
@@ -229,4 +254,18 @@ $('.seling').on('change', function(event ) {
       });
     }
 });
+
+function limpiar() {
+  if (canting > 1){
+  for (i=2; i <= canting; i++) {
+    $('#ing'+i).remove();
+    $('#canting'+i).remove();
+    $('#uni'+i).remove();
+  }
+  canting = 1;
+  filant = 2;
+  filasi = 3;
+  }
+}
+
 </script>

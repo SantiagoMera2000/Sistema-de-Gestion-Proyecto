@@ -1,4 +1,4 @@
-<?php include('logic/conexion.php'); ?>
+<?php include('../logic/conexion.php'); ?>
 
 <div class="modal fade" id="VentanaEmergenteVisualizar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="VentanaEmergenteLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
@@ -117,7 +117,7 @@
             <!-- Pie de la ventana emergente -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" id="modoeditar" data-bs-toggle="button">Activar Edición</button>
-                <button type="button" class="btn btn-secondary borrarmodal" data-bs-dismiss="modal" onClick="this.form.reset()">Cancelar</button>
+                <button type="button" class="btn btn-secondary borrarmodal" data-bs-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary" id="editar" name="editar" value="recetas" >Agregar</button>
             </div>
             </form>
@@ -134,6 +134,9 @@
     var q = document.getElementById("quitaring");
     var enviar = document.getElementById("editar");
     var clickBtn = document.getElementById("modoeditar");
+    canting = <?php echo $contador; ?>-1;
+    filant = <?php echo $filant; ?>-1;
+    filasi = <?php echo $filasi; ?>-1;
     
     n.disabled = true;
     d.disabled = true;
@@ -186,4 +189,5 @@
 
         ids();
     })
+
 </script>
