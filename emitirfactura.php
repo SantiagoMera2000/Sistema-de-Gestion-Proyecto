@@ -18,9 +18,8 @@ if(!isset($usuario)){
 <body>
 <?php
     require("logic\conexion.php");
-    $consulta = mysqli_query($conexion, "insert into facturas() values ()")
-    or die(mysqli_error($conexion));
-        $codigofactura = mysqli_insert_id($conexion);
+    $consulta = mysqli_query($conexion, "select max(codigo) as codigo from facturas");
+    while($row = mysqli_fetch_assoc($consulta)) {$codigofactura = $row['codigo']; $codigofactura++; }
   ?>
 
 
@@ -35,7 +34,6 @@ if(!isset($usuario)){
           </div>
         </div>
 
-
         <div class="form-group row">
           <label for="Fecha" class="col-lg-3 col-form-label">Fecha de emisión:</label>
           <div class="col-lg-3">
@@ -43,10 +41,25 @@ if(!isset($usuario)){
           </div>
         </div>
 
+      </div>
+      <div class="col-md">
+        <div class="form-group row">
+          <label for="Pago" class="col-lg-3 col-form-label">Total a Pagar:</label>
+          <div class="col-lg-3 col-form-label">
+            <label for="Precio" id="Total">$0</label>
+          </div>
 
+        <br>
+        <br>
+        <br>
+
+          <div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">Agregar Producto</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteFinalizar">Terminar Factura</button>
+          </div>
+        </div>
       </div>
     </div>
-
 
     <div class="row mt-4">
       <div class="col-md">
@@ -61,37 +74,30 @@ if(!isset($usuario)){
               <th class="text-right"></th>
             </tr>
           </thead>
-          <tbody id="DetalleFactura">
-
-          </tbody>
+          <tbody id="DetalleFactura"></tbody>
         </table>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergente">Agregar Factura</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteFinalizar">Terminar Factura</button>
       </div>
     </div>
-
   </div>
 
 
 
 <!-- ModalProducto(Agregar) -->
 <div class="modal fade " id="VentanaEmergente" data-bs-backdrop="static" tabindex="-1" aria-labelledby="VentanaEmergente" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-dialog modal-lg modal-dialog-top">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">Agregar un Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="form-group">
                 <label>Producto:</label>
-                <select class="form-control" id="CodigoProducto">
+                <select class="form-control" id="Producto">
                 <?php
-                $consulta = mysqli_query($conexion, "select id_prod, nom_pro, precio_venta from producto")
-                or die(mysqli_error($conexion));
-
-                $productos = mysqli_fetch_all($consulta, MYSQLI_ASSOC);
-                foreach ($productos as $pro) {
-                    echo "<option value='" . $pro['id_prod'] . "'>" . $pro['nom_pro'] . '  ($' . $pro['precio_venta'] . ")</option>";
+                $consulta = mysqli_query($conexion, "select id_prod, nom_pro, precio_venta, cantidad from producto");
+                while ($pro = mysqli_fetch_assoc($consulta)) {
+echo "<option value='".$pro['id_prod']."' data-id='{\"id_prod\":\"".$pro['id_prod']."\",\"nom_pro\":\"".$pro['nom_pro']."\",\"precio_venta\":\"".$pro['precio_venta']."\",\"cantidad\":\"".$pro['cantidad']."\"}'>". $pro['nom_pro'].'($'. $pro['precio_venta'].")</option>";
                 }
                 ?>
                 </select>
@@ -100,7 +106,7 @@ if(!isset($usuario)){
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label>Cantidad:</label>
-                    <input type="number" id="Cantidad" class="form-control" placeholder="" min="1">
+                    <input type="number" id="Cantidad" class="form-control" placeholder="" value="1" min="1" required>
                 </div>
             </div>
 
@@ -116,16 +122,16 @@ if(!isset($usuario)){
 
 <!-- ModalFinFactura -->
 <div class="modal fade " id="VentanaEmergenteFinalizar" data-bs-backdrop="static" tabindex="-1" aria-labelledby="VentanaEmergente" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered">
+<div class="modal-dialog modal-lg modal-dialog-top">
     <div class="modal-content">
         <div class="modal-header">
-            <h1>Acciones</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title">Acciones</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
             <button type="button" id="btnConfirmarFactura" class="btn btn-success">Confirmar Factura</button>
             <button type="button" id="btnConfirmarImprimirFactura" class="btn btn-success">Confirmar e Imprimir Factura</button>
-            <button type="button" id="btnConfirmarDescartarFactura" class="btn btn-success">Descartar la Factura</button>
+            <button type="button" class="btn btn-success" onclick="salir()">Descartar la Factura</button>
         </div>
         </div>
     </div>
@@ -155,16 +161,32 @@ if(!isset($usuario)){
     });
 </script>
 <script>
+  var _total = 0;
   function guardar(){
+    var _prod = $('#Producto :selected');
+    var _can = document.getElementById("Cantidad").value;
 
-    var _nom = document.getElementById("CodigoProducto").value;
-    var _ape = document.getElementById("Cantidad").value;
+    var _id = $(_prod).data('id').id_prod;
+    var _nom = $(_prod).data('id').nom_pro; 
+    var _precio = $(_prod).data('id').precio_venta;
+    var _cantidad = $(_prod).data('id').cantidad;
+    var _precio_can = _precio*_can;
 
-    var fila="<tr><td>"+_nom+"</td><td>"+_ape +"</td></tr>";
+    if ( _can < _cantidad) {
+
+    var fila="<tr><td>"+_id+"</td><td>"+_nom +"</td><td>"+_can +"</td><td>"+_precio+"</td><td>"+_precio_can+"</td></tr>";
 
     var btn = document.createElement("TR");
     btn.innerHTML=fila;
     document.getElementById("factura").appendChild(btn);
+
+    _total = _total+_precio_can;
+    document.querySelector('#Total').innerText = '$ '+_total;
+
+    }
+  }
+function salir(){
+  window.location="facturacion.php";
 }
 </script>
 <?php include('includes/footer.php'); ?>

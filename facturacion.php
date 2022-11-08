@@ -39,7 +39,6 @@ if(!isset($usuario)){
       <thead>
         <tr>
           <th>Número de Factura</th>
-          <th>Productos</th>
           <th>Fecha</th>
           <th>Importe</th>
           <th></th>
@@ -51,7 +50,6 @@ if(!isset($usuario)){
           ?>
           <tr>
             <td><?php echo $fila['codigo'] ?></td>
-            <td><?php echo $fila['productos'] ?></td>
             <td><?php echo $fila['fecha'] ?></td>
             <td class="text-right"><?php echo '$' . number_format($fila['importefactura'], 2, ',', '.'); ?></td>
             <td class="text-right">
@@ -91,25 +89,9 @@ if(!isset($usuario)){
       $('#btnNuevaFactura').click(function() {
         window.location = 'emitirfactura.php';
       });
-
-      var codigofactura;
-
-      $('.botonborrar').click(function() {
-        codigofactura = $(this).get(0).dataset.codigo;
-        $("#ModalConfirmarBorrar").modal();
-      });
-
-      $('#btnConfirmarBorrado').click(function() {
-        window.location = 'borrarfactura.php?codigofactura=' + codigofactura;
-      });
-
-      $('.botonimprimir').click(function() {
-        window.open('pdffactura.php?' + '&codigofactura=' + $(this).get(0).dataset.codigo, '_blank');
-      });
-
     });
   </script>
-    </main>
+</main>
 
 <?php include('includes/footer.php'); ?>
 <script src="js\filtrador.js"></script>

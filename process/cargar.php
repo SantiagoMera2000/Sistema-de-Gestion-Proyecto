@@ -160,7 +160,6 @@ if (isset($_POST['cargar'])) {
     $query = "INSERT into permisos values ('0','$Permiso_insu','$permiso_rec ','$permiso_prod','$permiso_orden', '$permiso_facturacion','$permiso_admin')";
     $result = mysqli_query($conexion, $query);
 
-   
   }
   #Restos de pruebas y testing
   #$_SESSION['message'] = 'Tarea creada correctamente';
