@@ -9,6 +9,14 @@ $usuario = $_SESSION['username'];
 if(!isset($usuario)){
   header("location: login.php");
 }
+$query = "SELECT productos from permisos where id_pe=$usuario";
+$result = mysqli_query($conexion, $query);
+while($row=mysqli_fetch_assoc($result)){
+  if($row['productos'] == false){
+    echo $row['productos'];
+    header("location: index.php");
+  }
+}
 ?>
 <link rel="stylesheet" href="css\productos.css">
 

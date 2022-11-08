@@ -18,3 +18,4 @@ if (filename == "facturacion.php") {
 if (filename == "estadisticas.php") {
     $('#e').addClass('active');
 };
+

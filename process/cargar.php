@@ -125,7 +125,10 @@ if (isset($_POST['cargar'])) {
     }
     $query = "INSERT into persona values ('0','$nombre','$apellido','$email','$clave', '$estado')";
     $result = mysqli_query($conexion, $query);
-    header('location: ../admin.php');
+
+    $query = mysqli_query($conexion, "SELECT id FROM persona WHERE email='$email'");
+    $result = mysqli_fetch_assoc($query);
+    $id = $result['id'];
 
     if($_POST['permiso_insu'] == "on") {
       $Permiso_insu = true;
@@ -157,9 +160,9 @@ if (isset($_POST['cargar'])) {
     } else {
       $permiso_admin = false;
     }
-    $query = "INSERT into permisos values ('0','$Permiso_insu','$permiso_rec ','$permiso_prod','$permiso_orden', '$permiso_facturacion','$permiso_admin')";
+    $query = "INSERT into permisos values ('$id','$Permiso_insu','$permiso_rec ','$permiso_prod','$permiso_orden', '$permiso_facturacion','$permiso_admin')";
     $result = mysqli_query($conexion, $query);
-
+    header('location: ../admin.php');
    
   }
   #Restos de pruebas y testing
