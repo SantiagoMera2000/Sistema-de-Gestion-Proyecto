@@ -21,13 +21,14 @@ if(!isset($usuario)){
     $consulta = mysqli_query(
     $conexion,
     "select 
-        fact.codigo as codigo,
-        date_format(fecha,'%d/%m/%Y') as fecha,
-        round(sum(deta.precio*deta.cantidad),2) as importefactura
-        from facturas as fact
-        join detallefactura as deta on deta.codigofactura=fact.codigo
-        group by deta.codigofactura
-        order by codigo desc"
+    fact.codigo as codigo,
+    date_format(fecha,'%d/%m/%Y') as fecha,
+    round(sum(deta.precio*deta.cantidad),2) as importefactura
+    from facturas as fact
+    join detallefactura as deta on deta.codigofactura=fact.codigo
+    where fact.descartada = false
+    group by deta.codigofactura
+    order by codigo desc"
     )
     or die(mysqli_error($conexionr4));
 
@@ -70,10 +71,8 @@ if(!isset($usuario)){
     <div class="modal-dialog" style="max-width: 600px" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h1>¿Realmente quiere borrar la factura?</h1>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
+          <h5 class="modal-title">¿Realmente quiere borrar la factura?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
           <button type="button" id="btnConfirmarBorrado" class="btn btn-success">Confirmar</button>
@@ -85,7 +84,6 @@ if(!isset($usuario)){
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-
       $('#btnNuevaFactura').click(function() {
         window.location = 'emitirfactura.php';
       });

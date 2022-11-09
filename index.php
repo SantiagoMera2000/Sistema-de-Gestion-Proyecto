@@ -73,20 +73,10 @@ if(!isset($usuario)){
             </div>
             <div class="col">
                 <div class="card div-config agregados">
-                    <a href='ventas.php'>
+                    <a href='facturacion.php'>
                         <div class="card-body">
-                        <span class="material-symbols-outlined">contact_mail</span>
-                            <h5 class="card-title">Pedidos</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='#'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">monitoring</span>
-                            <h5 class="card-title">Estadisticas</h5>
+                        <span class="material-symbols-outlined">receipt_long</span>
+                            <h5 class="card-title">Facturacion</h5>
                         </div>
                     </a>
                 </div>

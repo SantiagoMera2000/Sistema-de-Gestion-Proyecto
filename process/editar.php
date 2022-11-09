@@ -257,6 +257,12 @@ if (isset($_POST['editar'])) {
         #Regresa a la Pagina de los Productos
         header('location: ../insumos.php');
         }
-};
+}
+if ($_GET['editar'] == "tfactura") {
+    $codigo = $_GET['codigofactura'];
+    $fecha = $_POST['fecha'];
+    $respuesta = mysqli_query($conexion, "UPDATE facturas SET fecha = \"$fecha\" WHERE codigo = \"$codigo\"");
+    echo json_encode($respuesta);
+}
 
 ?>

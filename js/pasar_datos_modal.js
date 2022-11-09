@@ -15,6 +15,7 @@ $(document).on("click", ".eliminar_usu", function () {
     $(".modal-footer #eliminar_usu").val( Id );
 });
 
+
 $(document).on("click", ".editar", function () {
         var id = $(this).data('id').id_prod;
         var nom = $(this).data('id').nom_pro; 

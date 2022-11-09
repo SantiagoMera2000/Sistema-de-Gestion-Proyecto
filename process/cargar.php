@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: application/json');
 include("../logic/conexion.php");
 session_start();
 
@@ -166,5 +166,17 @@ if (isset($_POST['cargar'])) {
   #$_SESSION['message_type'] = 'success';
   #echo "$nombre, $descr, $tipo, estado, $precio_elab, $precio_venta, $cantidad, $nombrimagen";
 } 
+if ($_GET['cargar'] == "apfactura") {
+  //Recuperamos el precio del producto
+  $respuesta = mysqli_query($conexion, "select precio_venta from producto where id_prod=".$_POST['codigoproducto']);
+  $reg=mysqli_fetch_array($respuesta);
 
+  $codigofact = $_GET['codigofactura'];
+  $codigoprod = $_POST['codigoproducto'];
+  $precio = $reg['precio_venta'];
+  $cantidad = $_POST['cantidad'];
+
+  $respuesta = mysqli_query($conexion, "insert into detallefactura values ('0','$codigofact','$codigoprod','$precio','$cantidad','false')");
+  echo json_encode($respuesta);
+}
 ?>

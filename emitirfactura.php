@@ -18,8 +18,9 @@ if(!isset($usuario)){
 <body>
 <?php
     require("logic\conexion.php");
-    $consulta = mysqli_query($conexion, "select max(codigo) as codigo from facturas");
-    while($row = mysqli_fetch_assoc($consulta)) {$codigofactura = $row['codigo']; $codigofactura++; }
+    $consulta = mysqli_query($conexion, "INSERT INTO facturas VALUES ('0','0000-00-00','false')")
+    or die(mysqli_error($conexion));
+    $codigofactura = mysqli_insert_id($conexion);
   ?>
 
 
@@ -37,7 +38,7 @@ if(!isset($usuario)){
         <div class="form-group row">
           <label for="Fecha" class="col-lg-3 col-form-label">Fecha de emisión:</label>
           <div class="col-lg-3">
-            <input type="date" class="form-control" id="Fecha">
+            <input type="date" class="form-control" id="Fecha" disabled>
           </div>
         </div>
 
@@ -74,7 +75,9 @@ if(!isset($usuario)){
               <th class="text-right"></th>
             </tr>
           </thead>
-          <tbody id="DetalleFactura"></tbody>
+          <tbody id="DetalleFactura">
+
+          </tbody>
         </table>
       </div>
     </div>
@@ -113,7 +116,7 @@ echo "<option value='".$pro['id_prod']."' data-id='{\"id_prod\":\"".$pro['id_pro
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" onClick="this.form.reset()" id="cancelar" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary" onclick="guardar()">Agregar</button>
+            <button type="button" class="btn btn-primary" onclick="agregar()" data-bs-dismiss="modal">Agregar</button>
         </div>
     </div>
     </div>
@@ -129,9 +132,11 @@ echo "<option value='".$pro['id_prod']."' data-id='{\"id_prod\":\"".$pro['id_pro
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-footer">
-            <button type="button" id="btnConfirmarFactura" class="btn btn-success">Confirmar Factura</button>
+            <button type="button" id="btnConfirmarFactura" class="btn btn-success" onclick="terminarfactura()">Confirmar Factura</button>
             <button type="button" id="btnConfirmarImprimirFactura" class="btn btn-success">Confirmar e Imprimir Factura</button>
-            <button type="button" class="btn btn-success" onclick="salir()">Descartar la Factura</button>
+            <form enctype="multipart/form-data" action="process/eliminar.php" method="POST">
+              <button type="submit" class="btn btn-success" name="eliminar_fact" id="eliminar_fact" value="<?php echo $codigofactura; ?>">Descartar la Factura</button>
+            </form>
         </div>
         </div>
     </div>
@@ -161,33 +166,59 @@ echo "<option value='".$pro['id_prod']."' data-id='{\"id_prod\":\"".$pro['id_pro
     });
 </script>
 <script>
-  var _total = 0;
-  function guardar(){
+  function RecolectarDatosFormulario() {
     var _prod = $('#Producto :selected');
-    var _can = document.getElementById("Cantidad").value;
-
-    var _id = $(_prod).data('id').id_prod;
-    var _nom = $(_prod).data('id').nom_pro; 
-    var _precio = $(_prod).data('id').precio_venta;
-    var _cantidad = $(_prod).data('id').cantidad;
-    var _precio_can = _precio*_can;
-
-    if ( _can < _cantidad) {
-
-    var fila="<tr><td>"+_id+"</td><td>"+_nom +"</td><td>"+_can +"</td><td>"+_precio+"</td><td>"+_precio_can+"</td></tr>";
-
-    var btn = document.createElement("TR");
-    btn.innerHTML=fila;
-    document.getElementById("factura").appendChild(btn);
-
-    _total = _total+_precio_can;
-    document.querySelector('#Total').innerText = '$ '+_total;
-
+    producto = {
+      codigoproducto: $(_prod).data('id').id_prod,
+      cantidad: $('#Cantidad').val()
+    };
+  };
+  function agregar() {
+    RecolectarDatosFormulario();
+    EnviarInformacionProducto("apfactura");
+  };
+  function terminarfactura() {
+    fecha = $('#Fecha').val();
+    EnviarInformacionFactura("tfactura");
+  };
+  function EnviarInformacionProducto(accion) {
+    $.ajax({
+    type: 'POST',
+    url: 'process/cargar.php?cargar=' + accion + '&codigofactura=' + <?php echo $codigofactura ?>,
+    data: producto,
+    success: function(msg) {
+        RecuperarDetalle();
+    },
+    error: function() {
+      alert("Hay un error ..");
     }
+    });
   }
-function salir(){
-  window.location="facturacion.php";
-}
+  function EnviarInformacionFactura(accion) {
+    $.ajax({
+      type: 'POST',
+      url: 'process/editar.php?editar=' + accion + '&codigofactura=' + <?php echo $codigofactura ?>,
+      data: fecha,
+      success: function(msg) {
+        window.location = 'facturacion.php';
+      },
+      error: function() {
+        alert("Hay un error ..");
+      }
+    });
+  }
+  function RecuperarDetalle() {
+    $.ajax({
+      type: 'GET',
+      url: 'process/recuperardetalle.php?codigofactura=' + <?php echo $codigofactura ?>,
+      success: function(datos) {
+        document.getElementById('DetalleFactura').innerHTML = datos;
+      },
+      error: function() {
+        alert("Hay un error ..");
+      }
+    });
+  }
 </script>
 <?php include('includes/footer.php'); ?>
 <script src="js\filtrador.js"></script>
