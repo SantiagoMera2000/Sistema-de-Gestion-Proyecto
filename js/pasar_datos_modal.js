@@ -15,30 +15,29 @@ $(document).on("click", ".eliminar_usu", function () {
     $(".modal-footer #eliminar_usu").val( Id );
 });
 
-
 $(document).on("click", ".editar", function () {
-        var id = $(this).data('id').id_prod;
-        var nom = $(this).data('id').nom_pro; 
-        var des = $(this).data('id').descri_pro;
-        var tipo = $(this).data('id').tipo;
-        var ina = $(this).data('id').inactivo;
-        //obtenemos el elemento switch para cambiar su estado
-        var es = document.getElementById("estadoE");
-        var elab = $(this).data('id').precio_elav;
-        var venta = $(this).data('id').precio_venta;
-        var cant = $(this).data('id').cantidad;
-        //var img = $(this).data('id').img_id;
-        $("#formE #id_prod").val( id );
-        $("#formE #nombreE").val( nom );
-        $("#formE #descrE").val( des );
-        $("#formE #tipoE").val( tipo );
-        if (ina == 0) {
-            es.checked = true;
-        }
-        $("#formE #precio_elabE").val( elab );
-        $("#formE #precio_ventaE").val( venta );
-        $("#formE #cantidadE").val( cant );
-        //$("#formE #").val( img );
+    var id = $(this).data('id').id_prod;
+    var nom = $(this).data('id').nom_pro; 
+    var des = $(this).data('id').descri_pro;
+    var tipo = $(this).data('id').tipo;
+    var ina = $(this).data('id').inactivo;
+    //obtenemos el elemento switch para cambiar su estado
+    var es = document.getElementById("estadoE");
+    var elab = $(this).data('id').precio_elav;
+    var venta = $(this).data('id').precio_venta;
+    var cant = $(this).data('id').cantidad;
+    //var img = $(this).data('id').img_id;
+    $("#formE #id_prod").val( id );
+    $("#formE #nombreE").val( nom );
+    $("#formE #descrE").val( des );
+    $("#formE #tipoE").val( tipo );
+    if (ina == 0) {
+        es.checked = true;
+    }
+    $("#formE #precio_elabE").val( elab );
+    $("#formE #precio_ventaE").val( venta );
+    $("#formE #cantidadE").val( cant );
+    //$("#formE #").val( img );
 });
 $(document).on("click", ".editar_insu", function() {
     var id = $(this).data('id').id_insu;
@@ -59,4 +58,4 @@ $(document).on("click", ".editar_insu", function() {
     }
     $("#formE #precio_insuE").val( costo );
     $("#formE #cant_dispE").val( cant );
-})
+});

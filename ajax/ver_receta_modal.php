@@ -10,7 +10,7 @@
             <!-- Cuerpo de la Ventana -->
             <div class="modal-body">
                 <!-- Formulario para cargar los datos en la BD -->
-                <form class="formulario" id="for" enctype="multipart/form-data" action="process/cargar.php" method="POST" autocomplete="off">
+                <form class="formulario" id="for" enctype="multipart/form-data" action="process/editar.php" method="POST" autocomplete="off">
                     <?php
                     $id = $_GET['idr'];
                     $query = "SELECT * FROM receta WHERE id_rec=$id";
@@ -118,7 +118,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-danger" id="modoeditar" data-bs-toggle="button">Activar Edición</button>
                 <button type="button" class="btn btn-secondary borrarmodal" data-bs-dismiss="modal">Cancelar</button>
-                <button type="submit" class="btn btn-primary" id="editar" name="editar" value="recetas" >Agregar</button>
+                <button type="submit" class="btn btn-primary" id="editar" name="editar" value="recetas">Agregar</button>
             </div>
             </form>
         </div>

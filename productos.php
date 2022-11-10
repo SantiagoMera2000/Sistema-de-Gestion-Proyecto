@@ -53,7 +53,7 @@ if(!isset($usuario)){
           <input class="inpventa" type="number" id="precio_venta" name="precio_venta" required>
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidade" name="cantidad" min="1" required>
+          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1" required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
@@ -201,7 +201,7 @@ if(!isset($usuario)){
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
               <a class="btn btn-secondary editar" 
-                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>""}' 
+                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>"}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"
