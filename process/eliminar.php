@@ -39,4 +39,12 @@ if (isset($_POST['eliminar_fact'])) {
 
   header('Location: ../facturacion.php');
 }
+if (isset($_GET['eliminar_fact'])) {
+  $id = $_GET['eliminar_fact'];
+  mysqli_query($conexion, "UPDATE facturas SET descartada = true, fecha = CURDATE() WHERE codigo = $id");
+  mysqli_query($conexion, "UPDATE detallefactura SET descartada = true WHERE codigofactura = $id");
+
+  header('Location: ../facturacion.php');
+}
+
 ?>

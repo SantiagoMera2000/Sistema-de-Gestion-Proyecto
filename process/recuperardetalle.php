@@ -10,7 +10,7 @@
   deta.codigo as coddetalle
   from detallefactura as deta
   join producto as pro on pro.id_prod=deta.codigoproducto
-  where codigofactura=".$_GET['codigofactura']
+  where codigofactura=".$_GET['codigofactura']." and descartada = false"
 ) or die(mysqli_error($conexion));
 
   $pago=0;
