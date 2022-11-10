@@ -188,7 +188,7 @@ if(!isset($usuario)){
               if ($row['img_id'] == "") {
                 echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
               } else {
-                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src=\"img/producto/{$row['img_id']}\" alt=\"{$row['nom_pro']}\">";
+                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src='data:img/jpg;base64, ".base64_encode($row['img_id'])."' alt=\"{$row['nom_pro']}\">";
               }
               ?>
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
@@ -201,7 +201,7 @@ if(!isset($usuario)){
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
               <a class="btn btn-secondary editar" 
-                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' 
+                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>""}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"

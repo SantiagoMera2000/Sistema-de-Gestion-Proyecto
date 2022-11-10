@@ -134,7 +134,7 @@ if(!isset($usuario)){
               if ($row['img_id'] == "") {
                 echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
               } else {
-                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src=\"img/receta/{$row['img_id']}\" alt=\"{$row['nom_r']}\">";
+                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src='data:img/jpg;base64, ".base64_encode($row['img_id'])."' alt=\"{$row['nom_r']}\">";
               }
               ?>
             </div>
