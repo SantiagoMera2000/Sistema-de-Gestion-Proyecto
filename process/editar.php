@@ -245,8 +245,7 @@ if (isset($_POST['editar'])) {
         } else {
             $imgContenido = "$nombrimagen_old";
         }
-    
-    
+
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
         $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_insu = \"$imgContenido\", inactivo = \"0\" WHERE id_rec = \"$id\"";
         $result = mysqli_query($conexion, $query);
@@ -259,7 +258,7 @@ if (isset($_POST['editar'])) {
         while($row = mysqli_fetch_assoc($result)) {
             
         }
-    
+
         #Regresa a la Pagina de los Productos
         header('location: ../insumos.php');
         }

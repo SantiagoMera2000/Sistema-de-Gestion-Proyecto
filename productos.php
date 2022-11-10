@@ -86,7 +86,6 @@ if(!isset($usuario)){
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
           <div class="vistaprevia rounded" id="imagepreview">
-            <img src='img/producto/' class='img-fluid rounded'/>
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
