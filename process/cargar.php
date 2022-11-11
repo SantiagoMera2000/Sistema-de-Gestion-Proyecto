@@ -1,5 +1,5 @@
 <?php
-
+header('Content-Type: application/json');
 include("../logic/conexion.php");
 session_start();
 
@@ -12,7 +12,6 @@ if (isset($_POST['cargar'])) {
   $precio_elab = $_POST['precio_elab'];
   $precio_venta = $_POST['precio_venta'];
   $cantidad = $_POST['cantidad'];
-  $nombrimagen = $_FILES['imagen']['name'];
 
   #Verificamos el estado del switch de visibilidad
   if($_POST['estado'] == "on") {
@@ -21,15 +20,18 @@ if (isset($_POST['cargar'])) {
     $estado = true;
   }
 
-  #Variables para obtener informacion relacionada al archivo de subida
-  $ruta_indexphp = dirname(realpath(__FILE__));
-  $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-  $ruta_nuevo_destino = $ruta_indexphp . '../img/producto/' . $_FILES['imagen']['name'];
-  #Subida de archivos al servidor en el Apache
-  move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+  #Verifica si se agregó una imagen y la guarda como binario para su subida
+  if(!$_FILES['imagen']['name'] == ""){
+    $tamano = $_FILES['imagen']['size'];
+    $imgContenido = fopen($_FILES['imagen']['tmp_name'], 'r');
+    $binarioimagen = fread($imgContenido, $tamano);
+    $imgContenido = mysqli_escape_string($conexion, $binarioimagen);
+  }else{
+    $imgContenido = "";
+  }
   
   #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','$estado','$precio_elab','$precio_venta','$cantidad','$nombrimagen')";
+  $query = "INSERT into producto values ('0','$nombre','$descr','$tipo','$estado','$precio_elab','$precio_venta','$cantidad','$imgContenido')";
   $result = mysqli_query($conexion, $query);
   if(!$result) {
     die("Error en la Consulta.");
@@ -43,7 +45,6 @@ if (isset($_POST['cargar'])) {
     $cantidad = $_POST['cant_disp'];
     $unidad = $_POST['unidad_insu'];
     $precio = $_POST['precio_insu'];
-    $nombrimagen = $_FILES['imagen_insu']['name'];
 
     #Verificamos el estado del switch de visibilidad
     if($_POST['estado'] == "on") {
@@ -52,38 +53,43 @@ if (isset($_POST['cargar'])) {
       $estado = true;
     }
 
-    #Variables para obtener informacion relacionada al archivo de subida
-    $ruta_indexphp = dirname(realpath(__FILE__));
-    $ruta_fichero_origen = $_FILES['imagen_insu']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagen_insu']['name'];
-    #Subida de archivos al servidor en el Apache
-    move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+    #Verifica si se agregó una imagen y la guarda como binario para su subida
+    if(!$_FILES['imagen']['name'] == ""){
+      $tamano = $_FILES['imagen']['size'];
+      $imgContenido = fopen($_FILES['imagen']['tmp_name'], 'r');
+      $binarioimagen = fread($imgContenido, $tamano);
+      $imgContenido = mysqli_escape_string($conexion, $binarioimagen);
+    }else{
+      $imgContenido = "";
+    }
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into insumo values ('0','$nombre','$cantidad','$unidad','$precio','$nombrimagen','$estado')";
+    $query = "INSERT into insumo values ('0','$nombre','$cantidad','$unidad','$precio','$imgContenido','$estado')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");
     }
 
-    #Regresa a la Pagina de los Productos
+    #Regresa a la Pagina de los Insumos
     header('location: ../insumos.php');
 
   }  elseif ( $_POST['cargar'] == "recetas") {
     $nombre = $_POST['nombre'];
     $descripcion= $_POST['descr'];
     $pasos = $_POST['pasos'];
-    $nombrimagen = $_FILES['imagen']['name'];
 
-    #Variables para obtener informacion relacionada al archivo de subida
-    $ruta_indexphp = dirname(realpath(__FILE__));
-    $ruta_fichero_origen = $_FILES['imagen']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '../img/receta/' . $_FILES['imagen']['name'];
-    #Subida de archivos al servidor en el Apache
-    move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+    #Verifica si se agregó una imagen y la guarda como binario para su subida
+    if(!$_FILES['imagen']['name'] == ""){
+      $tamano = $_FILES['imagen']['size'];
+      $imgContenido = fopen($_FILES['imagen']['tmp_name'], 'r');
+      $binarioimagen = fread($imgContenido, $tamano);
+      $imgContenido = mysqli_escape_string($conexion, $binarioimagen);
+    }else{
+      $imgContenido = "";
+    }
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into receta values ('0','$nombre','$descripcion','$pasos','$nombrimagen', 'false')";
+    $query = "INSERT into receta values ('0','$nombre','$descripcion','$pasos','$imgContenido', 'false')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");
@@ -109,7 +115,7 @@ if (isset($_POST['cargar'])) {
       $ing = "ing".$contador;
     }
 
-    #Regresa a la Pagina de los Productos
+    #Regresa a la Pagina de las recetas
     header('location: ../recetas.php');
     
     #Carga datos de usuarios
@@ -165,10 +171,18 @@ if (isset($_POST['cargar'])) {
     header('location: ../admin.php');
    
   }
-  #Restos de pruebas y testing
-  #$_SESSION['message'] = 'Tarea creada correctamente';
-  #$_SESSION['message_type'] = 'success';
-  #echo "$nombre, $descr, $tipo, estado, $precio_elab, $precio_venta, $cantidad, $nombrimagen";
 } 
+if ($_GET['cargar'] == "apfactura") {
+  //Recuperamos el precio del producto
+  $respuesta = mysqli_query($conexion, "select precio_venta from producto where id_prod=".$_POST['codigoproducto']);
+  $reg=mysqli_fetch_array($respuesta);
 
+  $codigofact = $_GET['codigofactura'];
+  $codigoprod = $_POST['codigoproducto'];
+  $precio = $reg['precio_venta'];
+  $cantidad = $_POST['cantidad'];
+
+  $respuesta = mysqli_query($conexion, "insert into detallefactura values ('0','$codigofact','$codigoprod','$precio','$cantidad','false')");
+  echo json_encode($respuesta);
+}
 ?>

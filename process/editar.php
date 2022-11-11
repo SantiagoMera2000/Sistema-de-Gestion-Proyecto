@@ -13,7 +13,6 @@ if (isset($_POST['editar'])) {
     $precio_elab_new = $_POST['precio_elabE'];
     $precio_venta_new = $_POST['precio_ventaE'];
     $cantidad_new = $_POST['cantidadE'];
-    $nombrimagen_new = $_FILES['imagenE']['name'];
 
     #Verificamos el estado del switch de visibilidad
     if($_POST['estadoE'] == "on") {
@@ -23,9 +22,14 @@ if (isset($_POST['editar'])) {
     }
 
     #Variables para obtener informacion relacionada al archivo de subida
-    $ruta_indexphp = dirname(realpath(__FILE__));
-    $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
-    $ruta_nuevo_destino = $ruta_indexphp . '../img/producto/' . $_FILES['imagenE']['name'];
+    if(!$_FILES['imagenE']['name'] == ""){
+        $tamano = $_FILES['imagenE']['size'];
+        $imgContenido = fopen($_FILES['imagenE']['tmp_name'], 'r');
+        $binarioimagen = fread($imgContenido, $tamano);
+        $nombrimagen_new = mysqli_escape_string($conexion, $binarioimagen);
+    }else{
+        $nombrimagen_new = "";
+    }
 
     $datos_bd = "SELECT * FROM producto WHERE id_prod = $id";
     $result_tasks = mysqli_query($conexion, $datos_bd);    
@@ -77,19 +81,17 @@ if (isset($_POST['editar'])) {
     }
     if ($nombrimagen_new != $nombrimagen_old) {
         if ($nombrimagen_new != ""){
-        $nombrimagen = $nombrimagen_new;
-        #Subida de archivos al servidor en el Apache
-        move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+            $imgContenido = "$nombrimagen_new";
         } else {
-            $nombrimagen = $nombrimagen_old;
+            $imgContenido = $nombrimagen_old;
         }
     } else {
-        $nombrimagen = $nombrimagen_old;
+        $imgContenido = $nombrimagen_old;
     }
 
 
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", inactivo = \"$estado\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\", img_id = \"$nombrimagen\" WHERE id_prod = \"$id\"";
+    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", inactivo = \"$estado\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\", img_id = \"$imgContenido\" WHERE id_prod = \"$id\"";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
         die("Error en la Consulta.");
@@ -104,7 +106,6 @@ if (isset($_POST['editar'])) {
         $unidad_new = $_POST['unidad_insuE'];
         $cantidad_new = $_POST['cant_dispE'];
         $estado_new = $_POST['estadoE'];
-        $nombrimagen_new = $_FILES['imagenE']['name'];
     
         #Verificamos el estado del switch de visibilidad
         if($_POST['estadoE'] == "on") {
@@ -114,9 +115,14 @@ if (isset($_POST['editar'])) {
         }
     
         #Variables para obtener informacion relacionada al archivo de subida
-        $ruta_indexphp = dirname(realpath(__FILE__));
-        $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
-        $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagenE']['name'];
+        if(!$_FILES['imagenE']['name'] == ""){
+            $tamano = $_FILES['imagenE']['size'];
+            $imgContenido = fopen($_FILES['imagenE']['tmp_name'], 'r');
+            $binarioimagen = fread($imgContenido, $tamano);
+            $nombrimagen_new = mysqli_escape_string($conexion, $binarioimagen);
+        }else{
+            $nombrimagen_new = "";
+        }
     
         $datos_bd = "SELECT * FROM insumo WHERE id_insu = $id";
         $result_tasks = mysqli_query($conexion, $datos_bd);    
@@ -156,19 +162,17 @@ if (isset($_POST['editar'])) {
         }
         if ($nombrimagen_new != $nombrimagen_old) {
             if ($nombrimagen_new != ""){
-            $nombrimagen = "$nombrimagen_new";
-            #Subida de archivos al servidor en el Apache
-            move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+                $imgContenido = "$nombrimagen_new";
             } else {
-                $nombrimagen = "$nombrimagen_old";
+                $imgContenido = "$nombrimagen_old";
             }
         } else {
-            $nombrimagen = "$nombrimagen_old";
+            $imgContenido = "$nombrimagen_old";
         }
     
     
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-        $query = "UPDATE insumo SET nom_insu = \"$nombre\", cant_disp = \"$cantidad\", unidad_insu = \"$unidad\", precio_insu = \"$precio\", img_insu = \"$nombrimagen\", inactivo = \"$estado\" WHERE id_insu = \"$id\"";
+        $query = "UPDATE insumo SET nom_insu = \"$nombre\", cant_disp = \"$cantidad\", unidad_insu = \"$unidad\", precio_insu = \"$precio\", img_insu = \"$imgContenido\", inactivo = \"$estado\" WHERE id_insu = \"$id\"";
         $result = mysqli_query($conexion, $query);
         if(!$result) {
             die("Error en la Consulta.");
@@ -183,12 +187,16 @@ if (isset($_POST['editar'])) {
         $nombre_new = $_POST['nombreE'];
         $descr_new = $_POST['descrE'];
         $pasos_new = $_POST['pasos'];
-        $nombrimagen_new = $_FILES['imagenE']['name'];
     
         #Variables para obtener informacion relacionada al archivo de subida
-        $ruta_indexphp = dirname(realpath(__FILE__));
-        $ruta_fichero_origen = $_FILES['imagenE']['tmp_name'];
-        $ruta_nuevo_destino = $ruta_indexphp . '../img/insumo/' . $_FILES['imagenE']['name'];
+        if(!$_FILES['imagenE']['name'] == ""){
+            $tamano = $_FILES['imagenE']['size'];
+            $imgContenido = fopen($_FILES['imagenE']['tmp_name'], 'r');
+            $binarioimagen = fread($imgContenido, $tamano);
+            $nombrimagen_new = mysqli_escape_string($conexion, $binarioimagen);
+        }else{
+            $nombrimagen_new = "";
+        }
 
         $contador = 1;
         $array = array();
@@ -230,19 +238,16 @@ if (isset($_POST['editar'])) {
         
         if ($nombrimagen_new != $nombrimagen_old) {
             if ($nombrimagen_new != ""){
-            $nombrimagen = "$nombrimagen_new";
-            #Subida de archivos al servidor en el Apache
-            move_uploaded_file ( $ruta_fichero_origen, $ruta_nuevo_destino );
+                $imgContenido = "$nombrimagen_new";
             } else {
-                $nombrimagen = "$nombrimagen_old";
+                $imgContenido = "$nombrimagen_old";
             }
         } else {
-            $nombrimagen = "$nombrimagen_old";
+            $imgContenido = "$nombrimagen_old";
         }
-    
-    
+
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-        $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_insu = \"$nombrimagen\", inactivo = \"0\" WHERE id_rec = \"$id\"";
+        $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_insu = \"$imgContenido\", inactivo = \"0\" WHERE id_rec = \"$id\"";
         $result = mysqli_query($conexion, $query);
         if(!$result) {
             die("Error en la Consulta.");
@@ -253,10 +258,21 @@ if (isset($_POST['editar'])) {
         while($row = mysqli_fetch_assoc($result)) {
             
         }
-    
+
         #Regresa a la Pagina de los Productos
         header('location: ../insumos.php');
         }
-};
+}
+if ($_GET['editar'] == "tfactura") {
+    $codigo = $_GET['codigofactura'];
+    $fecha = $_POST['fecha'];
+    $respuesta = mysqli_query($conexion, "UPDATE facturas SET fecha = '$fecha' WHERE codigo = '$codigo'");
+    echo json_encode($respuesta);
+} elseif ($_GET['editar'] == "quitarproducto") {
+    $codigo = $_GET['codigofactura'];
+    $respuesta = mysqli_query($conexion, "UPDATE detallefactura SET descartada = true WHERE codigo = '$codigo'");
+    echo json_encode($respuesta);
+}
+
 
 ?>

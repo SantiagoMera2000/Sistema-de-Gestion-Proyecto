@@ -188,7 +188,7 @@ while($row=mysqli_fetch_assoc($result)){
               if ($row['img_insu'] == "") {
                 echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
               } else {
-                echo "<img class=\"img-preview card-img-top img-fluid\" src=\"img/insumo/{$row['img_insu']}\" alt=\"{$row['nom_insu']}\">";
+                echo "<img class=\"img-preview card-img-top img-fluid\" src='data:img/jpg;base64, ".base64_encode($row['img_insu'])."' alt=\"{$row['nom_insu']}\">";
               }
               ?>
             </div>
@@ -212,7 +212,7 @@ while($row=mysqli_fetch_assoc($result)){
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
               <a class="btn btn-secondary editar_insu" 
-                data-id='{"id_insu":"<?php echo $row['id_insu']?>","nom_insu":"<?php echo $row['nom_insu']?>","img_insu":"<?php echo $row['img_insu']?>","unidad_insu":"<?php echo $row['unidad_insu']?>","cant_disp":"<?php echo $row['cant_disp']?>","precio_insu":"<?php echo $row['precio_insu']?>","inactivo":"<?php echo $row['inactivo']?>"}' 
+                data-id='{"id_insu":"<?php echo $row['id_insu']?>","nom_insu":"<?php echo $row['nom_insu']?>","unidad_insu":"<?php echo $row['unidad_insu']?>","cant_disp":"<?php echo $row['cant_disp']?>","precio_insu":"<?php echo $row['precio_insu']?>","inactivo":"<?php echo $row['inactivo']?>"}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"

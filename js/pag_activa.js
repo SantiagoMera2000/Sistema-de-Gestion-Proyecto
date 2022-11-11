@@ -15,6 +15,9 @@ if (filename == "recetas.php") {
 if (filename == "facturacion.php") {
     $('#f').addClass('active');
 };
+if (filename == "emitirfactura.php") {
+    $('.opc').css("display","none");
+};
 if (filename == "estadisticas.php") {
     $('#e').addClass('active');
 };

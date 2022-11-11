@@ -61,7 +61,7 @@ while($row=mysqli_fetch_assoc($result)){
           <input class="inpventa" type="number" id="precio_venta" name="precio_venta" required>
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidade" name="cantidad" min="1" required>
+          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1" required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
@@ -83,7 +83,7 @@ while($row=mysqli_fetch_assoc($result)){
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="VentanaEmergenteVisualizar">Ver un Producto</h5>
+        <h5 class="modal-title">Ver un Producto</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Cuerpo de la Ventana -->
@@ -94,7 +94,6 @@ while($row=mysqli_fetch_assoc($result)){
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
           <div class="vistaprevia rounded" id="imagepreview">
-            <img src='img/producto/' class='img-fluid rounded'/>
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
@@ -196,7 +195,7 @@ while($row=mysqli_fetch_assoc($result)){
               if ($row['img_id'] == "") {
                 echo "<span class=\"material-symbols-outlined agrandar-icono\">image_not_supported</span>";
               } else {
-                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src=\"img/producto/{$row['img_id']}\" alt=\"{$row['nom_pro']}\">";
+                echo "<img class=\"img-preview rounded card-img-top img-fluid\" src='data:img/jpg;base64, ".base64_encode($row['img_id'])."' alt=\"{$row['nom_pro']}\">";
               }
               ?>
               <p class="card-text"><?php echo $row['descri_pro']; ?></p>
@@ -209,7 +208,7 @@ while($row=mysqli_fetch_assoc($result)){
             <div class="card-footer">
               <!-- Boton de vista y edicion -->
               <a class="btn btn-secondary editar" 
-                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>","imagen":"<?php echo $row['img_id']?>"}' 
+                data-id='{"id_prod":"<?php echo $row['id_prod']?>","nom_pro":"<?php echo $row['nom_pro']?>","descri_pro":"<?php echo $row['descri_pro']?>","tipo":"<?php echo $row['tipo']?>","inactivo":"<?php echo $row['inactivo']?>","precio_elav":"<?php echo $row['precio_elav']?>","precio_venta":"<?php echo $row['precio_venta']?>","cantidad":"<?php echo $row['cantidad']?>"}' 
                 data-bs-toggle="modal" 
                 data-bs-target="#VentanaEmergenteVisualizar" 
                 role="button"

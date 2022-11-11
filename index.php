@@ -75,8 +75,8 @@ if(!isset($usuario)){
                 <div class="card div-config agregados">
                     <a href='facturacion.php'>
                         <div class="card-body">
-                        <span class="material-symbols-outlined">monitoring</span>
-                            <h5 class="card-title">Facturación</h5>
+                        <span class="material-symbols-outlined">receipt_long</span>
+                            <h5 class="card-title">Facturacion</h5>
                         </div>
                     </a>
                 </div>

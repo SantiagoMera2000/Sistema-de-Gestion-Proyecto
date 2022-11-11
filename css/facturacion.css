@@ -17,3 +17,7 @@
 .btn-danger:hover {
     background-color: var(--bs-btn-active-bg)!important;
 }
+.contenedor {
+    text-align: center;
+    margin: 20px 40px 0px 40px;
+}
