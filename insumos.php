@@ -5,10 +5,20 @@
 <?php
 session_start();
 $usuario = $_SESSION['username'];
+echo $usuario;
 
 if(!isset($usuario)){
   header("location: login.php");
 }
+$query = "SELECT insumos from permisos where id_pe=$usuario";
+$result = mysqli_query($conexion, $query);
+while($row=mysqli_fetch_assoc($result)){
+  if($row['insumos'] == false){
+    echo $row['insumos'];
+    header("location: index.php");
+  }
+}
+
 ?>
 <link rel="stylesheet" href="css\insumo.css">
 

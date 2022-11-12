@@ -11,6 +11,14 @@ $usuario = $_SESSION['username'];
 if(!isset($usuario)){
     header("location: login.php");
 }
+$query = "SELECT facturacion from permisos where id_pe=$usuario";
+$result = mysqli_query($conexion, $query);
+while($row=mysqli_fetch_assoc($result)){
+  if($row['facturacion'] == false){
+    echo $row['facturacion'];
+    header("location: index.php");
+  }
+}
 ?>
 <!-- Estilos requeridos especialmente en esta pagina -->
 <link rel="stylesheet" href="css\facturacion.css">

@@ -21,3 +21,4 @@ if (filename == "emitirfactura.php") {
 if (filename == "estadisticas.php") {
     $('#e').addClass('active');
 };
+
