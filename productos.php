@@ -41,19 +41,19 @@ if(!isset($usuario)){
             <?php } ?>
           </select>
           <label class="lbldescr" for="descri_pro">Descripción </label>
-          <input class="inpdesc" type="text" id="descri_pro" name="descri_pro" required>
+          <input class="inpdesc form-control" type="text" id="descri_pro" name="descri_pro" required>
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
-          <input class="inptipo" type="text" id="tipo" name="tipo" required>
+          <input class="inptipo form-control" type="text" id="tipo" name="tipo" required>
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de elaboración </label>
-          <input class="inpelab" type="number" id="precio_elab" name="precio_elab" required>
+          <input class="inpelab form-control" type="number" id="precio_elab" name="precio_elab" required>
           <!-- Precio de Venta -->
           <label class="lblventa" for="precio_venta">Precio de venta </label>
-          <input class="inpventa" type="number" id="precio_venta" name="precio_venta" required>
+          <input class="inpventa form-control" type="number" id="precio_venta" name="precio_venta" required>
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidad" name="cantidad" min="1" required>
+          <input class="inpcant form-control" type="text" id="cantidad" name="cantidad" min="1" required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">
@@ -85,26 +85,26 @@ if(!isset($usuario)){
         <form id="formE" class="formulario" enctype="multipart/form-data" action="process/editar.php" method="POST">
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
-          <div class="vistaprevia rounded" id="imagepreview">
+          <div class="vistaprevia rounded" id="imagepreviewE">
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nombreE" name="nombreE" value="">
+          <input class="inpnombre form-control" type="text" id="nombreE" name="nombreE" value="">
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
-          <input class="impdesc" type="text" id="descrE" name="descrE" value="">
+          <input class="impdesc form-control" type="text" id="descrE" name="descrE" value="">
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
           <label class="lbltipo" for="tipo">Tipo </label>
-          <input class="inptipo" type="text" id="tipoE" name="tipoE" value="">
+          <input class="inptipo form-control" type="text" id="tipoE" name="tipoE" value="">
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de Elaboración </label>
-          <input class="inpelab" type="number" id="precio_elabE" name="precio_elabE" min=1 value="">
+          <input class="inpelab form-control" type="number" id="precio_elabE" name="precio_elabE" min=1 value="">
           <!-- Precio de Venta -->
           <label class="lblventa" for="precio_venta">Precio de Venta </label>
-          <input class="inpventa" type="number" id="precio_ventaE" name="precio_ventaE" min=1 value="">
+          <input class="inpventa form-control" type="number" id="precio_ventaE" name="precio_ventaE" min=1 value="">
           <!-- Cantidad de Productos -->
           <label class="lblcant" for="cantidad">Cantidad </label>
-          <input class="inpcant" type="text" id="cantidadE" name="cantidadE" min="1" value="">
+          <input class="inpcant form-control" type="text" id="cantidadE" name="cantidadE" min="1" value="">
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visibilidad</label>
           <div class="form-check form-switch estado">

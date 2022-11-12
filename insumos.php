@@ -31,10 +31,10 @@ if(!isset($usuario)){
           </div>
           <!-- Nombre del Insumo -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nom_insu" name="nom_insu" required>
+          <input class="inpnombre form-control" type="text" id="nom_insu" name="nom_insu" required>
           <!-- Precio de Insumo (Comida,Bebida,etc) -->
           <label class="lblprecio" for="precio">Costo</label>
-          <input class="inpprecio" type="number" id="precio_insu" name="precio_insu" min=1 required>
+          <input class="inpprecio form-control" type="number" id="precio_insu" name="precio_insu" min=1 required>
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visible</label>
           <div class="form-check form-switch estado">
@@ -42,7 +42,7 @@ if(!isset($usuario)){
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>
-          <input class="inpcant" type="number" id="cant_disp" name="cant_disp" min=1 required>
+          <input class="inpcant form-control" type="number" id="cant_disp" name="cant_disp" min=1 required>
           <select class="ltunidades" name="unidad_insu" id="unidad_insu">
             <option value="1">Gramos</option>
             <option value="2">Kilogramos</option>
@@ -81,10 +81,10 @@ if(!isset($usuario)){
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre" type="text" id="nom_insuE" name="nom_insuE" value="">
+          <input class="inpnombre form-control" type="text" id="nom_insuE" name="nom_insuE" value="">
           <!-- Precio de Venta -->
           <label class="lblprecio" for="precio">Costo </label>
-          <input class="inpprecio" type="number" id="precio_insuE" name="precio_insuE" min=1 value="">
+          <input class="inpprecio form-control" type="number" id="precio_insuE" name="precio_insuE" min=1 value="">
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estadoE">Visible</label>
           <div class="form-check form-switch estado">
@@ -92,8 +92,8 @@ if(!isset($usuario)){
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>
-          <input class="inpcant" type="number" id="cant_dispE" name="cant_dispE" min=1 value="" required>
-          <select class="ltunidades" name="unidad_insuE" id="unidad_insuE">
+          <input class="inpcant form-control" type="number" id="cant_dispE" name="cant_dispE" min=1 value="" required>
+          <select class="ltunidades  form-control" name="unidad_insuE" id="unidad_insuE">
             <option value="1">Gramos</option>
             <option value="2">Kilogramos</option>
             <option value="3">Litros</option>

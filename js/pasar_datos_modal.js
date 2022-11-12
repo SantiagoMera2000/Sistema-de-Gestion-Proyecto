@@ -38,10 +38,10 @@ $(document).on("click", ".editar", function () {
     $("#formE #precio_ventaE").val( venta );
     $("#formE #cantidadE").val( cant );
     $.ajax({
-        type: 'POST',
-        url: '../ajax/ver_imagen.php?id=' +id,
+        type: 'GET',
+        url: 'ajax/ver_imagen.php?id='+id+'&nom='+nom,
         success: function(img) {
-            $('#imagepreview').html("<img class=\"img-preview rounded card-img-top img-fluid\" src='data:img/jpg;base64, "+base64_encode(img)+"' alt=\""+nom_pro+"\">");
+            document.getElementById('imagepreviewE').innerHTML = img;
         },
         error: function() {
             alert("Hay un error ..");
