@@ -20,10 +20,6 @@
 .card-body {
     text-align: center;
 }
-.barra-filtros {
-    text-align: start!important;
-    display: flex;
-}
 .btn {
     --bs-btn-border-width: 0px;
 }
@@ -100,7 +96,4 @@
 .ltunidades {
     grid-column: 3/4;
     grid-row: 3/4;
-}
-.oculto {
-    display: none;
 }

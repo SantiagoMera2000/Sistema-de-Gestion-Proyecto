@@ -87,7 +87,6 @@ while($row=mysqli_fetch_assoc($result)){
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
           <div class="vistaprevia rounded" id="imagepreview">
-            <img src='img/insumo/' class='img-fluid rounded'/>
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
@@ -220,7 +219,7 @@ while($row=mysqli_fetch_assoc($result)){
               <!-- Boton de eliminacion -->
               <?php
               if ($row['inactivo'] == false) {
-              echo "<a class=\"btn btn-danger eliminar\" 
+              echo "<a class=\"btn btn-danger eliminar_insu\" 
                 data-id=\"{$row['id_insu']}\"
                 data-bs-toggle=\"modal\" 
                 data-bs-target=\"#VentanaEmergenteConfirmacion\" 
@@ -242,3 +241,4 @@ while($row=mysqli_fetch_assoc($result)){
 <script src="js\pasar_datos_modal.js"></script>
 <script src="js\filtrador_productos.js"></script>
 <script src="js\desabilitar_inputs.js"></script>
+<script src="js\vista_imagenes.js"></script>

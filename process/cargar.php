@@ -78,6 +78,12 @@ if (isset($_POST['cargar'])) {
     $descripcion= $_POST['descr'];
     $pasos = $_POST['pasos'];
 
+    if($_POST['estado'] == "on") {
+      $estado = false;
+    } else {
+      $estado = true;
+    }
+
     #Verifica si se agregó una imagen y la guarda como binario para su subida
     if(!$_FILES['imagen']['name'] == ""){
       $tamano = $_FILES['imagen']['size'];
@@ -89,7 +95,7 @@ if (isset($_POST['cargar'])) {
     }
   
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "INSERT into receta values ('0','$nombre','$descripcion','$pasos','$imgContenido', 'false')";
+    $query = "INSERT into receta values ('0','$nombre','$descripcion','$pasos','$imgContenido', '$estado')";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
       die("Error en la Consulta.");

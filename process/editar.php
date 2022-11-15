@@ -186,8 +186,14 @@ if (isset($_POST['editar'])) {
         $id = $_POST['id_receta'];
         $nombre_new = $_POST['nombreE'];
         $descr_new = $_POST['descrE'];
-        $pasos_new = $_POST['pasos'];
-    
+        $pasos_new = $_POST['pasosE'];
+
+        if($_POST['estadoE'] == "on") {
+            $estado_new = true;
+        } else {
+            $estado_new = false;
+        }
+
         #Variables para obtener informacion relacionada al archivo de subida
         if(!$_FILES['imagenE']['name'] == ""){
             $tamano = $_FILES['imagenE']['size'];
@@ -199,12 +205,25 @@ if (isset($_POST['editar'])) {
         }
 
         $contador = 1;
-        $array = array();
-        while(isset($_POST['Eing'+$contador])) {
-            $array[] = $_POST['Eing'+$contador];
+        $ingredientes_new = array();
+        $ing = "Eing".$contador;
+        while (isset($_POST["$ing"])) {
+            $uni = "Euni".$contador;
+            $cant = "Ecanting".$contador;
+            $unidad = $_POST["$uni"];
+            $cantidad = $_POST["$cant"];
+            $idins = $_POST["$ing"];
+            $ingredientes_new[] = array(
+                $contador => array(
+                    "id" => $idins,
+                    "unidad" => $unidad,
+                    "cant" => $cantidad
+                )
+            );
             $contador++;
+            $ing = "Eing".$contador;
         }
-
+        
         $datos_bd = "SELECT * FROM receta WHERE id_rec = $id";
         $result_tasks = mysqli_query($conexion, $datos_bd);    
         while($row = mysqli_fetch_assoc($result_tasks)) {
@@ -212,9 +231,24 @@ if (isset($_POST['editar'])) {
             $descr_old = $row['descri_r'];
             $pasos_old = $row['pasos_r'];
             $estado_old = $row['inactivo'];
-            $nombrimagen_old = $row['img_insu'];
+            $nombrimagen_old = $row['img_id'];
         }
-    
+
+        $ingredientes_old = array();
+        $datos_bd = "SELECT id_insu, unidad_med, cant_in_xreceta FROM contiene WHERE id_rec = $id";
+        $result_tasks = mysqli_query($conexion, $datos_bd);
+        $contador = 1;
+        while($row = mysqli_fetch_assoc($result_tasks)) {
+            $ingredientes_old[] = array(
+                $contador => array(
+                    "id" => $row['id_insu'],
+                    "unidad" => $row['unidad_med'],
+                    "cant" => $row['cant_in_xreceta']
+                )
+            );
+            $contador++;
+        }
+
         if ($nombre_new != $nombre_old) {
             $nombre = $nombre_new;
         }else {
@@ -230,11 +264,11 @@ if (isset($_POST['editar'])) {
         }else {
             $pasos = $pasos_old;
         }
-        //if ($estado_new != $estado_old) {
-        //    $estado = $estado_new;
-        //} else {
-        //    $estado = $estado_old;
-        //}
+        if ($estado_new != $estado_old) {
+            $estado = $estado_new;
+        } else {
+            $estado = $estado_old;
+        }
         
         if ($nombrimagen_new != $nombrimagen_old) {
             if ($nombrimagen_new != ""){
@@ -247,20 +281,21 @@ if (isset($_POST['editar'])) {
         }
 
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-        $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_insu = \"$imgContenido\", inactivo = \"0\" WHERE id_rec = \"$id\"";
+        $query = "UPDATE receta SET nom_r = \"$nombre\", descri_r = \"$descr\", pasos_r = \"$pasos\", img_id = \"$imgContenido\", inactivo = \"0\" WHERE id_rec = \"$id\"";
         $result = mysqli_query($conexion, $query);
         if(!$result) {
             die("Error en la Consulta.");
         }
 
-        $query = "SELECT * FROM contiene WHERE id_rec = $id";
-        $result = mysqli_query($conexion, $query);
-        while($row = mysqli_fetch_assoc($result)) {
-            
-        }
+        $resultado = array_diff_assoc(array_map('serialize',$ingredientes_new), array_map('serialize',$ingredientes_old));
+        #print_r($ingredientes_new);
+        #print_r($ingredientes_old);
+        #print_r(array_map('serialize',$ingredientes_new));
+        print_r(array_map('serialize',$ingredientes_old));
+        #print_r($resultado);
 
         #Regresa a la Pagina de los Productos
-        header('location: ../insumos.php');
+        #header('location: ../recetas.php');
         }
 }
 if ($_GET['editar'] == "tfactura") {

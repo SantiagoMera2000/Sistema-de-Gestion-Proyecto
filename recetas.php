@@ -55,6 +55,12 @@ while($row=mysqli_fetch_assoc($result)){
               <span class="material-symbols-outlined">remove</span>
             </button>
           </div>
+          <div class="conjunto2">
+            <label class="form-check-label lblestado" for="estado">Visibilidad</label>
+            <div class="form-check form-switch estado">
+              <input class="form-check-input inestado" type="checkbox" role="switch" id="estado" name="estado">
+            </div>
+          </div>
           <select class="form-select seling" aria-label="Ingredientes" id="ing1" name="ing1">
             <option selected>Ninguno seleccionado</option>
             <?php
@@ -64,7 +70,7 @@ while($row=mysqli_fetch_assoc($result)){
               <option value="<?php echo $row['id_insu'] ?>"><?php echo $row['nom_insu'] ?></option>
             <?php } ?>
           </select>
-          <input class="inping form-control" type="number" id="canting1" name="canting1" min="0" placeholder="Ingrese la cantidad" required>
+          <input class="inping form-control" type="number" step=any id="canting1" name="canting1" min="0" placeholder="Ingrese la cantidad" required>
           <select class="form-select selingun" aria-label="Unidad de Medida" id="uni1" name="uni1">
             <option value="1" selected>l</option>
             <option value="2">ml</option>
@@ -109,6 +115,15 @@ while($row=mysqli_fetch_assoc($result)){
 
 <!-- Contenedor principal -->
 <main class="main">
+  <div class="card" style="Margin: 0px 15px 0px 15px;">
+    <div class="card-body barra-filtros">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="mostrarocultos" onclick="mostraroculto()">
+        <label class="form-check-label" for="mostrarocultos">Mostrar Agotados/Ocultos</label>
+      </div>
+    </div>
+  </div>
+  <br>
   <div class="row row-cols-1 row-cols-md-6 g-4">
     <div class="col agregar">
       <!-- Tarjeta para agregar los productos (Llama a la ventana emergente) -->
@@ -152,7 +167,7 @@ while($row=mysqli_fetch_assoc($result)){
               <!-- Boton de eliminacion -->
               <?php
               if ($row['inactivo'] == false) {
-              echo "<a class=\"btn btn-danger eliminar\" 
+              echo "<a class=\"btn btn-danger eliminar_rec\" 
                 data-id=\"{$row['id_rec']}\"
                 data-bs-toggle=\"modal\" 
                 data-bs-target=\"#VentanaEmergenteConfirmacion\" 
@@ -170,110 +185,6 @@ while($row=mysqli_fetch_assoc($result)){
 
 <?php include('includes/footer.php'); ?>
 <script src="js\pasar_datos_modal.js"></script>
-<script>
-  canting = 1;
-  filant = 2;
-  filasi = 3;
-
-  function agregaringrediente() {
-    canting = canting+1;
-    filant = filant+1;
-    filasi = filasi+1;
-    if ( $('#VentanaEmergenteVisualizar').length > 0 ) {
-      $('#Eing1').clone(true).prop({
-        id: function (i, oldId) {return 'Eing'+canting;},
-        name: function (i, oldId) {return 'Eing'+canting;},
-        style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';',
-      }).appendTo('#for');
-      $("#Eing"+canting +" option[value='0']").prop("selected", "selected");
-      $('#Ecanting1').clone(true).prop({
-        id: function (i, oldId) {return 'Ecanting'+canting;},
-        name: function (i, oldId) {return 'Ecanting'+canting;},
-        style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';',
-        value: ''
-      }).appendTo('#for');
-      $('#Euni1').clone(true).prop({
-        id: function (i, oldId) {return 'Euni'+canting;},
-        name: function (i, oldId) {return 'Euni'+canting;},
-        style: 'grid-column: 6/7; grid-row:'+filant+'/'+filasi+';'
-      }).appendTo('#for');
-      $("#Euni"+canting +" option[value='1']").prop("selected", "selected");
-    } else {
-      $('#ing1').clone(true).prop({
-        id: function (i, oldId) {return 'ing'+canting;},
-        name: function (i, oldId) {return 'ing'+canting;},
-        style: 'grid-column: 4/5; grid-row:'+filant+'/'+filasi+';',
-      }).appendTo('.formulario');
-      $('#canting1').clone(true).prop({
-        id: function (i, oldId) {return 'canting'+canting;},
-        name: function (i, oldId) {return 'canting'+canting;},
-        style: 'grid-column: 5/6; grid-row:'+filant+'/'+filasi+';',
-        value: ''
-      }).appendTo('.formulario');
-      $('#uni1').clone(true).prop({
-        id: function (i, oldId) {return 'uni'+canting;},
-        name: function (i, oldId) {return 'uni'+canting;},
-        style: 'grid-column: 6/7; grid-row:'+filant+'/'+filasi+';'
-      }).appendTo('.formulario');
-  }
-};
-
-function quitaringrediente() {
-  if (canting >= "2") {
-    $('#ing'+canting).remove();
-    $('#canting'+canting).remove();
-    $('#uni'+canting).remove();
-    $('#Eing'+canting).remove();
-    $('#Ecanting'+canting).remove();
-    $('#Euni'+canting).remove();
-    canting = canting-1;
-    filant = filant-1;
-    filasi = filasi-1;
-  }
-};
-
-$('.seling').on('change', function(event ) {
-  //restore previously selected value
-  var prevValue = $(this).data('previous');
-  $('.seling').not(this).find('option[value="'+prevValue+'"]').show();
-  //hide option selected                
-  var value = $(this).val();
-  //update previously selected data
-  $(this).data('previous',value);
-  $('.seling').not(this).find('option[value="'+value+'"]').hide();
-  });
-
-  $(document).on("click", ".borrarmodal", function() {
-    $('#VentanaEmergenteVisualizar').remove();
-    limpiar();
-  })
-
-  $(document).on("click", ".editar_receta", function() {
-    var id = $(this).data('id');
-    if ( $('#VentanaEmergenteVisualizar').length > 0 ) {
-      $('#VentanaEmergenteVisualizar').remove();
-    } else {
-      // get needed html
-      $.get("ajax/ver_receta_modal.php?idr="+id, function (result) {
-        // append response to body
-        $('body').append(result);
-        // open modal
-        $('#VentanaEmergenteVisualizar').modal('show');
-      });
-    }
-});
-
-function limpiar() {
-  if (canting > 1){
-  for (i=2; i <= canting; i++) {
-    $('#ing'+i).remove();
-    $('#canting'+i).remove();
-    $('#uni'+i).remove();
-  }
-  canting = 1;
-  filant = 2;
-  filasi = 3;
-  }
-}
-
-</script>
+<script src="js\calculos_recetas.js"></script>
+<script src="js\vista_imagenes.js"></script>
+<script src="js\filtrador_productos.js"></script>

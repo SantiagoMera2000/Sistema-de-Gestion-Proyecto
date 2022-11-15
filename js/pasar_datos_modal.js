@@ -6,7 +6,7 @@ $(document).on("click", ".eliminar_rec", function () {
     var IdProducto = $(this).data('id');
     $(".modal-footer #eliminar_rec").val( IdProducto );
 });
-$(document).on("click", ".eliminar", function () {
+$(document).on("click", ".eliminar_insu", function () {
     var IdProducto = $(this).data('id');
     $(".modal-footer #eliminar_insu").val( IdProducto );
 });

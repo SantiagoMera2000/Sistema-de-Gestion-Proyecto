@@ -40,7 +40,13 @@ body {
 .main {
     padding-top: 20px;
 }
-
+.oculto {
+    display: none;
+}
+.barra-filtros {
+    text-align: start!important;
+    display: flex;
+}
 
 /*mediaquerys*/
 

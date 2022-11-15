@@ -97,7 +97,7 @@ while($row=mysqli_fetch_assoc($result)){
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre form-control" type="text" id="nombreE" name="nombreE" value="">
+          <input class="inpnombre form-control" type="text" id="nombreE" name="nombreE" value="" disabled>
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
           <input class="impdesc form-control" type="text" id="descrE" name="descrE" value="">
@@ -237,3 +237,4 @@ while($row=mysqli_fetch_assoc($result)){
 <script src="js\desabilitar_inputs.js"></script>
 <script src="js\pasar_datos_modal.js"></script>
 <script src="js\filtrador_productos.js"></script>
+<script src="js\vista_imagenes.js"></script>
