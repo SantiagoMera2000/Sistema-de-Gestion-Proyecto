@@ -60,52 +60,68 @@
         object-position: center center;
     }
 }
-.lblreceta {
+.lblnom {
     grid-column: 1/2;
     grid-row: 1/2;
+}
+.innom {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+.lblreceta {
+    grid-column: 1/2;
+    grid-row: 2/3;
 }
 .selreceta {
     grid-column: 2/3;
-    grid-row: 1/2;
+    grid-row: 2/3;
 }
 .lbldesc {
     grid-column: 1/2;
-    grid-row: 2/3;
+    grid-row: 3/4;
 }
 .inpdesc {
     grid-column: 2/3;
-    grid-row: 2/3;
+    grid-row: 3/4;
+}
+.lbltipo {
+    grid-column: 1/2;
+    grid-row: 4/5;
+}
+.inptipo {
+    grid-column: 2/3;
+    grid-row: 4/5;
 }
 .lblelab {
     grid-column: 1/2;
-    grid-row: 4/5;
+    grid-row: 5/6;
 }
 .inpelab {
-    grid-column: 3/2;
-    grid-row: 4/5;
+    grid-column: 2/3;
+    grid-row: 5/6;
 }
 .lblventa {
     grid-column: 1/2;
-    grid-row: 5/6;
+    grid-row: 6/7;
 }
 .inpventa {
     grid-column: 2/3;
-    grid-row: 5/6;
+    grid-row: 6/7;
 }
 .lblcant {
     grid-column: 1/2;
-    grid-row: 6/7;
+    grid-row: 7/8;
 }
 .inpcant {
     grid-column: 2/3;
-    grid-row: 6/7;
+    grid-row: 7/8;
 }
 .lblestado {
     grid-column: 1/2;
-    grid-row: 7/8;
+    grid-row: 8/9;
 }
 .estado {
     grid-column: 1/2;
-    grid-row: 7/8;
+    grid-row: 8/9;
     margin: 0px 0px 0px 80px;
 }

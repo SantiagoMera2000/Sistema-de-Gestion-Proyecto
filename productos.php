@@ -35,23 +35,25 @@ while($row=mysqli_fetch_assoc($result)){
         <form id="form" class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST">
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagen" type="file" id="imagen"/>
-          <div class="vistaprevia rounded" id="imagepreview">
-          </div>
+          <div class="vistaprevia rounded" id="imagepreview"></div>
           <!-- Nombre del Producto -->
+          <label class="lblnom" for="nombre">Nombre</label>
+          <input class="innom form-control" type="text" id="nombre" name="nombre" required>
+          <!-- Receta del Producto -->
           <label class="lblreceta" for="receta">Receta </label>
           <select class="form-select selreceta" aria-label="Recetas disponibles" id="receta" name="receta" required>
             <option selected> Seleccionar</option>
             <?php 
-            $query = "SELECT id_rec,nom_r,descri_r FROM receta WHERE inactivo = 0 ORDER BY nom_r ASC";
+            $query = "SELECT id_rec,nom_r FROM receta WHERE inactivo = 0 ORDER BY id_rec DESC";
             $result_tasks = mysqli_query($conexion, $query);    
             while($row = mysqli_fetch_assoc($result_tasks)) { ?>
-            <option value="<?php echo $row['nom_r']?>"><?php echo $row['nom_r']?></option>
+            <option value="<?php echo $row['id_rec']?>"><?php echo $row['nom_r']?></option>
             <?php } ?>
           </select>
-          <label class="lbldescr" for="descri_pro">Descripción </label>
-          <input class="inpdesc form-control" type="text" id="descri_pro" name="descri_pro" required>
+          <label class="lbldesc" for="descri_pro">Descripción </label>
+          <input class="inpdesc form-control" type="text" id="descr" name="descr" required>
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
-          <label class="lbltipo" for="tipo">Tipo </label>
+          <label class="lbltipo" for="tipo">Categoria </label>
           <input class="inptipo form-control" type="text" id="tipo" name="tipo" required>
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de elaboración </label>
@@ -96,13 +98,16 @@ while($row=mysqli_fetch_assoc($result)){
           <div class="vistaprevia rounded" id="imagepreviewE">
           </div>
           <!-- Nombre del Producto -->
-          <label class="lblnombre" for="nombre">Nombre </label>
-          <input class="inpnombre form-control" type="text" id="nombreE" name="nombreE" value="" disabled>
+          <label class="lblnom" for="nombre">Nombre </label>
+          <input class="inpnom form-control" type="text" id="nombreE" name="nombreE" value="">
+          <!-- Receta del Producto -->
+          <label class="lblreceta" for="nombre">Receta </label>
+          <input class="selreceta form-control" type="text" id="recetaE" name="recetaE" value="" disabled>
           <!-- Descripción del producto -->
           <label class="lbldesc" for="descr">Descripción </label>
           <input class="impdesc form-control" type="text" id="descrE" name="descrE" value="">
           <!-- Tipo del Producto (Comida,Bebida,etc) -->
-          <label class="lbltipo" for="tipo">Tipo </label>
+          <label class="lbltipo" for="tipo">Categoria </label>
           <input class="inptipo form-control" type="text" id="tipoE" name="tipoE" value="">
           <!-- Precio de Elaboracion -->
           <label class="lblelab" for="precio_elab">Precio de Elaboración </label>

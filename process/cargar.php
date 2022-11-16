@@ -6,7 +6,8 @@ session_start();
 if (isset($_POST['cargar'])) {
   if ($_POST['cargar'] == "producto" ) {
   #Variables donde se almacenan cada dato para su subida a la BD
-  $nombre = $_POST['receta'];
+  $nombre = $_POST['nombre'];
+  $receta = $_POST['receta'];
   $descr= $_POST['descr'];
   $tipo = $_POST['tipo'];
   $precio_elab = $_POST['precio_elab'];
@@ -36,11 +37,16 @@ if (isset($_POST['cargar'])) {
   if(!$result) {
     die("Error en la Consulta.");
   }
+  $query = "SELECT id_prod FROM producto WHERE nom_pro='$nombre'";
+  $result = mysqli_query($conexion, $query);
+  $row = mysqli_fetch_assoc($result);
+  $idrec = $row['id_prod'];
+  $result = mysqli_query($conexion, "INSERT INTO elaborado_con VALUES ('$receta','$idrec')");
 
   #Regresa a la Pagina de los Productos
   header('location: ../productos.php');
 
-  } elseif ( $_POST['cargar'] == "insumo") {
+  } elseif ( $_POST['cargar'] == "insumo" ) {
     $nombre = $_POST['nom_insu'];
     $cantidad = $_POST['cant_disp'];
     $unidad = $_POST['unidad_insu'];
@@ -175,7 +181,7 @@ if (isset($_POST['cargar'])) {
     $query = "INSERT into permisos values ('$id','$Permiso_insu','$permiso_rec ','$permiso_prod','$permiso_orden', '$permiso_facturacion','$permiso_admin')";
     $result = mysqli_query($conexion, $query);
     header('location: ../admin.php');
-   
+
   }
 } 
 if ($_GET['cargar'] == "apfactura") {
