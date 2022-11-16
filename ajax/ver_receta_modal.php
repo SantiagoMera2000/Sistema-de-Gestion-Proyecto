@@ -51,7 +51,7 @@
                     </div>
                     <?php
                     }
-                    $query = "SELECT * FROM contiene WHERE id_rec = $id";
+                    $query = "SELECT * FROM contiene WHERE id_rec = $id AND inactivo = 'false'";
                     $recetaingredientes = mysqli_query($conexion, $query);
                     $query = "SELECT id_insu,nom_insu FROM insumo ORDER BY id_insu ASC";
                     $insumos = mysqli_query($conexion, $query);

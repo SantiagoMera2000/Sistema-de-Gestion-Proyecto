@@ -79,14 +79,14 @@ if (isset($_POST['editar'])) {
     } else {
         $cantidad = $cantidad_old;
     }
-    if ($nombrimagen_new != $nombrimagen_old) {
-        if ($nombrimagen_new != ""){
+    if ("$nombrimagen_new" != "$nombrimagen_old") {
+        if ("$nombrimagen_new" != ""){
             $imgContenido = "$nombrimagen_new";
         } else {
-            $imgContenido = $nombrimagen_old;
+            $imgContenido = "$nombrimagen_old";
         }
     } else {
-        $imgContenido = $nombrimagen_old;
+        $imgContenido = "$nombrimagen_old";
     }
 
 
@@ -98,6 +98,7 @@ if (isset($_POST['editar'])) {
     }
     #Regresa a la Pagina de los Productos
     header('location: ../productos.php');
+
     } elseif ($_POST['editar'] == "insumo" ) {
         #Variables donde se almacenan cada dato para su subida a la BD
         $id = $_POST['id_insu'];
@@ -169,20 +170,19 @@ if (isset($_POST['editar'])) {
         } else {
             $imgContenido = "$nombrimagen_old";
         }
-    
-    
+
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
         $query = "UPDATE insumo SET nom_insu = \"$nombre\", cant_disp = \"$cantidad\", unidad_insu = \"$unidad\", precio_insu = \"$precio\", img_insu = \"$imgContenido\", inactivo = \"$estado\" WHERE id_insu = \"$id\"";
         $result = mysqli_query($conexion, $query);
         if(!$result) {
             die("Error en la Consulta.");
         }
-    
+
         #Regresa a la Pagina de los Productos
         header('location: ../insumos.php');
 
         } elseif ($_POST['editar'] == "recetas") {
-            #Variables donde se almacenan cada dato para su subida a la BD
+        #Variables donde se almacenan cada dato para su subida a la BD
         $id = $_POST['id_receta'];
         $nombre_new = $_POST['nombreE'];
         $descr_new = $_POST['descrE'];
@@ -204,24 +204,22 @@ if (isset($_POST['editar'])) {
             $nombrimagen_new = "";
         }
 
-        $contador = 1;
+        $ingcontador = 1;
         $ingredientes_new = array();
-        $ing = "Eing".$contador;
+        $ing = "Eing".$ingcontador;
         while (isset($_POST["$ing"])) {
-            $uni = "Euni".$contador;
-            $cant = "Ecanting".$contador;
+            $uni = "Euni".$ingcontador;
+            $cant = "Ecanting".$ingcontador;
             $unidad = $_POST["$uni"];
             $cantidad = $_POST["$cant"];
             $idins = $_POST["$ing"];
-            $ingredientes_new[] = array(
-                $contador => array(
-                    "id" => $idins,
-                    "unidad" => $unidad,
-                    "cant" => $cantidad
-                )
+            $ingredientes_new[$ingcontador] = array(
+                "id" => $idins,
+                "unidad" => $unidad,
+                "cant" => $cantidad
             );
-            $contador++;
-            $ing = "Eing".$contador;
+            $ingcontador++;
+            $ing = "Eing".$ingcontador;
         }
         
         $datos_bd = "SELECT * FROM receta WHERE id_rec = $id";
@@ -237,16 +235,14 @@ if (isset($_POST['editar'])) {
         $ingredientes_old = array();
         $datos_bd = "SELECT id_insu, unidad_med, cant_in_xreceta FROM contiene WHERE id_rec = $id";
         $result_tasks = mysqli_query($conexion, $datos_bd);
-        $contador = 1;
+        $oldcontador = 1;
         while($row = mysqli_fetch_assoc($result_tasks)) {
-            $ingredientes_old[] = array(
-                $contador => array(
-                    "id" => $row['id_insu'],
-                    "unidad" => $row['unidad_med'],
-                    "cant" => $row['cant_in_xreceta']
-                )
-            );
-            $contador++;
+            $ingredientes_old[$oldcontador] = array(
+                "id" => $row['id_insu'],
+                "unidad" => $row['unidad_med'],
+                "cant" => $row['cant_in_xreceta']
+                );
+            $oldcontador++;
         }
 
         if ($nombre_new != $nombre_old) {
@@ -287,15 +283,27 @@ if (isset($_POST['editar'])) {
             die("Error en la Consulta.");
         }
 
-        $resultado = array_diff_assoc(array_map('serialize',$ingredientes_new), array_map('serialize',$ingredientes_old));
-        #print_r($ingredientes_new);
-        #print_r($ingredientes_old);
-        #print_r(array_map('serialize',$ingredientes_new));
-        print_r(array_map('serialize',$ingredientes_old));
-        #print_r($resultado);
+        $resultado = array_intersect(array_map('serialize',$ingredientes_new), array_map('serialize',$ingredientes_old));
+        $contador = 1;
+        if (array_map('serialize',$resultado) != array_map('serialize',$ingredientes_old)) {
+            $query = "UPDATE contiene SET inactivo = true WHERE id_rec = \"$id\"";
+            mysqli_query($conexion, $query);
+            while ($contador != $ingcontador){
+                $insumo = $ingredientes_new[$contador]['id'];
+                $unidad = $ingredientes_new[$contador]['unidad'];
+                $cantidad = $ingredientes_new[$contador]['cant'];
+                $query = "UPDATE contiene SET unidad_med = \"$unidad\", cant_in_xreceta = \"$cantidad\", inactivo = \"false\" WHERE (id_rec = \"$id\" AND id_insu = \"$insumo\")";
+                $result = mysqli_query($conexion, $query);
+                if(!$result){
+                    $query = "INSERT INTO contiene VALUES ('$id','$insumo','$unidad','$cantidad','false')";
+                    mysqli_query($conexion, $query);
+                }
+                $contador++;
+            }
+        }
 
         #Regresa a la Pagina de los Productos
-        #header('location: ../recetas.php');
+        header('location: ../recetas.php');
         }
 }
 if ($_GET['editar'] == "tfactura") {
