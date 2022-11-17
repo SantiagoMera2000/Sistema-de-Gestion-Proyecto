@@ -23,7 +23,13 @@
                     <!-- Imagen de la receta -->
                     <label class="lblimagen" for="imagen">Imagen </label>
                     <input class="imagen form-control" name="imagenE" type="file" id="imagenE"/>
-                    <div class="vistaprevia img-fluid rounded" id="imagepreview"></div>
+                    <div class="vistaprevia img-fluid rounded" id="imagepreview">
+                    <?php
+                        if ($row['img_id'] != "") {
+                            echo "<img class=\"rounded card-img-top img-fluid\" src='data:img/jpg;base64, ".base64_encode($row['img_id'])."' alt=\"{$row['nom_r']}\">";
+                        }
+                    ?>
+                    </div>
                     <!-- Pasos de elaboracion -->
                     <label class="lblela" for="ela">Pasos de elaboracion</label>
                     <textarea class="inpela form-control" id="pasosE" name="pasosE" required><?php echo $row['pasos_r']?></textarea>

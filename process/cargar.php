@@ -109,7 +109,7 @@ if (isset($_POST['cargar'])) {
       $unidad = $_POST["$uni"];
       $cantidad = $_POST["$cant"];
       $idins = $_POST["$ing"];
-      $query = "INSERT INTO contiene VALUES ('$idrec','$idins','$unidad','$cantidad')";
+      $query = "INSERT INTO contiene VALUES ('$idrec','$idins','$unidad','$cantidad',false)";
       mysqli_query($conexion, $query);
       $contador = $contador+1;
       $ing = "ing".$contador;

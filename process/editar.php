@@ -79,14 +79,10 @@ if (isset($_POST['editar'])) {
     } else {
         $cantidad = $cantidad_old;
     }
-    if ("$nombrimagen_new" != "$nombrimagen_old") {
-        if ("$nombrimagen_new" != ""){
-            $imgContenido = "$nombrimagen_new";
-        } else {
-            $imgContenido = "$nombrimagen_old";
-        }
-    } else {
+    if ("$nombrimagen_new" == "") {
         $imgContenido = "$nombrimagen_old";
+    } else {
+        $imgContenido = "$nombrimagen_new";
     }
 
 
@@ -161,14 +157,10 @@ if (isset($_POST['editar'])) {
         } else {
             $unidad = $unidad_old;
         }
-        if ($nombrimagen_new != $nombrimagen_old) {
-            if ($nombrimagen_new != ""){
-                $imgContenido = "$nombrimagen_new";
-            } else {
-                $imgContenido = "$nombrimagen_old";
-            }
-        } else {
+        if ($nombrimagen_new == ""){
             $imgContenido = "$nombrimagen_old";
+        } else {
+            $imgContenido = "$nombrimagen_new";
         }
 
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
@@ -266,14 +258,10 @@ if (isset($_POST['editar'])) {
             $estado = $estado_old;
         }
         
-        if ($nombrimagen_new != $nombrimagen_old) {
-            if ($nombrimagen_new != ""){
-                $imgContenido = "$nombrimagen_new";
-            } else {
-                $imgContenido = "$nombrimagen_old";
-            }
-        } else {
+        if ($nombrimagen_new == ""){
             $imgContenido = "$nombrimagen_old";
+        } else {
+            $imgContenido = "$nombrimagen_new";
         }
 
         #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
@@ -295,7 +283,7 @@ if (isset($_POST['editar'])) {
                 $query = "UPDATE contiene SET unidad_med = \"$unidad\", cant_in_xreceta = \"$cantidad\", inactivo = \"false\" WHERE (id_rec = \"$id\" AND id_insu = \"$insumo\")";
                 $result = mysqli_query($conexion, $query);
                 if(!$result){
-                    $query = "INSERT INTO contiene VALUES ('$id','$insumo','$unidad','$cantidad','false')";
+                    $query = "INSERT INTO contiene VALUES ('$id','$insumo','$unidad','$cantidad',false)";
                     mysqli_query($conexion, $query);
                 }
                 $contador++;

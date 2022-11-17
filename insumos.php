@@ -5,7 +5,6 @@
 <?php
 session_start();
 $usuario = $_SESSION['username'];
-echo $usuario;
 
 if(!isset($usuario)){
   header("location: login.php");
@@ -14,7 +13,6 @@ $query = "SELECT insumos from permisos where id_pe=$usuario";
 $result = mysqli_query($conexion, $query);
 while($row=mysqli_fetch_assoc($result)){
   if($row['insumos'] == false){
-    echo $row['insumos'];
     header("location: index.php");
   }
 }
@@ -36,9 +34,8 @@ while($row=mysqli_fetch_assoc($result)){
         <!-- Formulario para cargar los datos en la BD -->
         <form class="formulario" enctype="multipart/form-data" action="process/cargar.php" method="POST">
           <!-- Imagen del Insumo -->
-          <input class="imagen rounded form-control" name="imagen_insu" type="file" id="imagen_insu"/>
-          <div class="vistaprevia rounded" id="imagepreview">
-          </div>
+          <input class="imagen rounded form-control" name="imagen" type="file" id="imagen"/>
+          <div class="vistaprevia rounded" id="imagepreview"></div>
           <!-- Nombre del Insumo -->
           <label class="lblnombre" for="nombre">Nombre </label>
           <input class="inpnombre form-control" type="text" id="nom_insu" name="nom_insu" required>
@@ -86,7 +83,7 @@ while($row=mysqli_fetch_assoc($result)){
         <form id="formE" class="formulario" enctype="multipart/form-data" action="process/editar.php" method="POST">
           <!-- Imagen del Producto -->
           <input class="imagen rounded form-control" name="imagenE" type="file" id="imagenE"/>
-          <div class="vistaprevia rounded" id="imagepreview">
+          <div class="vistaprevia rounded" id="imagepreviewE">
           </div>
           <!-- Nombre del Producto -->
           <label class="lblnombre" for="nombre">Nombre </label>
