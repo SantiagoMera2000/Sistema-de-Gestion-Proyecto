@@ -90,6 +90,7 @@ $(document).on("click", ".editar_receta", function() {
   }
 });
 
+
 function limpiar() {
 if (canting > 1){
 for (i=2; i <= canting; i++) {
