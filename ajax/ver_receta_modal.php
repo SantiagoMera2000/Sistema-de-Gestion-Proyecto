@@ -121,6 +121,11 @@
                     }else{
                         echo "<option value=\"8\">C/N</option>";
                     };
+                    if ($row1['unidad_med'] == "9"){
+                        echo "<option value=\"9\" selected>Taza</option>";
+                    }else{
+                        echo "<option value=\"9\">Taza</option>";
+                    };
                 
                     echo "</select>";
                     $contador = $contador+1;
