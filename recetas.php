@@ -80,6 +80,7 @@ while($row=mysqli_fetch_assoc($result)){
             <option value="6">pizca</option>
             <option value="7">cda</option>
             <option value="8">C/N</option>
+            <option value="9">Taza</option>
           </select>
         </div>
           <!-- Pie de la ventana emergente -->

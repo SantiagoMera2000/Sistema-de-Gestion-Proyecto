@@ -7,24 +7,28 @@
 <link rel="stylesheet" href="css\pedidos.css">
 
 <!-- Offcanvas -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvascarrito" aria-labelledby="offcanvascarrito">
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvascarrito" aria-labelledby="offcanvascarrito">
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvascarrito">Offcanvas</h5>
+    <h5 class="offcanvas-title" id="offcanvascarrito">Mi Carrito</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body">
     <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-    </div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+      <table>
+        <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
@@ -46,7 +50,7 @@
           ?>
           <div class="card h-100">
             <div class="card-body">
-              <h5 class="card-title"><?php echo $row['nom_pro']; ?></h5>
+              <h5 class="card-title" style="align-self: center;"><?php echo $row['nom_pro']; ?></h5>
               <hr>
               <?php
               if ($row['img_id'] == "") {
@@ -73,7 +77,7 @@
 
 <script>
   function agregarcarrito(producto){
-
+    const nodo = document.createElement('td');
   }
 </script>
 <?php include('includes/footermobile.php'); ?>

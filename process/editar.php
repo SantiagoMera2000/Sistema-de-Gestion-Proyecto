@@ -111,7 +111,7 @@ if (isset($_POST['editar'])) {
         }
     
         #Variables para obtener informacion relacionada al archivo de subida
-        if(!$_FILES['imagenE']['name'] == ""){
+        if($_FILES['imagenE']['name'] != ""){
             $tamano = $_FILES['imagenE']['size'];
             $imgContenido = fopen($_FILES['imagenE']['tmp_name'], 'r');
             $binarioimagen = fread($imgContenido, $tamano);
