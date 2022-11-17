@@ -39,7 +39,7 @@ $(document).on("click", ".editar", function () {
     $("#formE #cantidadE").val( cant );
     $.ajax({
         type: 'GET',
-        url: 'ajax/ver_imagen.php?id='+id+'&nom='+nom,
+        url: 'ajax/ver_imagen.php?id='+id+'&nom='+nom+'&atrr=img_id&tabla=producto&prim=id_prod',
         success: function(img) {
             document.getElementById('imagepreviewE').innerHTML = img;
         },
@@ -57,7 +57,6 @@ $(document).on("click", ".editar_insu", function() {
     var es = document.getElementById("estadoE");
     var costo = $(this).data('id').precio_insu;
     var cant = $(this).data('id').cant_disp;
-    //var img = $(this).data('id').img_insu;
     $("#formE #id_insu").val( id );
     $("#formE #nom_insuE").val( nom );
     document.querySelector('#unidad_insuE').value = uni;
@@ -67,4 +66,14 @@ $(document).on("click", ".editar_insu", function() {
     }
     $("#formE #precio_insuE").val( costo );
     $("#formE #cant_dispE").val( cant );
+    $.ajax({
+        type: 'GET',
+        url: 'ajax/ver_imagen.php?id='+id+'&nom='+nom+'&atrr=img_insu&tabla=insumo&prim=id_insu',
+        success: function(img) {
+            document.getElementById('imagepreviewE').innerHTML = img;
+        },
+        error: function() {
+            alert("Hay un error ..");
+        }
+    });
 });

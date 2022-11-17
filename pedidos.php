@@ -38,6 +38,9 @@
               <li class="list-group-item">Precio: $<?php echo $row['precio_venta']; ?></li>
               <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
+            <div class="card-footer">
+              <a class="btn btn-primary" onclick="agregar()" data-id="<?php echo $row['']">Agregar al Carrito</a>
+            </divc>
           </div>
         </div>
       <?php } ?>
