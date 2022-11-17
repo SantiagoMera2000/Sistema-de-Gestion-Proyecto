@@ -102,7 +102,6 @@ if (isset($_POST['editar'])) {
         $precio_new = $_POST['precio_insuE'];
         $unidad_new = $_POST['unidad_insuE'];
         $cantidad_new = $_POST['cant_dispE'];
-        $estado_new = $_POST['estadoE'];
     
         #Verificamos el estado del switch de visibilidad
         if($_POST['estadoE'] == "on") {

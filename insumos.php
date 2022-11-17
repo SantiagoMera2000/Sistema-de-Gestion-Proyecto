@@ -45,7 +45,7 @@ while($row=mysqli_fetch_assoc($result)){
           <!-- Estado del Producto (Visible) -->
           <label class="form-check-label lblestado" for="estado">Visible</label>
           <div class="form-check form-switch estado">
-            <input class="form-check-input" type="checkbox" role="switch" id="estado" >
+            <input class="form-check-input" type="checkbox" role="switch" id="estado" name="estado">
           </div>
           <!-- Cantidad de Insumo -->
           <label class="lblcant" for="cant_disp">Cantidad </label>

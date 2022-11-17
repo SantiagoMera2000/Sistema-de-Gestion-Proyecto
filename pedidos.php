@@ -6,6 +6,29 @@
 <link rel="stylesheet" href="css\index.css">
 <link rel="stylesheet" href="css\pedidos.css">
 
+<!-- Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvascarrito" aria-labelledby="offcanvascarrito">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvascarrito">Offcanvas</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+    </div>
+    <div class="dropdown mt-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        Dropdown button
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <!-- Contenedor principal -->
 <main class="main">
   <div class="row row-cols-1 row-cols-md-6 g-4 ">
@@ -39,7 +62,7 @@
               <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
             <div class="card-footer">
-              <a class="btn btn-primary" onclick="agregar()" data-id="<?php echo $row['']">Agregar al Carrito</a>
+              <a class="btn btn-primary" onclick="agregarcarrito(<?php echo $row['id_prod']?>)" data-bs-toggle="offcanvas" href="#offcanvascarrito" role="button" aria-controls="offcanvascarrito">Agregar al Carrito</a>
             </divc>
           </div>
         </div>
@@ -48,4 +71,9 @@
   </div>
 </main>
 
+<script>
+  function agregarcarrito(producto){
+
+  }
+</script>
 <?php include('includes/footermobile.php'); ?>
