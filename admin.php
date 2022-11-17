@@ -149,12 +149,11 @@ while($row=mysqli_fetch_assoc($result)){
                         <td class="noSearch"><?php echo $row['apellido']; ?></td>
                         <td><?php echo $row['email']; ?></td>
                         <td>
-                            <button class="btn btn-tabla btn-primary" >
+                          <!--  <button class="btn btn-tabla btn-primary" >
                                 <span class="material-symbols-outlined" value="<?php echo $row['id']?>">account_tree</span>
-                            </button>
-                            <button class="btn btn-tabla btn-primary editar" data-id='{"id":"<?php echo $row['id']?>"}' data-bs-toggle="modal" data-bs-target="#VentanaEmergenteEdit" role="button" >
-                                <span class="material-symbols-outlined">edit</span>
-                            </button>
+                            </button> -->
+                            <!-- <button class="btn btn-tabla btn-primary editar" data-id='{"id":"<?php echo $row['id']?>"}' data-bs-toggle="modal" data-bs-target="#VentanaEmergenteEdit" role="button" >
+                                <span class="material-symbols-outlined">edit</span> -->                           </button>
                             <button class="btn btn-tabla btn-primary eliminar_usu" data-bs-toggle="modal" data-bs-target="#VentanaEmergenteConfirmacion" role="button" data-id="<?php echo $row['id']?>">
                                 <span class="material-symbols-outlined">delete</span>
                             </button>
