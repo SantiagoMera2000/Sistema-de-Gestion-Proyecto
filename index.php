@@ -31,66 +31,85 @@ if(!isset($usuario)){
         </div>
         <!-- Tarjetas de acceso rapido a cada parte del sistema -->
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='recetas.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">menu_book</span>
-                            <h5 class="card-title">Recetas</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='productos.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">inventory</span>
-                            <h5 class="card-title">Productos</h5>
-                    </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='insumos.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">egg</span>
-                            <h5 class="card-title">Insumos</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='ordenes.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">fact_check</span>
-                            <h5 class="card-title">Orden de Producción</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='facturacion.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">receipt_long</span>
-                            <h5 class="card-title">Facturacion</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card div-config agregados">
-                    <a href='admin.php'>
-                        <div class="card-body">
-                        <span class="material-symbols-outlined">manage_accounts</span>
-                            <h5 class="card-title">Administrador</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <?php
+            $query = "SELECT insumos,recetas,productos,orden_de_produccion,facturacion,panel_admin from permisos where id_pe=$usuario";
+            $result = mysqli_query($conexion, $query);
+            while($row=mysqli_fetch_assoc($result)){
+                if($row['recetas'] == true){
+                echo "<div class=\"col\">";
+                    echo "<div class=\"card div-config agregados\">";
+                        echo "<a href='recetas.php'>";
+                            echo "<div class=\"card-body\">";
+                                echo "<span class=\"material-symbols-outlined\">menu_book</span>";
+                                    echo "<h5 class=\"card-title\">Recetas</h5>";
+                                echo "</div>";
+                            echo "</a>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+                if ($row['productos'] == true) {
+                    echo "<div class=\"col\">";
+                        echo "<div class=\"card div-config agregados\">";
+                        echo "<a href='productos.php'>";
+                            echo "<div class=\"card-body\">";
+                                echo "<span class=\"material-symbols-outlined\">inventory</span>";
+                                echo "<h5 class=\"card-title\">Productos</h5>";
+                            echo "</div>";
+                        echo "</a>";
+                    echo "</div>";
+                echo "</div>";
+                }
+                if ($row['insumos'] == true) {
+                    echo "<div class=\"col\">";
+                        echo "<div class=\"card div-config agregados\">";
+                        echo "<a href='insumos.php'>";
+                            echo "<div class=\"card-body\">";
+                                echo "<span class=\"material-symbols-outlined\">egg</span>";
+                                    echo "<h5 class=\"card-title\">Insumos</h5>";
+                                echo "</div>";
+                            echo "</a>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+                if ($row['orden_de_produccion'] == true) {
+                    echo "<div class=\"col\">";
+                        echo "<div class=\"card div-config agregados\">";
+                            echo "<a href='ordenes.php'>";
+                                echo "<div class=\"card-body\">";
+                                    echo "<span class=\"material-symbols-outlined\">fact_check</span>";
+                                echo "<h5 class=\"card-title\">Orden de Producción</h5>";
+                            echo "</div>";
+                        echo "</a>";
+                    echo "</div>";
+                echo "</div>";
+                }
+                if ($row['facturacion'] == true) {
+                    echo "<div class=\"col\">";
+                        echo "<div class=\"card div-config agregados\">";
+                            echo "<a href='facturacion.php'>";
+                                echo "<div class=\"card-body\">";
+                                    echo "<span class=\"material-symbols-outlined\">receipt_long</span>";
+                                echo "<h5 class=\"card-title\">Facturacion</h5>";
+                            echo "</div>";
+                        echo "</a>";
+                    echo "</div>";
+                echo "</div>";
+                }
+                if ($row['panel_admin'] == true) {
+                    echo "<div class=\"col\">";
+                    echo "<div class=\"card div-config agregados\">";
+                        echo "<a href='admin.php'>";
+                            echo "<div class=\"card-body\">";
+                            echo "<span class=\"material-symbols-outlined\">manage_accounts</span>";
+                                echo "<h5 class=\"card-title\">Administrador</h5>";
+                            echo "</div>";
+                        echo "</a>";
+                    echo "</div>";
+                echo "</div>";
+                }
+            }
+            ?>
+            
         </div>
     </main>
     

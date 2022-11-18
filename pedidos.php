@@ -6,33 +6,6 @@
 <link rel="stylesheet" href="css\index.css">
 <link rel="stylesheet" href="css\pedidos.css">
 
-<!-- Offcanvas -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvascarrito" aria-labelledby="offcanvascarrito">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvascarrito">Mi Carrito</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>
-      <table>
-        <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Total</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr>
-
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
 <!-- Contenedor principal -->
 <main class="main">
   <div class="row row-cols-1 row-cols-md-6 g-4 ">
@@ -65,9 +38,6 @@
               <li class="list-group-item">Precio: $<?php echo $row['precio_venta']; ?></li>
               <li class="list-group-item">Disponibles: <?php echo $row['cantidad']; ?></li>
             </ul>
-            <div class="card-footer">
-              <a class="btn btn-primary" onclick="agregarcarrito(<?php echo $row['id_prod']?>)" data-bs-toggle="offcanvas" href="#offcanvascarrito" role="button" aria-controls="offcanvascarrito">Agregar al Carrito</a>
-            </divc>
           </div>
         </div>
       <?php } ?>
@@ -75,9 +45,4 @@
   </div>
 </main>
 
-<script>
-  function agregarcarrito(producto){
-    const nodo = document.createElement('td');
-  }
-</script>
 <?php include('includes/footermobile.php'); ?>
