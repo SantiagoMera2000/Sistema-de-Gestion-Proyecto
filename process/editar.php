@@ -85,9 +85,8 @@ if (isset($_POST['editar'])) {
         $imgContenido = "$nombrimagen_new";
     }
 
-
     #Luego de realizado todo lo anterior con exito, se sube la informacion proporcionada a la BD
-    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", inactivo = \"$estado\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\", img_id = \"$imgContenido\" WHERE id_prod = \"$id\"";
+    $query = "UPDATE producto SET nom_pro = \"$nombre\", descri_pro = \"$descr\", tipo = \"$tipo\", inactivo = \"$estado\", precio_elav = \"$precio_elab\", precio_venta = \"$precio_venta\", cantidad = \"$cantidad\" WHERE id_prod = \"$id\"";
     $result = mysqli_query($conexion, $query);
     if(!$result) {
         die("Error en la Consulta.");

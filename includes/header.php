@@ -41,9 +41,11 @@
     <li class="nav-item opc">
       <a id="r" class="nav-link" href="recetas.php">Recetas</a>
     </li>
+    <!--
     <li class="nav-item opc">
       <a id="e" class="nav-link" href="ordenes.php">Orden de Producción</a>
     </li>
+    -->
     <li class="nav-item opc">
       <a id="f" class="nav-link" href="facturacion.php">Facturación</a>
     </li>

@@ -71,7 +71,7 @@ if(!isset($usuario)){
                         echo "</div>";
                     echo "</div>";
                 }
-                if ($row['orden_de_produccion'] == true) {
+                if ($row['orden_de_produccion'] == 2) {
                     echo "<div class=\"col\">";
                         echo "<div class=\"card div-config agregados\">";
                             echo "<a href='ordenes.php'>";
